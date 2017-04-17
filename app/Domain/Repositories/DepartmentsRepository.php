@@ -59,9 +59,6 @@ class DepartmentsRepository extends AbstractRepository implements DepartmentsInt
         // execute sql insert
         return parent::create([
             'name'    => e($data['name']),
-            'email'   => e($data['email']),
-            'address' => e($data['address']),
-            'phone'   => e($data['phone'])
         ]);
 
     }
@@ -75,9 +72,6 @@ class DepartmentsRepository extends AbstractRepository implements DepartmentsInt
     {
         return parent::update($id, [
             'name'    => e($data['name']),
-            'email'   => e($data['email']),
-            'address' => e($data['address']),
-            'phone'   => e($data['phone'])
         ]);
     }
 
