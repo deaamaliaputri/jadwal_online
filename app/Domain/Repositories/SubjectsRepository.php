@@ -59,9 +59,8 @@ class SubjectsRepository extends AbstractRepository implements SubjectsInterface
         // execute sql insert
         return parent::create([
             'name'    => e($data['name']),
-            'email'   => e($data['email']),
-            'address' => e($data['address']),
-            'phone'   => e($data['phone'])
+            'teachers_id'   => e($data['teachers_id']),
+            'descriptions' => e($data['description']),
         ]);
 
     }
@@ -75,9 +74,8 @@ class SubjectsRepository extends AbstractRepository implements SubjectsInterface
     {
         return parent::update($id, [
             'name'    => e($data['name']),
-            'email'   => e($data['email']),
-            'address' => e($data['address']),
-            'phone'   => e($data['phone'])
+            'teachers_id'   => e($data['teachers_id']),
+            'descriptions' => e($data['description']),
         ]);
     }
 

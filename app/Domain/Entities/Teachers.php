@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Contact
+ * Class Teachers
  * @package App\Domain\Entities
  */
-class Contact extends Model
+class Teachers extends Model
 {
     use SoftDeletes;
 

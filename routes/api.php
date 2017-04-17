@@ -18,3 +18,10 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:api');
 
 Route::resource('contacts','ContactController');
+Route::resource('teachers','TeachersController');
+Route::resource('daftar','DaftarController');
+Route::resource('departments','DepartmentsController');
+Route::resource('kelas','KelasController');
+Route::resource('schedules','SchedulesController');
+Route::resource('Students','StudentsController');
+Route::resource('subjects','SubjectsController');

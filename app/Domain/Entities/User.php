@@ -2,18 +2,22 @@
 
 namespace App\Domain\Entities;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class User extends Authenticatable
+/**
+ * Class User
+ * @package App\Domain\Entities
+ */
+class User extends Model
 {
-    use Notifiable;
+    use SoftDeletes;
 
+    /**
+     * @var array
+     */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'phone', 'status', 'level', 'nip',
     ];
 
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
 }

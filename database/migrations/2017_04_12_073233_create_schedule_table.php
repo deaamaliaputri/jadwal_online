@@ -20,7 +20,7 @@ class CreateScheduleTable extends Migration
             $table->string('room');
             $table->integer('teachers_id', false);
             $table->integer('departments_id', false);
-            $table->integer('class_id', false);
+            $table->integer('kelas_id', false);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -33,7 +33,7 @@ class CreateScheduleTable extends Migration
      */
     public function down()
     {
-               Schema::drop('schedules');
+     Schema::drop('schedules');
 
     }
 }

@@ -6,7 +6,7 @@ namespace App\Domain\Contracts;
  * Interface ContactInterface
  * @package App\Domain\Schedules
  */
-interface UsersInterface {
+interface UserInterface {
 
     /**
      * @param int $limit

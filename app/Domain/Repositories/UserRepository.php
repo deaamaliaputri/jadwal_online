@@ -2,30 +2,30 @@
 
 namespace App\Domain\Repositories;
 
-use App\Domain\Entities\Users;
-use App\Domain\Contracts\UsersInterface;
+use App\Domain\Entities\User;
+use App\Domain\Contracts\UserInterface;
 use App\Domain\Contracts\Crudable;
 
 
 /**
- * Class UsersRepository
+ * Class UserRepository
  * @package App\Domain\Repositories
  */
-class UsersRepository extends AbstractRepository implements UsersInterface, Crudable
+class UserRepository extends AbstractRepository implements UserInterface, Crudable
 {
 
     /**
-     * @var Users
+     * @var User
      */
     protected $model;
 
     /**
-     * UsersRepository constructor.
-     * @param Users $Users
+     * UserRepository constructor.
+     * @param User $user
      */
-    public function __construct(Users $users)
+    public function __construct(User $user)
     {
-        $this->model = $users;
+        $this->model = $user;
     }
 
     /**
@@ -60,8 +60,11 @@ class UsersRepository extends AbstractRepository implements UsersInterface, Crud
         return parent::create([
             'name'    => e($data['name']),
             'email'   => e($data['email']),
-            'address' => e($data['address']),
-            'phone'   => e($data['phone'])
+            'password' => e($data['password']),
+            'phone'   => e($data['phone']),
+            'status'   => e($data['status']),
+            'level'   => e($data['level']),
+            'nip'   => e($data['nip'])
         ]);
 
     }
@@ -76,8 +79,11 @@ class UsersRepository extends AbstractRepository implements UsersInterface, Crud
         return parent::update($id, [
             'name'    => e($data['name']),
             'email'   => e($data['email']),
-            'address' => e($data['address']),
-            'phone'   => e($data['phone'])
+            'password' => e($data['password']),
+            'phone'   => e($data['phone']),
+            'status'   => e($data['status']),
+            'level'   => e($data['level']),
+            'nip'   => e($data['nip'])
         ]);
     }
 
