@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Departments\DepartmentsCreateRequest;
 use App\Http\Requests\Departments\DepartmentsEditRequest;
 use Illuminate\Http\Request;
-use App\Domain\Contracts\DepartmentsInterface;
+use App\Domain\Repositories\DepartmentsRepository;
 
 class DepartmentsController extends Controller
 {
@@ -19,7 +19,7 @@ class DepartmentsController extends Controller
      * DepartmentsController constructor.
      * @param DepartmentsInterface $departments
      */
-    public function __construct(DepartmentsInterface $departments)
+    public function __construct(DepartmentsRepository $departments)
     {
         $this->departments = $departments;
     }
