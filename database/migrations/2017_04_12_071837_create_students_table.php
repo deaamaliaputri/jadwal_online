@@ -17,8 +17,8 @@ class CreateStudentsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('nis', false);
-            $table->string('kelas');
-            $table->string('departments');
+            $table->string('kelas_id');
+            $table->string('departments_id');
             $table->timestamps();
             $table->softDeletes();
         });
