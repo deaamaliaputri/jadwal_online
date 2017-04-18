@@ -47,7 +47,7 @@ class SchedulesRepository extends AbstractRepository implements SchedulesInterfa
     public function paginate($limit = 10, $page = 1, array $column = ['*'], $field, $search = '')
     {
         // query to aql
-        return parent::paginate($limit, $page, $column, 'name', $search);
+        return parent::paginate($limit, $page, $column, 'room', $search);
     }
 
     /**
