@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Subjects\SubjectsCreateRequest;
 use App\Http\Requests\Subjects\SubjectsEditRequest;
 use Illuminate\Http\Request;
-use App\Domain\Contracts\SubjectsInterface;
+use App\Domain\Repositories\SubjectsRepository;
+
 
 class SubjectsController extends Controller
 {
@@ -19,7 +20,7 @@ class SubjectsController extends Controller
      * SubjectsController constructor.
      * @param SubjectsInterface $subjects
      */
-    public function __construct(SubjectsInterface $subjects)
+    public function __construct(SubjectsRepository $subjects)
     {
         $this->subjects = $subjects;
     }
