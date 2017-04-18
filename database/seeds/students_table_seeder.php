@@ -15,12 +15,12 @@ class students_table_seeder extends Seeder
         DB::table('students')->truncate();
 
         $students = [
-            ['id' => 1, 'name' => 'dea', 'nis' => '1', 'kelas' => '1', 'departments' => 'rpl', 'created_at' => \Carbon\Carbon::now()],
-            ['id' => 2, 'name' => 'amalia', 'nis' => '2', 'kelas' => '2', 'departments' => 'rpl', 'created_at' => \Carbon\Carbon::now()],
-            ['id' => 3, 'name' => 'putri', 'nis' => '3', 'kelas' => '3', 'departments' => 'rpl', 'created_at' => \Carbon\Carbon::now()],
-            ['id' => 4, 'name' => 'cintya', 'nis' => '4', 'kelas' => '4', 'departments' => 'rpl', 'created_at' => \Carbon\Carbon::now()],
-            ['id' => 5, 'name' => 'dewi', 'nis' => '5', 'kelas' => '5', 'departments' => 'rpl', 'created_at' => \Carbon\Carbon::now()],
-            ['id' => 6, 'name' => 'nur', 'nis' => '6', 'kelas' => '6', 'departments' => 'rpl', 'created_at' => \Carbon\Carbon::now()],
+            ['id' => 1, 'name' => 'dea', 'nis' => '1', 'kelas_id' => '1', 'departments_id' => '1', 'created_at' => \Carbon\Carbon::now()],
+            ['id' => 2, 'name' => 'amalia', 'nis' => '2', 'kelas_id' => '2', 'departments_id' => '2', 'created_at' => \Carbon\Carbon::now()],
+            ['id' => 3, 'name' => 'putri', 'nis' => '3', 'kelas_id' => '3', 'departments_id' => '3', 'created_at' => \Carbon\Carbon::now()],
+            ['id' => 4, 'name' => 'cintya', 'nis' => '4', 'kelas_id' => '4', 'departments_id' => '4', 'created_at' => \Carbon\Carbon::now()],
+            ['id' => 5, 'name' => 'dewi', 'nis' => '5', 'kelas_id' => '5', 'departments_id' => '5', 'created_at' => \Carbon\Carbon::now()],
+            ['id' => 6, 'name' => 'nur', 'nis' => '6', 'kelas_id' => '6', 'departments_id' => '6', 'created_at' => \Carbon\Carbon::now()],
         ];
 
         // insert batch

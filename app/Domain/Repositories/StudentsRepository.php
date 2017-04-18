@@ -60,8 +60,8 @@ class StudentsRepository extends AbstractRepository implements StudentsInterface
         return parent::create([
             'name'    => e($data['name']),
             'nis'   => e($data['nis']),
-            'kelas' => e($data['kelas']),
-            'departments'   => e($data['department'])
+            'kelas_id' => e($data['kelas_id']),
+            'departments_id'   => e($data['department_id'])
         ]);
 
     }
@@ -76,8 +76,8 @@ class StudentsRepository extends AbstractRepository implements StudentsInterface
         return parent::update($id, [
            'name'    => e($data['name']),
             'nis'   => e($data['nis']),
-            'kelas' => e($data['kelas']),
-            'departments'   => e($data['department'])
+            'kelas_id' => e($data['kelas_id']),
+            'departments_id'   => e($data['department_id'])
         ]);
     }
 

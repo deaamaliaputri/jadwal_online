@@ -29,8 +29,8 @@ class StudentsCreateRequest extends Request
     protected $attrs = [
         'name'    => 'Name',
         'nis'   => 'Nis',
-        'kelas' => 'Kelas',
-        'departments'   => 'Departments'
+        'kelas_id' => 'Kelas_id',
+        'departments_id'   => 'Departments_id'
     ];
 
     /**
@@ -43,8 +43,8 @@ class StudentsCreateRequest extends Request
         return [
             'name'    => 'required|max:225',
             'nis'   => 'required|max:225',
-            'kelas' => 'required|max:60',
-            'departments'   => 'required|max:30'
+            'kelas_id' => 'required|max:60',
+            'departments_id'   => 'required|max:30'
         ];
     }
 

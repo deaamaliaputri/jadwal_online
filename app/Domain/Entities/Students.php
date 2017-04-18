@@ -17,7 +17,18 @@ class Students extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'nis', 'class', 'departments',
+        'name', 'nis', 'kelas_id', 'departments_id',
     ];
 
+protected $with = ['kelas', 'departments'];
+
+    public function kelas()
+    {
+        return $this->belongsTo('App\Domain\Entities\Kelas', 'kelas_id');
+    }
+
+    public function departments()
+    {
+        return $this->belongsTo('App\Domain\Entities\Departments', 'departments_id');
+    }
 }
