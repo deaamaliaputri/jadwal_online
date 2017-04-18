@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Kelas\KelasCreateRequest;
 use App\Http\Requests\Kelas\KelasEditRequest;
 use Illuminate\Http\Request;
-use App\Domain\Contracts\KelasInterface;
+use App\Domain\Repositories\KelasRepository;
 
 class KelasController extends Controller
 {
@@ -19,7 +19,7 @@ class KelasController extends Controller
      * KelasController constructor.
      * @param KelasInterface $kelas
      */
-    public function __construct(KelasInterface $kelas)
+    public function __construct(KelasRepository $kelas)
     {
         $this->kelas = $kelas;
     }
