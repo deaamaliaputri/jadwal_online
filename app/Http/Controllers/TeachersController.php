@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Teachers\TeachersCreateRequest;
 use App\Http\Requests\Teachers\TeachersEditRequest;
 use Illuminate\Http\Request;
-use App\Domain\Contracts\TeachersInterface;
+use App\Domain\Repositories\TeachersRepository;
 
 class TeachersController extends Controller
 {
@@ -19,7 +19,7 @@ class TeachersController extends Controller
      * TeachersController constructor.
      * @param TeachersInterface $teachers
      */
-    public function __construct(TeachersInterface $teachers)
+    public function __construct(TeachersRepository $teachers)
     {
         $this->teachers = $teachers;
     }
