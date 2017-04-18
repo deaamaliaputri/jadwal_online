@@ -16,8 +16,16 @@ class Subjects extends Model
     /**
      * @var array
      */
-    protected $fillable = [
+        
+
+protected $fillable = [
         'name', 'teachers_id', 'descriptions',
     ];
 
+    protected $with = ['teachers'];
+
+    public function teachers()
+    {
+        return $this->belongsTo('App\Domain\Entities\Teachers', 'teachers_id');
+    }
 }
