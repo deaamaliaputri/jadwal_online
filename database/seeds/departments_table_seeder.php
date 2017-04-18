@@ -15,12 +15,12 @@ class departments_table_seeder extends Seeder
         DB::table('departments')->truncate();
 
         $departments = [
-            ['id' => 1, 'name' => 'ipa', 'created_at' => \Carbon\Carbon::now()],
-            ['id' => 2, 'name' => 'ips', 'created_at' => \Carbon\Carbon::now()],
-            ['id' => 3, 'name' => 'fisika', 'created_at' => \Carbon\Carbon::now()],
-            ['id' => 4, 'name' => 'mtk', 'created_at' => \Carbon\Carbon::now()],
-            ['id' => 5, 'name' => 'bhs indo',  'created_at' => \Carbon\Carbon::now()],
-            ['id' => 6, 'name' => 'agama', 'created_at' => \Carbon\Carbon::now()],
+            ['id' => 1, 'name' => 'tkr', 'created_at' => \Carbon\Carbon::now()],
+            ['id' => 2, 'name' => 'elekro', 'created_at' => \Carbon\Carbon::now()],
+            ['id' => 3, 'name' => 'RPL', 'created_at' => \Carbon\Carbon::now()],
+            ['id' => 4, 'name' => 'sepeda motor', 'created_at' => \Carbon\Carbon::now()],
+            ['id' => 5, 'name' => 'jaringan',  'created_at' => \Carbon\Carbon::now()],
+            ['id' => 6, 'name' => 'animasi', 'created_at' => \Carbon\Carbon::now()],
         ];
 
         // insert batch
