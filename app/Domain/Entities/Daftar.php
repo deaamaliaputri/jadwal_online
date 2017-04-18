@@ -16,8 +16,11 @@ class Daftar extends Model
     /**
      * @var array
      */
+     protected $table = 'daftar';
     protected $fillable = [
         'name', 'email', 'password', 'phone', 'status', 'level', 'nip',	
     ];
-
+ protected $hidden = [
+    'deleted_at'
+    ];
 }

@@ -22,8 +22,9 @@ class CreateDaftarTable extends Migration
             $table->string('status');
             $table->string('level');
             $table->integer('nip', false);
-            $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

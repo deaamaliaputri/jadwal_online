@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Daftar\DaftarCreateRequest;
 use App\Http\Requests\Daftar\DaftarEditRequest;
 use Illuminate\Http\Request;
-use App\Domain\Contracts\DaftarInterface;
+use App\Domain\Repositories\DaftarRepository;
 
 class DaftarController extends Controller
 {
@@ -19,7 +19,7 @@ class DaftarController extends Controller
      * DaftarController constructor.
      * @param DaftarInterface $daftar
      */
-    public function __construct(DaftarInterface $daftar)
+    public function __construct(DaftarRepository $daftar)
     {
         $this->daftar = $daftar;
     }
