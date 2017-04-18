@@ -23,5 +23,5 @@ Route::resource('daftar','DaftarController');
 Route::resource('departments','DepartmentsController');
 Route::resource('kelas','KelasController');
 Route::resource('schedules','SchedulesController');
-Route::resource('Students','StudentsController');
+Route::resource('students','StudentsController');
 Route::resource('subjects','SubjectsController');
