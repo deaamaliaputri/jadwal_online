@@ -58,13 +58,13 @@ class DaftarRepository extends AbstractRepository implements DaftarInterface, Cr
     {
         // execute sql insert
         return parent::create([
-            'name'    => e($data['time']),
-            'email'   => e($data['hour']),
-            'password' => e($data['room']),
-            'phone'   => e($data['teachers_id']),
-            'status'   => e($data['department_id']),
-            'level'   => e($data['kelas_id']),
-            'nip'   => e($data['kelas_id'])
+            'name'    => e($data['name']),
+            'email'   => e($data['email']),
+            'password' => e($data['password']),
+            'phone'   => e($data['phone']),
+            'status'   => e($data['status']),
+            'level'   => e($data['level']),
+            'nip'   => e($data['nip'])
         ]);
     }
 

@@ -43,16 +43,20 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         }
     })
     //urusan
-        .state('app.members', {
-            url: '/members',
-            templateUrl: 'assets/src/members/members-list.html',
-            title: 'Data Members',
-            resolve: loadSequence('membersCtrl', 'members_service'),
-            // ncyBreadcrumb: {
-            //     label: 'Dashboard'
-            // }
-
+        .state('app.daftar', {
+            url: '/daftar',
+            templateUrl: 'assets/src/daftar/daftar-list.html',
+            title: 'Data Daftar',
+            resolve: loadSequence('daftarCtrl', 'daftar_service'),
         })
+
+        .state('app.daftar-create', {
+            url: '/daftar-create',
+            templateUrl: 'assets/src/daftar/daftar-create.html',
+            title: 'Data Daftar create',
+            resolve: loadSequence('daftarcreateCtrl', 'daftar_service'),
+        })
+
         // //urusan Create
         // .state('app.urusan-create', {
         //     url: '/urusan-create',

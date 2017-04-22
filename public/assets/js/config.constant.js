@@ -54,8 +54,9 @@ app.constant('JS_REQUIRES', {
         'chatCtrl': 'assets/js/controllers/chatCtrl.js',
         'dynamicTableCtrl': 'assets/js/controllers/dynamicTableCtrl.js',
         'NotificationIconsCtrl': 'assets/js/controllers/notificationIconsCtrl.js',
-        'membersCtrl'    : 'assets/src/members/MembersCtrl.js',
-        'members_service': 'assets/src/members/members-service.js',
+        'daftarCtrl'    : 'assets/src/daftar/DaftarCtrl.js',
+        'daftar_service': 'assets/src/daftar/daftar-service.js',
+        'daftarcreateCtrl'    : 'assets/src/daftar/DaftarCreateCtrl.js',
         
         //*** Filters
         'htmlToPlaintext': 'assets/js/filters/htmlToPlaintext.js'

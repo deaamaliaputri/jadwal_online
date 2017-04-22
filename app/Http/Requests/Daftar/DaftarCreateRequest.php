@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Daftar;
 
 use App\Http\Requests\Request;
+use Illuminate\Contracts\Validation\Validator;
 
 /**
  * Class UserCreateRequest
@@ -44,7 +45,7 @@ class DaftarCreateRequest extends Request
     {
         return [
             'name'    => 'required|max:225',
-            'email'   => 'required|email|unique:daftars,email|max:225',
+            'email'   => 'required|email|unique:daftar,email|max:225',
             'password' => 'required|max:60',
             'phone'   => 'required|max:30',
             'status'   => 'required|max:30',
@@ -62,4 +63,19 @@ class DaftarCreateRequest extends Request
         return $validator->make($this->all(), $this->container->call([$this, 'rules']), $this->messages(), $this->attrs);
     }
 
+    public function formatErrors(Validator $validator)
+    {
+        $message = $validator->errors();
+        return [
+            'success'    => false,
+            'validation' => [
+                'name' => $message->first('name'),
+                'email' => $message->first('email'),
+                'password' => $message->first('password'),
+                'phone' => $message->first('phone'),
+                'status' => $message->first('status'),
+                'level' => $message->first('level'),
+            ]
+        ];
+    }
 }

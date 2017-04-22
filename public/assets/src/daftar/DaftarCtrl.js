@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('UrusanCtrl', ['$scope', 'urusan', 'SweetAlert', '$http','$timeout', function ($scope, urusan,SweetAlert) {
+app.controller('DaftarCtrl', ['$scope', 'daftar', 'SweetAlert', '$http','$timeout', function ($scope, daftar,SweetAlert) {
 //urussan tampilan
     $scope.main = {
         page: 1,
@@ -34,19 +34,19 @@ app.controller('UrusanCtrl', ['$scope', 'urusan', 'SweetAlert', '$http','$timeou
     };
     // go to print preview page
     $scope.print = function () {
-        window.open ('../api/v1/cetak-urusan','_blank');
+        window.open ('../api/v1/cetak-daftar','_blank');
     };
     //Init dataAkun
-    $scope.dataMembers = '';
+    $scope.datadaftar = '';
     // init get data
-    urusan.get($scope.main.page, $scope.main.term)
+    daftar.get($scope.main.page, $scope.main.term)
         .success(function (data) {
 
             //Change Loading status
             $scope.setLoader(false);
 
             // result data
-            $scope.dataMembers = data.data;
+            $scope.datadaftar = data.data;
             // set the current page
             $scope.current_page = data.current_page;
 
@@ -77,14 +77,14 @@ app.controller('UrusanCtrl', ['$scope', 'urusan', 'SweetAlert', '$http','$timeou
         //Start loading
         $scope.setLoader(true);
 
-        urusan.get($scope.main.page, $scope.main.term)
+        daftar.get($scope.main.page, $scope.main.term)
             .success(function (data) {
 
                 //Stop loading
                 $scope.setLoader(false);
 
                 // result data
-                $scope.dataMembers = data.data;
+                $scope.datadaftar = data.data;
 
                 // set the current page
                 $scope.current_page = data.current_page;
@@ -151,57 +151,33 @@ app.controller('UrusanCtrl', ['$scope', 'urusan', 'SweetAlert', '$http','$timeou
         $scope.getData()
     };
 
-// //hapus lewat tampilan
-//     $scope.hapus = function (id) {
-//         var confirm = $mdDialog.confirm()
-//             .title('Konfirmasi')
-//             .content('Apakah Anda yakin ingin menghapus data?')
-//             .ok('Hapus')
-//             .cancel('Batal')
-//             .targetEvent(id);
-//         //
-//         $mdDialog.show(confirm).then(function () {
-//             urusan.destroy(id)
-//                 .success(function (data) {
-//                     if (data.success == true) {
-//                         $scope.showToast('green', 'Data Berhasil Dihapus');
-//                     } else {
-//                         $scope.showToast('red', data.result.message);
-//                     }
-//                     $scope.getData();
-//                 })
-//
-//         }, function () {
-//
-//         });
-//     };
-    $scope.hapus = function (id) {
+  $scope.hapus = function (id) {
         SweetAlert.swal({
-            title: "Are you sure?",
-            text: "Your will not be able to recover this imaginary file!",
+            title: "Peringatan?",
+            text: "Apakah anda yakin ingin hapus",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Yes, delete it!",
-            cancelButtonText: "No, cancel plx!",
+            confirmButtonText: "Delete!",
+            cancelButtonText: "Batal!",
             closeOnConfirm: false,
             closeOnCancel: false
         }, function (isConfirm) {
             if (isConfirm) {
-                urusan.destroy(id)
+                daftar.destroy(id)
                     .success(function (data) {
-                        if (data.success == true) {
+                        if (data.deleted == true) {
                             SweetAlert.swal({
-                                title: "Deleted!",
-                                text: "Your imaginary file has been deleted.",
+                                title: "Berhasil!",
+                                text: "Data Berhasil Dihapus.",
                                 type: "success",
                                 confirmButtonColor: "#007AFF"
                             });
 
                         } else {
                             SweetAlert.swal({
-                                title: "Cancelled",
-                                text: "Your imaginary file is safe :)",
+                                title: "Gagal",
+                                text: "Data Gagal Dihapus :)",
                                 type: "error",
                                 confirmButtonColor: "#007AFF"
                             })
@@ -221,6 +197,5 @@ app.controller('UrusanCtrl', ['$scope', 'urusan', 'SweetAlert', '$http','$timeou
             }
         });
     };
-
 
 }]);
