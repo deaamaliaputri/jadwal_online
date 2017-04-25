@@ -42,7 +42,7 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
             label: 'Dashboard'
         }
     })
-    //urusan
+    //daftar
         .state('app.daftar', {
             url: '/daftar',
             templateUrl: 'assets/src/daftar/daftar-list.html',
@@ -55,6 +55,96 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
             templateUrl: 'assets/src/daftar/daftar-create.html',
             title: 'Data Daftar create',
             resolve: loadSequence('daftarcreateCtrl', 'daftar_service'),
+        })
+
+//teachers
+ .state('app.teachers', {
+            url: '/teachers',
+            templateUrl: 'assets/src/teachers/teachers-list.html',
+            title: 'Data Teachers',
+            resolve: loadSequence('teachersCtrl', 'teachers_service'),
+        })
+
+        .state('app.teachers-create', {
+            url: '/teachers-create',
+            templateUrl: 'assets/src/teachers/teachers-create.html',
+            title: 'Data Teachers create',
+            resolve: loadSequence('teacherscreateCtrl', 'teachers_service'),
+        })
+
+//departments
+ .state('app.departments', {
+            url: '/departments',
+            templateUrl: 'assets/src/departments/departments-list.html',
+            title: 'Data Departments',
+            resolve: loadSequence('departmentsCtrl', 'departments_service'),
+        })
+
+        .state('app.departments-create', {
+            url: '/departments-create',
+            templateUrl: 'assets/src/departments/departments-create.html',
+            title: 'Data Departments create',
+            resolve: loadSequence('departmentscreateCtrl', 'departments_service'),
+        })
+
+//kelas
+ .state('app.kelas', {
+            url: '/kelas',
+            templateUrl: 'assets/src/kelas/kelas-list.html',
+            title: 'Data Kelas',
+            resolve: loadSequence('kelasCtrl', 'kelas_service'),
+        })
+
+        .state('app.kelas-create', {
+            url: '/kelas-create',
+            templateUrl: 'assets/src/kelas/kelas-create.html',
+            title: 'Data Kelas create',
+            resolve: loadSequence('kelascreateCtrl', 'kelas_service'),
+        })
+
+//schedules
+ .state('app.schedules', {
+            url: '/schedules',
+            templateUrl: 'assets/src/schedules/schedules-list.html',
+            title: 'Data Schedules',
+            resolve: loadSequence('schedulesCtrl', 'schedules_service'),
+        })
+
+        .state('app.schedules-create', {
+            url: '/schedules-create',
+            templateUrl: 'assets/src/schedules/schedules-create.html',
+            title: 'Data Schedules create',
+            resolve: loadSequence('schedulescreateCtrl', 'schedules_service'),
+        })
+
+//subjects
+ .state('app.subjects', {
+            url: '/subjects',
+            templateUrl: 'assets/src/subjects/subjects-list.html',
+            title: 'Data Subjects',
+            resolve: loadSequence('subjectsCtrl', 'subjects_service'),
+        })
+
+        .state('app.subjects-create', {
+            url: '/subjects-create',
+            templateUrl: 'assets/src/subjects/subjects-create.html',
+            title: 'Data Subjects create',
+            resolve: loadSequence('subjectscreateCtrl', 'subjects_service'),
+        })
+
+        //students
+ .state('app.students', {
+            url: '/students',
+            templateUrl: 'assets/src/students/students-list.html',
+            title: 'Data Students',
+            resolve: loadSequence('studentsCtrl', 'students_service'),
+        })
+
+        .state('app.students-create', {
+            url: '/students-create',
+            templateUrl: 'assets/src/students/students-create.html',
+            title: 'Data Students create',
+            resolve: loadSequence('studentscreateCtrl', 'students_service'),
         })
 
         // //urusan Create

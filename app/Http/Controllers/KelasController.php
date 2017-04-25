@@ -104,5 +104,8 @@ class KelasController extends Controller
     {
         return $this->kelas->delete($id);
     }
-
+public function getList()
+    {
+        return $this->kelas->getList();
+    }
 }

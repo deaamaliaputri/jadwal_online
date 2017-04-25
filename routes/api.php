@@ -25,3 +25,6 @@ Route::resource('kelas','KelasController');
 Route::resource('schedules','SchedulesController');
 Route::resource('students','StudentsController');
 Route::resource('subjects','SubjectsController');
+Route::get('getList-teachers','TeachersController@getList');
+Route::get('getList-departments','DepartmentsController@getList');
+Route::get('getList-kelas','KelasController@getList');

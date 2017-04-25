@@ -1,0 +1,86 @@
+<!-- start: PAGE TITLE -->
+<div ng-controller="TeachersCreateCtrl">
+    <section id="page-title">
+        <div class="row">
+            <div class="col-sm-8">
+                <h1 class="mainTitle">FORM CREATE Teacher</h1>
+            </div>
+            <div ncy-breadcrumb></div>
+        </div>
+    </section>
+    <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">
+        {{alert.msg}}
+    </uib-alert>
+    <!-- end: PAGE TITLE -->
+    <!-- start: FORM VALIDATION -->
+    <div class="container-fluid container-fullw bg-white">
+        <div class="row">
+            <div class="col-md-12">
+                <div>
+                    <form name="Form">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <fieldset>
+
+                                    <div class="form-group" ng-class="{'has-error':Form.name.$dirty && Form.name.$invalid, 'has-success':Form.name.$valid}">
+                                        <label class="control-label">
+										 Name <span class="symbol required"></span>
+									</label>
+                                        <input type="text" placeholder="Enter your Name" class="form-control" name="name" ng-model="myModel.name" required />
+                                        <span class="error text-small block" ng-if="Form.name.$dirty && Form.name.$invalid">First Name is required</span>
+                                        <span class="success text-small" ng-if="Form.name.$valid">Thank You!</span>
+                                    </div>
+                                    <div class="form-group" ng-class="{'has-error':Form.nip.$dirty && Form.nip.$invalid, 'has-success':Form.nip.$valid}">
+                                        <label class="control-label">
+										Nip <span class="symbol required"></span>
+									</label>
+                                        <input type="nip" placeholder="Enter a nip" class="form-control" name="nip" ng-model="myModel.nip" required/>
+                                        <span class="error text-small block" ng-if="Form.nip.$dirty && Form.nip.$error.required">nip is required.</span>
+                                        <span class="success text-small block" ng-if="Form.nip.$valid">Ok!</span>
+                                    </div>
+
+                                     <div class="form-group" ng-class="{'has-error':Form.kode.$dirty && Form.kode.$invalid, 'has-success':Form.kode.$valid}">
+                                        <label class="control-label">
+										 Kode <span class="symbol required"></span>
+									</label>
+                                        <input type="text" placeholder="Enter your kode" class="form-control" name="kode" ng-model="myModel.kode" required
+                                        />
+                                        <span class="error text-small block" ng-if="Form.kode.$dirty && Form.kode.$invalid">kode is required</span>
+                                        <span class="success text-small" ng-if="Form.kode.$valid">Thank You!</span>
+                                    </div>
+
+                                    <div class="form-group" ng-class="{'has-error':Form.phone.$dirty && Form.phone.$invalid, 'has-success':Form.phone.$valid}">
+                                        <label class="control-label">
+										 Phone <span class="symbol required"></span>
+									</label>
+                                        <input type="text" placeholder="Enter your Phone" class="form-control" name="phone" ng-model="myModel.phone" required />
+                                        <span class="error text-small block" ng-if="Form.phone.$dirty && Form.phone.$invalid">Phone is required</span>
+                                        <span class="success text-small" ng-if="Form.phone.$valid">Thank You!</span>
+                                    </div>
+    
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="pull-left">
+                                    <button md-ink-ripple class="btn btn-primary" ng-click="submitData(false)" ng-disabled="Form.$invalid || process">Simpan
+								</button>
+                                    <button md-ink-ripple class="btn btn-primary" ng-click="submitData(true)" ng-disabled="Form.$invalid || process">Simpan & Kembali
+								</button>
+                                    <button type="reset" class="btn btn-primary btn-o" ng-disabled="process" ng-click="form.reset(Form)">
+									Reset
+								</button>
+                                    <button md-ink-ripple class="btn btn-primary btn-o" ui-sref="app.teachers" ng-disabled="process">Kembali
+								</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end: FORM VALIDATION -->

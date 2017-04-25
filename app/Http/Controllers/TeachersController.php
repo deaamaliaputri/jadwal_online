@@ -105,4 +105,8 @@ class TeachersController extends Controller
         return $this->teachers->delete($id);
     }
 
+ public function getList()
+    {
+        return $this->teachers->getList();
+    }
 }

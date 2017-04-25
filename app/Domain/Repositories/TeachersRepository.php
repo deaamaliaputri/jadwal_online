@@ -100,5 +100,17 @@ class TeachersRepository extends AbstractRepository implements TeachersInterface
     {
         return parent::find($id, $columns);
     }
+public function getList()
+    {
+        // query to aql
+        $akun = $this->model->get()->toArray();
+        // if data null
+        if (null == $akun) {
+            // set response header not found
+            return $this->errorNotFound('Data belum tersedia');
+        }
 
+        return $akun;
+
+    }
 }

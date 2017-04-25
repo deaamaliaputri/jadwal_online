@@ -104,5 +104,8 @@ class DepartmentsController extends Controller
     {
         return $this->departments->delete($id);
     }
-
+public function getList()
+    {
+        return $this->departments->getList();
+    }
 }
