@@ -16,11 +16,7 @@ class SchedulesCreateRequest extends Request
      *
      * @return bool
      */
-    public function authorize()
-    {
-        return true;
-    }
-
+   
     /**
      * Declaration an attributes
      *
@@ -31,7 +27,7 @@ class SchedulesCreateRequest extends Request
         'hour'   => 'Hour',
         'room' => 'Room',
         'teachers_id'   => 'Teachers_id',
-        'departemenst_id'   => 'Departments_id',
+        'departments_id'   => 'Departments_id',
         'kelas_id'   => 'Kelas_id'
         
     ];
@@ -47,8 +43,8 @@ class SchedulesCreateRequest extends Request
         'time'    => 'required|max:225',
         'hour'   => 'required|max:225',
         'room' => 'required|max:225',
-        'teachers_id'   => 'required|max:225',
-        'departemenst_id'   => 'required|max:225',
+        'subjects_id'   => 'required|max:225',
+        'departments_id'   => 'required|max:225',
         'kelas_id'   => 'required|max:225'
         ];
     }
@@ -61,6 +57,22 @@ class SchedulesCreateRequest extends Request
     public function validator($validator)
     {
         return $validator->make($this->all(), $this->container->call([$this, 'rules']), $this->messages(), $this->attrs);
+    }
+
+    public function formatErrors(Validator $validator)
+    {
+        $message = $validator->errors();
+        return [
+            'success'    => false,
+            'validation' => [
+                'time' => $message->first('time'),
+                'hour' => $message->first('hour'),
+                'room' => $message->first('room'),
+                'subjects_id' => $message->first('subjects_id'),
+                'departments_id' => $message->first('departments_id'),
+                'kelas_id' => $message->first('kelas_id'),
+            ]
+        ];
     }
 
 }

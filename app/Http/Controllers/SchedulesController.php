@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Schedules\SchedulesCreateRequest;
 use App\Http\Requests\Schedules\SchedulesEditRequest;
 use Illuminate\Http\Request;
-use App\Domain\Repositories\SchedulesRepository;
+use App\Domain\Repositories\SchedulesRepository ;
 
 class SchedulesController extends Controller
 {
@@ -19,7 +19,7 @@ class SchedulesController extends Controller
      * SchedulesController constructor.
      * @param SchedulesInterface $schedules
      */
-    public function __construct(SchedulesRepository $schedules)
+    public function __construct(SchedulesRepository  $schedules)
     {
         $this->schedules = $schedules;
     }
@@ -65,7 +65,7 @@ class SchedulesController extends Controller
      * @apiParam {Float} phone phone of schedules
      * @apiSuccess {Number} id id of schedules
      */
-    public function store(SchedulesCreateRequest $request)
+    public function store(Request $request)
     {
         return $this->schedules->create($request->all());
     }

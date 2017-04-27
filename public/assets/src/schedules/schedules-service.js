@@ -12,10 +12,10 @@ app.factory('schedules', ['$http', function ($http) {
             });
         },
 
-        getListteachers: function () {
+        getListsubjects: function () {
             return $http({
                 method: 'get',
-                url: '/api/getList-teachers',
+                url: '/api/getList-subjects',
             });
         },
 

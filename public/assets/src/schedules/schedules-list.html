@@ -47,7 +47,7 @@
                     <th class="col-md-2">Time</th>
                     <th class="col-md-2">Hour</th>
                     <th class="col-md-2">Room</th>
-                    <th class="col-md-2">Teachers</th>
+                    <th class="col-md-2">Mata Pelajaran</th>
                     <th class="col-md-2">Jurusan</th>
                     <th class="col-md-2">Kelas</th>
                     <th class="col-md-2">Aksi</th>
@@ -58,15 +58,9 @@
                     <td class="col-md-2">{{row.time}}</td>
                     <td class="col-md-2">{{row.hour}}</td>
                     <td class="col-md-2">{{row.room}}</td>
-                    <td class="col-md-2">{{row.teachers.name}}</td>
+                    <td class="col-md-2">{{row.subjects.name}}</td>
                     <td class="col-md-2">{{row.departments.name}}</td>
                     <td class="col-md-2">{{row.kelas.name}}</td>
-                    <td class="col-md-2">
-                        <span ng-if="row.is_lock == '0'" class="label bg-info ng-scope">Draft</span>
-                        <span ng-if="row.is_lock == ''" class="label bg-info ng-scope">Draft</span>
-                        <span ng-if="row.is_lock == '1' " class="label bg-success ng-scope">Final</span>
-                    </td>
-
                     <td class="col-md-2">
                         <button type="button" ng-click="detailurusan(row.id)" md-ink-ripple tooltip="Detail Urusan"
                                 class="btn btn-sm btn-info">

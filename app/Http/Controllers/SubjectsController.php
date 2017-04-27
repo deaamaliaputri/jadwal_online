@@ -105,5 +105,8 @@ class SubjectsController extends Controller
     {
         return $this->subjects->delete($id);
     }
-
+public function getList()
+    {
+        return $this->subjects->getList();
+    }
 }

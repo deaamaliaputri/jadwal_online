@@ -32,16 +32,16 @@
 
 
 
-                                    <div class="form-group" ng-class="{'has-error':Form.teachers.$dirty && Form.teachers.$invalid, 'has-success':Form.teachers.$valid}">
+                                    <div class="form-group" ng-class="{'has-error':Form.subjects.$dirty && Form.subjects.$invalid, 'has-success':Form.subjects.$valid}">
                                         <label class="control-label">
-										 Teachers <span class="symbol required"></span>
+										 Mata Pelajaran <span class="symbol required"></span>
 									
                                     </label>
-                                        <select md-select-label class="form-control"  ng-model="myModel.teachers" name="teachers"
-                                        ng-options="o as o.name for o in objTeachers">
+                                        <select md-select-label class="form-control"  ng-model="myModel.subjects" name="subjects"
+                                        ng-options="o as o.name for o in objsubjects">
                                 </select>
-                                        <span class="error text-small block" ng-if="Form.teachers.$dirty && Form.teachers.$invalid">Teachers is required</span>
-                                        <span class="success text-small" ng-if="Form.teachers.$valid">Thank You!</span>
+                                        <span class="error text-small block" ng-if="Form.subjects.$dirty && Form.subjects.$invalid">Mata Pelajaran is required</span>
+                                        <span class="success text-small" ng-if="Form.subjects.$valid">Thank You!</span>
                                     </div>
                                    
                                    <div class="form-group" ng-class="{'has-error':Form.departments.$dirty && Form.departments.$invalid, 'has-success':Form.departments.$valid}">

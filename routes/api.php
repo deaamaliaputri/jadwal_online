@@ -28,3 +28,4 @@ Route::resource('subjects','SubjectsController');
 Route::get('getList-teachers','TeachersController@getList');
 Route::get('getList-departments','DepartmentsController@getList');
 Route::get('getList-kelas','KelasController@getList');
+Route::get('getList-subjects','SubjectsController@getList');

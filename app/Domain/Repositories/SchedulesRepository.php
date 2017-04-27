@@ -58,12 +58,14 @@ class SchedulesRepository extends AbstractRepository implements SchedulesInterfa
     {
         // execute sql insert
         return parent::create([
-             'time'    => e($data['time']),
-            'hour'   => e($data['hour']),
+             'time'    => '2016-08-09',
+            'hour'   => '2016-08-09',
             'room' => e($data['room']),
-            'teachers_id'   => e($data['teachers_id']),
-            'department_id'   => e($data['department_id']),
-            'kelas_id'   => e($data['kelas_id'])
+            'teachers_id'   => 0,
+            'departments_id'   => e($data['departments_id']),
+            'kelas_id'   => e($data['kelas_id']),
+            'subjects_id'   => e($data['subjects_id']),
+            'teachers_id'   => 0,
         ]);
 
     }
@@ -80,8 +82,9 @@ class SchedulesRepository extends AbstractRepository implements SchedulesInterfa
             'hour'   => e($data['hour']),
             'room' => e($data['room']),
             'teachers_id'   => e($data['teachers_id']),
-            'department_id'   => e($data['department_id']),
-            'kelas_id'   => e($data['kelas_id'])
+            'departments_id'   => e($data['departments_id']),
+            'kelas_id'   => e($data['kelas_id']),
+        'subjects_id'   => e($data['subjects_id'])
         ]);
     }
 

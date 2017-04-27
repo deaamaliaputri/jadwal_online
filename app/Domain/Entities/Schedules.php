@@ -17,14 +17,14 @@ class Schedules extends Model
      * @var array
      */
     protected $fillable = [
-        'time', 'houre', 'room', 'teachers_id', 'department_id', 'kelas_id',
+        'time', 'hour', 'room', 'subjects_id', 'departments_id', 'kelas_id','teachers_id'
     ];
 
- protected $with = ['teachers', 'departments', 'kelas'];
+ protected $with = ['subjects', 'departments', 'kelas'];
 
-    public function teachers()
+    public function subjects()
     {
-        return $this->belongsTo('App\Domain\Entities\Teachers', 'teachers_id');
+        return $this->belongsTo('App\Domain\Entities\Subjects', 'subjects_id');
     }
 
 

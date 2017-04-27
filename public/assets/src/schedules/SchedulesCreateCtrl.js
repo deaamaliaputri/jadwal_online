@@ -40,8 +40,8 @@ app.controller('SchedulesCreateCtrl', ['$state', '$scope', 'schedules','$timeout
         }
 
     };
-    $scope.objTeachers =[]
-schedules.getListteachers()
+    $scope.objsubjects =[]
+schedules.getListsubjects()
         .success(function (data_akun) {
             if (data_akun.success == false) {
                         $scope.toaster = {
@@ -53,8 +53,8 @@ schedules.getListteachers()
 
             } else {
                 data_akun.unshift({id: 0, name: 'Silahkan Pilih Guru'});
-                $scope.objTeachers = data_akun;
-                $scope.myModel.teachers = $scope.objTeachers[0];
+                $scope.objsubjects = data_akun;
+                $scope.myModel.subjects = $scope.objsubjects[0];
             }
 
         })
@@ -155,7 +155,7 @@ schedules.getListkelas()
         $scope.myModel.time = null;
         $scope.myModel.hour= null;
         $scope.myModel.room= null;
-        $scope.myModel.teachers= null;
+        $scope.myModel.subjects= null;
         $scope.myModel.departments= null;
         $scope.myModel.kelas= null;
     };
@@ -170,7 +170,7 @@ schedules.getListkelas()
         if ($scope.Form.$valid) {
             //run Ajax
             $scope.myModel.kelas_id=  $scope.myModel.kelas.id
-            $scope.myModel.teachers_id=  $scope.myModel.teachers.id
+            $scope.myModel.subjects_id=  $scope.myModel.subjects.id
             $scope.myModel.departments_id=  $scope.myModel.departments.id
             schedules.store($scope.myModel)
                 .success(function (data) {
