@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call( subjects_table_seeder::class);
         $this->call( kelas_table_seeder::class);
         $this->call( students_table_seeder::class);
-        $this->call( daftar_table_seeder::class);
+        $this->call( daftars_table_seeder::class);
         $this->call( departments_table_seeder::class);
     }
 }

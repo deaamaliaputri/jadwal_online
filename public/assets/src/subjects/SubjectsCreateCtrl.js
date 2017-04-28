@@ -1,6 +1,8 @@
-app.controller('TeachersCreateCtrl', ['$state', '$scope', 'teachers','$timeout', 'SweetAlert','toaster','$http', function ($state, $scope, teachers,$timeout, SweetAlert,toaster) {
+app.controller('SubjectsCreateCtrl', ['$state', '$scope', 'subjects','$timeout', 'SweetAlert','toaster','$http', function ($state, $scope, subjects,$timeout, SweetAlert,toaster) {
+       $scope.myModel ={}
+ 
     //Init input addForm variable
-    //create teachers
+    //create subjects
     $scope.process = false;
 
     $scope.master = $scope.myModel;
@@ -39,14 +41,50 @@ app.controller('TeachersCreateCtrl', ['$state', '$scope', 'teachers','$timeout',
         }
 
     };
+             $scope.objTeachers =[]
+subjects.getListteachers()
+        .success(function (data_akun) {
+            if (data_akun.success == false) {
+                        $scope.toaster = {
+                        type: 'warning',
+                        title: 'Warning',
+                        text: 'Data Belum Tersedia!'
+                    };
+                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+
+            } else {
+                data_akun.unshift({id: 0, name: 'Silahkan Pilih Guru'});
+                $scope.objTeachers = data_akun;
+                $scope.myModel.teachers = $scope.objTeachers[0];
+            }
+
+        })
+        .error(function (data_akun, status) {
+            // unauthorized
+            if (status === 401) {
+                //redirect to login
+                $scope.redirect();
+            }
+            // Stop Loading
+             $scope.toaster = {
+                        type: 'warning',
+                        title: 'Warning',
+                        text: 'Data Belum Tersedia!'
+                    };
+                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+
+            console.log(data_akun);
+
+        });
+
     $scope.closeAlert = function (index) {
         $scope.alerts.splice(index, 1);
     };
     $scope.clearInput = function () {
         $scope.myModel.name = null;
-        $scope.myModel.nip= null;
-        $scope.myModel.kode= null;
-        $scope.myModel.phone= null;
+        $scope.myModel.nis= null;
+        $scope.myModel.kelas= null;
+        $scope.myModel.jurusan= null;
     };
 
     $scope.submitData = function (isBack) {
@@ -58,12 +96,13 @@ app.controller('TeachersCreateCtrl', ['$state', '$scope', 'teachers','$timeout',
         //Check validation status
         if ($scope.Form.$valid) {
             //run Ajax
-            teachers.store($scope.myModel)
+            $scope.myModel.teachers_id=  $scope.myModel.teachers.id
+            subjects.store($scope.myModel)
                 .success(function (data) {
                     if (data.created == true) {
                         //If back to list after submitting
                         if (isBack == true) {
-                            $state.go('app.teachers');
+                            $state.go('app.subjects');
                             $scope.toaster = {
                                 type: 'success',
                                 title: 'Sukses',

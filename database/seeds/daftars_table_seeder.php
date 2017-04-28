@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class daftar_table_seeder extends Seeder
+class daftars_table_seeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,9 +11,9 @@ class daftar_table_seeder extends Seeder
      */
     public function run()
     {
- DB::table('daftar')->truncate();
+ DB::table('daftars')->truncate();
 
-        $daftar = [
+        $daftars = [
             ['id' => 1, 'name' => 'dea', 'email' => 'dea@gmail.com', 'password' => bcrypt('12345678'), 'phone' => '08912345','status' => 'ada', 'level' => '12345', 'nip' => '11167', 'created_at' => \Carbon\Carbon::now()],
             ['id' => 2, 'name' => 'amalia', 'email' => 'amalia@gmail.com', 'password' => bcrypt('12345678'), 'phone' => '08912345', 'status' => 'ada', 'level' => '12346', 'nip' => '435', 'created_at' => \Carbon\Carbon::now()],
             ['id' => 3, 'name' => 'putri', 'email' => 'putri@gmail.com', 'password' => bcrypt('12345678'), 'phone' => '08912345', 'status' => 'ada', 'level' => '12347', 'nip' => '243556', 'created_at' => \Carbon\Carbon::now()],
@@ -23,6 +23,6 @@ class daftar_table_seeder extends Seeder
         ];
 
         // insert batch
-        DB::table('daftar')->insert($daftar);
+        DB::table('daftars')->insert($daftars);
     }
 }

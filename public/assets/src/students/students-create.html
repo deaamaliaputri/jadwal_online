@@ -1,9 +1,9 @@
 <!-- start: PAGE TITLE -->
-<div ng-controller="SchedulesCreateCtrl">
+<div ng-controller="StudentsCreateCtrl">
     <section id="page-title">
         <div class="row">
             <div class="col-sm-8">
-                <h1 class="mainTitle">FORM CREATE Teacher</h1>
+                <h1 class="mainTitle">FORM CREATE STUDENTS</h1>
             </div>
             <div ncy-breadcrumb></div>
         </div>
@@ -30,34 +30,39 @@
                                         <span class="error text-small block" ng-if="Form.name.$dirty && Form.name.$invalid">First Name is required</span>
                                         <span class="success text-small" ng-if="Form.name.$valid">Thank You!</span>
                                     </div>
-                                    <div class="form-group" ng-class="{'has-error':Form.nip.$dirty && Form.nip.$invalid, 'has-success':Form.nip.$valid}">
+                                    <div class="form-group" ng-class="{'has-error':Form.nis.$dirty && Form.nis.$invalid, 'has-success':Form.nis.$valid}">
                                         <label class="control-label">
-										Nip <span class="symbol required"></span>
+										Nis <span class="symbol required"></span>
 									</label>
-                                        <input type="nip" placeholder="Enter a nip" class="form-control" name="nip" ng-model="myModel.nip" required/>
-                                        <span class="error text-small block" ng-if="Form.nip.$dirty && Form.nip.$error.required">nip is required.</span>
-                                        <span class="success text-small block" ng-if="Form.nip.$valid">Ok!</span>
+                                        <input type="nis" placeholder="Enter a nis" class="form-control" name="nis" ng-model="myModel.nis" required/>
+                                        <span class="error text-small block" ng-if="Form.nis.$dirty && Form.nis.$error.required">nis is required.</span>
+                                        <span class="success text-small block" ng-if="Form.nis.$valid">Ok!</span>
                                     </div>
 
-                                     <div class="form-group" ng-class="{'has-error':Form.kode.$dirty && Form.kode.$invalid, 'has-success':Form.kode.$valid}">
+                                     <div class="form-group" ng-class="{'has-error':Form.kelas.$dirty && Form.kelas.$invalid, 'has-success':Form.kelas.$valid}">
                                         <label class="control-label">
-										 Kode <span class="symbol required"></span>
-									</label>
-                                        <input type="text" placeholder="Enter your kode" class="form-control" name="kode" ng-model="myModel.kode" required
-                                        />
-                                        <span class="error text-small block" ng-if="Form.kode.$dirty && Form.kode.$invalid">kode is required</span>
-                                        <span class="success text-small" ng-if="Form.kode.$valid">Thank You!</span>
+										 Kelas <span class="symbol required"></span>
+									
+                                    </label>
+                                        <select md-select-label class="form-control"  ng-model="myModel.kelas" name="kelas"
+                                        ng-options="o as o.name for o in objKelas">
+                                </select>
+                                        <span class="error text-small block" ng-if="Form.kelas.$dirty && Form.kelas.$invalid">Kelas is required</span>
+                                        <span class="success text-small" ng-if="Form.kelas.$valid">Thank You!</span>
                                     </div>
 
-                                    <div class="form-group" ng-class="{'has-error':Form.phone.$dirty && Form.phone.$invalid, 'has-success':Form.phone.$valid}">
+                                     <div class="form-group" ng-class="{'has-error':Form.departments.$dirty && Form.departments.$invalid, 'has-success':Form.departments.$valid}">
                                         <label class="control-label">
-										 Phone <span class="symbol required"></span>
-									</label>
-                                        <input type="text" placeholder="Enter your Phone" class="form-control" name="phone" ng-model="myModel.phone" required />
-                                        <span class="error text-small block" ng-if="Form.phone.$dirty && Form.phone.$invalid">Phone is required</span>
-                                        <span class="success text-small" ng-if="Form.phone.$valid">Thank You!</span>
+										 Jurusan <span class="symbol required"></span>
+									
+                                    </label>
+                                        <select md-select-label class="form-control"  ng-model="myModel.departments" name="departments"
+                                        ng-options="o as o.name for o in objDepartments">
+                                </select>
+                                        <span class="error text-small block" ng-if="Form.departments.$dirty && Form.departments.$invalid">Departments is required</span>
+                                        <span class="success text-small" ng-if="Form.departments.$valid">Thank You!</span>
                                     </div>
-    
+                                   
                                 </fieldset>
                             </div>
                         </div>
@@ -72,7 +77,7 @@
                                     <button type="reset" class="btn btn-primary btn-o" ng-disabled="process" ng-click="form.reset(Form)">
 									Reset
 								</button>
-                                    <button md-ink-ripple class="btn btn-primary btn-o" ui-sref="app.schedules" ng-disabled="process">Kembali
+                                    <button md-ink-ripple class="btn btn-primary btn-o" ui-sref="app.Students" ng-disabled="process">Kembali
 								</button>
                                 </div>
                             </div>

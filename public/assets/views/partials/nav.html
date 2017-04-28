@@ -37,7 +37,7 @@
 		<a ui-sref="app.daftar">
 			<div class="item-content">
 				<div class="item-media">
-					<i class="ti-home"></i>
+					<i class="ti-pencil-alt"></i>
 				</div>
 				<div class="item-inner">
 					<span class="title" > Daftar </span>
@@ -49,7 +49,7 @@
 		<a ui-sref="app.teachers">
 			<div class="item-content">
 				<div class="item-media">
-					<i class="ti-home"></i>
+					<i class="ti-user"></i>
 				</div>
 				<div class="item-inner">
 					<span class="title" > Teacher </span>
@@ -58,10 +58,22 @@
 		</a>
 	</li>
 	<li ui-sref-active="active">
+		<a ui-sref="app.students">
+			<div class="item-content">
+				<div class="item-media">
+					<i class="ti-user"></i>
+				</div>
+				<div class="item-inner">
+					<span class="title" > Students </span>
+				</div>
+			</div>
+		</a>
+	</li>
+	<li ui-sref-active="active">
 		<a ui-sref="app.departments">
 			<div class="item-content">
 				<div class="item-media">
-					<i class="ti-home"></i>
+					<i class="ti-layers-alt"></i>
 				</div>
 				<div class="item-inner">
 					<span class="title" > Jurusan </span>
@@ -73,7 +85,7 @@
 		<a ui-sref="app.kelas">
 			<div class="item-content">
 				<div class="item-media">
-					<i class="ti-home"></i>
+					<i class="ti-location-pin"></i>
 				</div>
 				<div class="item-inner">
 					<span class="title" > Kelas </span>
@@ -81,23 +93,12 @@
 			</div>
 		</a>
 	</li>
-	<li ui-sref-active="active">
-		<a ui-sref="app.schedules">
-			<div class="item-content">
-				<div class="item-media">
-					<i class="ti-home"></i>
-				</div>
-				<div class="item-inner">
-					<span class="title" > Schedules </span>
-				</div>
-			</div>
-		</a>
 	</li>
 	<li ui-sref-active="active">
 		<a ui-sref="app.subjects">
 			<div class="item-content">
 				<div class="item-media">
-					<i class="ti-home"></i>
+					<i class="ti-pie-chart"></i>
 				</div>
 				<div class="item-inner">
 					<span class="title" > Subjects </span>
@@ -106,19 +107,18 @@
 		</a>
 	</li>
 	<li ui-sref-active="active">
-		<a ui-sref="app.students">
+		<a ui-sref="app.schedules">
 			<div class="item-content">
 				<div class="item-media">
-					<i class="ti-home"></i>
+					<i class="ti-menu-alt"></i>
 				</div>
 				<div class="item-inner">
-					<span class="title" > Students </span>
+					<span class="title" > Schedules </span>
 				</div>
 			</div>
 		</a>
-	</li>
 	
-	
+<!--	
 	<li ng-class="{'active open':$state.includes('app.ui')}">
 		<a href="javascript:void(0)">
 			<div class="item-content">
@@ -776,7 +776,7 @@
 </ul>
 <!-- end: MAIN NAVIGATION MENU -->
 <!-- start: CORE FEATURES -->
-<div class="navbar-title">
+<!--<div class="navbar-title">
 	<span translate="sidebar.heading.FEATURES">Core Features</span>
 </div>
 <ul class="folders">
@@ -807,10 +807,10 @@
 </ul>
 <!-- end: CORE FEATURES -->
 <!-- start: DOCUMENTATION BUTTON -->
-<div class="wrapper">
+<!--<div class="wrapper">
 	<a ui-sref="app.documentation" class="button-o">
 		<i class="ti-help"></i>
 		<span translate="sidebar.heading.DOCUMENTATION">Documentation</span>
 	</a>
-</div>
+</div>-->
 <!-- end: DOCUMENTATION BUTTON -->

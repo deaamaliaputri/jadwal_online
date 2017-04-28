@@ -61,7 +61,7 @@ class StudentsRepository extends AbstractRepository implements StudentsInterface
             'name'    => e($data['name']),
             'nis'   => e($data['nis']),
             'kelas_id' => e($data['kelas_id']),
-            'departments_id'   => e($data['department_id'])
+            'departments_id'   => e($data['departments_id'])
         ]);
 
     }
@@ -77,7 +77,7 @@ class StudentsRepository extends AbstractRepository implements StudentsInterface
            'name'    => e($data['name']),
             'nis'   => e($data['nis']),
             'kelas_id' => e($data['kelas_id']),
-            'departments_id'   => e($data['department_id'])
+            'departments_id'   => e($data['departments_id'])
         ]);
     }
 

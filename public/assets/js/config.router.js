@@ -57,6 +57,14 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
             resolve: loadSequence('daftarcreateCtrl', 'daftar_service'),
         })
 
+        //daftar Edit
+        .state('app.daftar-edit', {
+            url: '/daftar-edit/:id',
+            templateUrl: 'assets/src/daftar/daftar-edit.html',
+            title: 'Data Daftar',
+            resolve: loadSequence('daftar-edit', 'daftar_service'),
+        })
+
 //teachers
  .state('app.teachers', {
             url: '/teachers',
@@ -70,6 +78,14 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
             templateUrl: 'assets/src/teachers/teachers-create.html',
             title: 'Data Teachers create',
             resolve: loadSequence('teacherscreateCtrl', 'teachers_service'),
+        })
+
+        //teachers Edit
+        .state('app.teachers-edit', {
+            url: '/teachers-edit/:id',
+            templateUrl: 'assets/src/teachers/teachers-edit.html',
+            title: 'Data Teachers',
+            resolve: loadSequence('teachers-edit', 'teachers_service'),
         })
 
 //departments
@@ -87,6 +103,14 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
             resolve: loadSequence('departmentscreateCtrl', 'departments_service'),
         })
 
+        //departments Edit
+        .state('app.departments-edit', {
+            url: '/departments-edit/:id',
+            templateUrl: 'assets/src/departments/departments-edit.html',
+            title: 'Data Departments',
+            resolve: loadSequence('departments-edit', 'departments_service'),
+        })
+
 //kelas
  .state('app.kelas', {
             url: '/kelas',
@@ -100,6 +124,14 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
             templateUrl: 'assets/src/kelas/kelas-create.html',
             title: 'Data Kelas create',
             resolve: loadSequence('kelascreateCtrl', 'kelas_service'),
+        })
+
+        //kelas Edit
+        .state('app.kelas-edit', {
+            url: '/kelas-edit/:id',
+            templateUrl: 'assets/src/kelas/kelas-edit.html',
+            title: 'Data Kelas',
+            resolve: loadSequence('kelas-edit', 'kelas_service'),
         })
 
 //schedules
@@ -117,6 +149,14 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
             resolve: loadSequence('schedulescreateCtrl', 'schedules_service'),
         })
 
+        //schedules Edit
+        .state('app.schedules-edit', {
+            url: '/schedules-edit/:id',
+            templateUrl: 'assets/src/schedules/schedules-edit.html',
+            title: 'Data Schedules',
+            resolve: loadSequence('schedules-edit', 'schedules_service'),
+        })
+
 //subjects
  .state('app.subjects', {
             url: '/subjects',
@@ -132,6 +172,14 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
             resolve: loadSequence('subjectscreateCtrl', 'subjects_service'),
         })
 
+        //subjects Edit
+        .state('app.subjects-edit', {
+            url: '/subjects-edit/:id',
+            templateUrl: 'assets/src/subjects/subjects-edit.html',
+            title: 'Data Subjects',
+            resolve: loadSequence('subjects-edit', 'subjects_service'),
+        })
+
         //students
  .state('app.students', {
             url: '/students',
@@ -145,6 +193,14 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
             templateUrl: 'assets/src/students/students-create.html',
             title: 'Data Students create',
             resolve: loadSequence('studentscreateCtrl', 'students_service'),
+        })
+
+        //students Edit
+        .state('app.students-edit', {
+            url: '/students-edit/:id',
+            templateUrl: 'assets/src/students/students-edit.html',
+            title: 'Data Students',
+            resolve: loadSequence('students-edit', 'students_service'),
         })
 
         // //urusan Create

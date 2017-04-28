@@ -12,12 +12,20 @@ app.factory('students', ['$http', function ($http) {
             });
         },
 
-        getLaststudents: function () {
+        getListdepartment: function () {
             return $http({
                 method: 'get',
-                url: '/api/get-last-students',
+                url: '/api/getList-departments',
             });
         },
+
+getListkelas: function () {
+            return $http({
+                method: 'get',
+                url: '/api/getList-kelas',
+            });
+        },
+
 
         //Simpan data
         store: function (inputData) {
@@ -49,12 +57,6 @@ app.factory('students', ['$http', function ($http) {
                 method: 'put',
                 url: '/api/students/' + inputData.id,
                 data: $.param(inputData)
-            });
-        },
-        kunci: function (_id) {
-            return $http({
-                method: 'put',
-                url: '/api/kunci-students/' + _id
             });
         },
 

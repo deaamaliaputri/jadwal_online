@@ -12,10 +12,10 @@ app.factory('subjects', ['$http', function ($http) {
             });
         },
 
-        getLastsubjects: function () {
+        getListteachers: function () {
             return $http({
                 method: 'get',
-                url: '/api/get-last-subjects',
+                url: '/api/getList-teachers',
             });
         },
 

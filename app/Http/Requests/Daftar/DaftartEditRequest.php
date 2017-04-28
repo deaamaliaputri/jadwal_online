@@ -45,7 +45,7 @@ class DaftarEditRequest extends Request
     {
         return [
             'name'    => 'required|max:225',
-            'email'   => 'required|email|unique:daftars,email|max:225',
+            'email'   => 'required|email|max:225',
             'password' => 'required|max:60',
             'phone'   => 'required|max:30',
             'status'   => 'required|max:30',

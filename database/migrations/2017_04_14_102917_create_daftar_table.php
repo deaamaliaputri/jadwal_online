@@ -13,7 +13,7 @@ class CreateDaftarTable extends Migration
      */
    public function up()
     {
-        Schema::create('daftar', function (Blueprint $table) {
+        Schema::create('daftars', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
@@ -35,6 +35,6 @@ class CreateDaftarTable extends Migration
      */
     public function down()
     {
-        Schema::drop('teachers');
+        Schema::drop('daftars');
     }
 }

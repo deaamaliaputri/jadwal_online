@@ -1,6 +1,8 @@
-app.controller('TeachersCreateCtrl', ['$state', '$scope', 'teachers','$timeout', 'SweetAlert','toaster','$http', function ($state, $scope, teachers,$timeout, SweetAlert,toaster) {
+app.controller('StudentsCreateCtrl', ['$state', '$scope', 'students','$timeout', 'SweetAlert','toaster','$http', function ($state, $scope, students,$timeout, SweetAlert,toaster) {
+       $scope.myModel ={}
+ 
     //Init input addForm variable
-    //create teachers
+    //create students
     $scope.process = false;
 
     $scope.master = $scope.myModel;
@@ -39,14 +41,86 @@ app.controller('TeachersCreateCtrl', ['$state', '$scope', 'teachers','$timeout',
         }
 
     };
+             $scope.objDepartments =[]
+students.getListdepartment()
+        .success(function (data_akun) {
+            if (data_akun.success == false) {
+                        $scope.toaster = {
+                        type: 'warning',
+                        title: 'Warning',
+                        text: 'Data Belum Tersedia!'
+                    };
+                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+
+            } else {
+                data_akun.unshift({id: 0, name: 'Silahkan Pilih Jurusan'});
+                $scope.objDepartments = data_akun;
+                $scope.myModel.departments = $scope.objDepartments[0];
+            }
+
+        })
+        .error(function (data_akun, status) {
+            // unauthorized
+            if (status === 401) {
+                //redirect to login
+                $scope.redirect();
+            }
+            // Stop Loading
+             $scope.toaster = {
+                        type: 'warning',
+                        title: 'Warning',
+                        text: 'Data Belum Tersedia!'
+                    };
+                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+
+            console.log(data_akun);
+
+        });
+
+        $scope.objKelas =[]
+students.getListkelas()
+        .success(function (data_akun) {
+            if (data_akun.success == false) {
+                        $scope.toaster = {
+                        type: 'warning',
+                        title: 'Warning',
+                        text: 'Data Belum Tersedia!'
+                    };
+                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+
+            } else {
+                data_akun.unshift({id: 0, name: 'Silahkan Pilih Kelas'});
+                $scope.objKelas = data_akun;
+                $scope.myModel.kelas = $scope.objKelas[0];
+            }
+
+        })
+        .error(function (data_akun, status) {
+            // unauthorized
+            if (status === 401) {
+                //redirect to login
+                $scope.redirect();
+            }
+            // Stop Loading
+             $scope.toaster = {
+                        type: 'warning',
+                        title: 'Warning',
+                        text: 'Data Belum Tersedia!'
+                    };
+                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+
+            console.log(data_akun);
+
+        });
+
     $scope.closeAlert = function (index) {
         $scope.alerts.splice(index, 1);
     };
     $scope.clearInput = function () {
         $scope.myModel.name = null;
-        $scope.myModel.nip= null;
-        $scope.myModel.kode= null;
-        $scope.myModel.phone= null;
+        $scope.myModel.nis= null;
+        $scope.myModel.kelas= null;
+        $scope.myModel.jurusan= null;
     };
 
     $scope.submitData = function (isBack) {
@@ -58,12 +132,14 @@ app.controller('TeachersCreateCtrl', ['$state', '$scope', 'teachers','$timeout',
         //Check validation status
         if ($scope.Form.$valid) {
             //run Ajax
-            teachers.store($scope.myModel)
+            $scope.myModel.kelas_id=  $scope.myModel.kelas.id
+            $scope.myModel.departments_id=  $scope.myModel.departments.id
+            students.store($scope.myModel)
                 .success(function (data) {
                     if (data.created == true) {
                         //If back to list after submitting
                         if (isBack == true) {
-                            $state.go('app.teachers');
+                            $state.go('app.students');
                             $scope.toaster = {
                                 type: 'success',
                                 title: 'Sukses',

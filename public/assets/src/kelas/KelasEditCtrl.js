@@ -1,4 +1,4 @@
-app.controller('KelasEditCtrl', ['$state', '$scope', 'kelas', '$mdToast', '$stateParams', function ($state, $scope, kelas, $mdToast, $stateParams) {
+app.controller('KelasEditCtrl', ['$state', '$scope', 'kelas', 'SweetAlert', 'toaster', '$stateParams', function ($state, $scope, kelas, SweetAlert, toaster, mdToast, $stateParams) {
     $scope.id = $scope.$stateParams.id;
     //edit kelas
     //If Id is empty, then redirected
@@ -32,25 +32,14 @@ app.controller('KelasEditCtrl', ['$state', '$scope', 'kelas', '$mdToast', '$stat
         msg: ''
     };
     //get lass kelas
-    kelas.getLastKelas()
-        .success(function (data) {
-            $scope.setLoader(false);
-            $scope.rekening_terakhir = data;
-            if(data.success==true){
-                $scope.rekening_terakhir.msg='Kode Rekening: ' + data.result.kode_rekening;
-            }else{
-                $scope.rekening_terakhir.msg='Data Belum Tersedia';
-            }
-        })
+
 
 
     //Run Ajax
     kelas.show($scope.id)
         .success(function (data) {
             $scope.setLoader(false);
-            $scope.input.id = data.id;
-            $scope.input.kode_rekening = data.kode_rekening;
-            $scope.input.kelas = data.kelas;
+            $scope.myModel = data;
         });
 
     $scope.showToast = function (warna, msg) {
@@ -65,59 +54,64 @@ app.controller('KelasEditCtrl', ['$state', '$scope', 'kelas', '$mdToast', '$stat
     };
     //Submit Data
     $scope.updateData = function () {
-
+          $scope.alerts = [];
         //Set process status
         $scope.process = true;
 
         //Close Alert
-        $scope.alertset.show = 'hide';
+        // $scope.alertset.show = 'hide';
 
         //Check validation status
-        if ($scope.editForm.$valid) {
+        if ($scope.Form.$valid) {
             //run Ajax
-            kelas.update($scope.input)
+            kelas.update($scope.myModel)
                 .success(function (data) {
-                    if (data.success == true) {
+                    if (data.updated == true) {
                         //If back to list after submitting
-                        if (isBack = true) {
-                            //Redirect to akun
-                            $scope.alertset.show = 'hide';
-                            $state.go('app.kelas');
-                            $scope.showToast('green', 'Edit Data Berhasil !');
-                        }
-                    } else {
-                        $scope.process = false;
-                        //$scope.alertset.class = 'orange';
-                        $scope.showToast('red', 'Edit Data Gagal !');
-                        $scope.alertset.class = 'red';
+                        //Redirect to akun
+                        $state.go('app.kelas');
+                        $scope.toaster = {
+                            type: 'success',
+                            title: 'Sukses',
+                            text: 'Update Data Berhasil!'
+                        };
+                        toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+
                     }
-                    //Set Alert message
-                    $scope.alertset.show = '';
-                    $scope.alertset.msg = data.result;
+                    else{
+                             $scope.alerts.push({
+                        type: 'danger',
+                        msg: data.validation
+                    });
+                    $scope.toaster = {
+                        type: 'error',
+                        title: 'Gagal',
+                        text: 'Update Data Gagal!'
+                    };
+                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+                    }
+
 
                 })
                 .error(function (data, status) {
-                    switch (status) {
-                        case 401 :
-                            $scope.redirect();
-                            break;
-                        case 500 :
-                            $scope.sup();
-                            $scope.process = false;
-                            $scope.alertset.msg = "Internal Server Errors";
-                            $scope.alertset.show = 'show';
-                            $scope.showToast('red', 'Simpan Data Gagal !');
-                            $scope.alertset.class = 'red';
-                            break;
-                        case 422 :
-                            $scope.sup();
-                            $scope.process = false;
-                            $scope.alertset.msg = data.validation;
-                            $scope.alertset.show = 'show';
-                            $scope.showToast('red', 'Simpan Data Gagal !');
-                            $scope.alertset.class = 'red';
-                            break;
+                    // unauthorized
+                    if (status === 401) {
+                        //redirect to login
+                        $scope.redirect();
                     }
+                    $scope.sup();
+                    // Stop Loading
+                    $scope.process = false;
+                    $scope.alerts.push({
+                        type: 'danger',
+                        msg: data.validation
+                    });
+                    $scope.toaster = {
+                        type: 'error',
+                        title: 'Gagal',
+                        text: 'Update Data Gagal!'
+                    };
+                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
                 });
         }
     };
