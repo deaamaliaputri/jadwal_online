@@ -1,5 +1,7 @@
 app.controller('StudentsEditCtrl', ['$state', '$scope', 'students', 'SweetAlert', 'toaster', '$stateParams', function ($state, $scope, students, SweetAlert, toaster, mdToast, $stateParams) {
     $scope.id = $scope.$stateParams.id;
+$scope.myModel ={}
+
     //edit students
     //If Id is empty, then redirected
     if ($scope.id == null || $scope.id == '') {
@@ -33,13 +35,98 @@ app.controller('StudentsEditCtrl', ['$state', '$scope', 'students', 'SweetAlert'
     };
     //get lass students
 
+ $scope.objDepartments =[]
+students.getListdepartment()
+        .success(function (data_akun) {
+            if (data_akun.success == false) {
+                        $scope.toaster = {
+                        type: 'warning',
+                        title: 'Warning',
+                        text: 'Data Belum Tersedia!'
+                    };
+                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
 
+            } else {
+                data_akun.unshift({id: 0, name: 'Silahkan Pilih Jurusan'});
+                $scope.objDepartments = data_akun;
+                $scope.myModel.departments = $scope.objDepartments[0];
+            }
+
+        })
+        .error(function (data_akun, status) {
+            // unauthorized
+            if (status === 401) {
+                //redirect to login
+                $scope.redirect();
+            }
+            // Stop Loading
+             $scope.toaster = {
+                        type: 'warning',
+                        title: 'Warning',
+                        text: 'Data Belum Tersedia!'
+                    };
+                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+
+            console.log(data_akun);
+
+        });
+
+        $scope.objKelas =[]
+students.getListkelas()
+        .success(function (data_akun) {
+            if (data_akun.success == false) {
+                        $scope.toaster = {
+                        type: 'warning',
+                        title: 'Warning',
+                        text: 'Data Belum Tersedia!'
+                    };
+                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+
+            } else {
+                data_akun.unshift({id: 0, name: 'Silahkan Pilih Kelas'});
+                $scope.objKelas = data_akun;
+                $scope.myModel.kelas = $scope.objKelas[0];
+            }
+
+        })
+        .error(function (data_akun, status) {
+            // unauthorized
+            if (status === 401) {
+                //redirect to login
+                $scope.redirect();
+            }
+            // Stop Loading
+             $scope.toaster = {
+                        type: 'warning',
+                        title: 'Warning',
+                        text: 'Data Belum Tersedia!'
+                    };
+                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+
+            console.log(data_akun);
+
+        });
 
     //Run Ajax
     students.show($scope.id)
         .success(function (data) {
             $scope.setLoader(false);
             $scope.myModel = data;
+            students.getListdepartment()
+                .success(function (datajk) {
+                    datajk.unshift({id: 0, name: 'Silahkan pilih Jurusan'});
+                    $scope.objDepartments = datajk;
+                    $scope.myModel.departments = $scope.objDepartments[0];
+                    $scope.myModel.departments = $scope.objDepartments[findWithAttr($scope.objDepartments, 'id', parseInt(data.departments_id))];
+                });
+                students.getListkelas()
+                .success(function (datajk) {
+                    datajk.unshift({id: 0, name: 'Silahkan pilih Kelas'});
+                    $scope.objKelas = datajk;
+                    $scope.myModel.kelas = $scope.objKelas[0];
+                    $scope.myModel.kelas = $scope.objKelas[findWithAttr($scope.objKelas, 'id', parseInt(data.kelas_id))];
+                });
+
         });
 
     $scope.showToast = function (warna, msg) {
@@ -115,5 +202,11 @@ app.controller('StudentsEditCtrl', ['$state', '$scope', 'students', 'SweetAlert'
                 });
         }
     };
-
+function findWithAttr(array, attr, value) {
+        for (var i = 0; i < array.length; i += 1) {
+            if (array[i][attr] === value) {
+                return i;
+            }
+        }
+    }
 }]);

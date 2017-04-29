@@ -46,6 +46,7 @@
                 <tr>
                     <th class="col-md-2">Nama</th>
                     <th class="col-md-2">Descriptons</th>
+                    <th class="col-md-2">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,7 +60,7 @@
                     </td>
 
                     <td class="col-md-2">
-                        <button type="button" ng-click="detailkelas(row.id)" md-ink-ripple tooltip="Detail Urusan"
+                        <button type="button" ng-click="detailkelas(row.id)" md-ink-ripple tooltip="Detail kelas"
                                 class="btn btn-sm btn-info">
                             <i class="glyphicon glyphicon-zoom-in"></i>
                         </button>
@@ -72,7 +73,7 @@
                             <i class="glyphicon glyphicon-trash"></i>
                         </button>
                         <a ui-sref="app.kelas-edit({id:row.id})"  md-ink-ripple tooltip="Edit Data"
-                           class="btn btn-sm btn-default" ng-if="row.is_lock ==''">
+                           class="btn btn-sm btn-default" >
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
                         <button type="button" ng-click="hapus(row.id)" md-ink-ripple tooltip="Hapus Data"

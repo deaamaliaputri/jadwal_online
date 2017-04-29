@@ -84,7 +84,7 @@ class SchedulesController extends Controller
      *
      * @apiError EmailHasRegitered The Email must diffrerent.
      */
-    public function update(SchedulesEditRequest $request, $id)
+    public function update(Request $request, $id)
     {
         return $this->schedules->update($id, $request->all());
     }

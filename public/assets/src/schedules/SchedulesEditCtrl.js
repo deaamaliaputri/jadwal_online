@@ -32,6 +32,113 @@ app.controller('SchedulesEditCtrl', ['$state', '$scope', 'schedules', 'SweetAler
         msg: ''
     };
     //get lass schedules
+$scope.objsubjects =[]
+schedules.getListsubjects()
+        .success(function (data_akun) {
+            if (data_akun.success == false) {
+                        $scope.toaster = {
+                        type: 'warning',
+                        title: 'Warning',
+                        text: 'Data Belum Tersedia!'
+                    };
+                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+
+            } else {
+                data_akun.unshift({id: 0, name: 'Silahkan Pilih Mata Pelajaran'});
+                $scope.objsubjects = data_akun;
+                $scope.myModel.subjects = $scope.objsubjects[0];
+            }
+
+        })
+        .error(function (data_akun, status) {
+            // unauthorized
+            if (status === 401) {
+                //redirect to login
+                $scope.redirect();
+            }
+            // Stop Loading
+             $scope.toaster = {
+                        type: 'warning',
+                        title: 'Warning',
+                        text: 'Data Belum Tersedia!'
+                    };
+                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+
+            console.log(data_akun);
+
+        });
+
+         $scope.objDepartments =[]
+schedules.getListdepartment()
+        .success(function (data_akun) {
+            if (data_akun.success == false) {
+                        $scope.toaster = {
+                        type: 'warning',
+                        title: 'Warning',
+                        text: 'Data Belum Tersedia!'
+                    };
+                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+
+            } else {
+                data_akun.unshift({id: 0, name: 'Silahkan Pilih Jurusan'});
+                $scope.objDepartments = data_akun;
+                $scope.myModel.departments = $scope.objDepartments[0];
+            }
+
+        })
+        .error(function (data_akun, status) {
+            // unauthorized
+            if (status === 401) {
+                //redirect to login
+                $scope.redirect();
+            }
+            // Stop Loading
+             $scope.toaster = {
+                        type: 'warning',
+                        title: 'Warning',
+                        text: 'Data Belum Tersedia!'
+                    };
+                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+
+            console.log(data_akun);
+
+        });
+
+        $scope.objKelas =[]
+schedules.getListkelas()
+        .success(function (data_akun) {
+            if (data_akun.success == false) {
+                        $scope.toaster = {
+                        type: 'warning',
+                        title: 'Warning',
+                        text: 'Data Belum Tersedia!'
+                    };
+                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+
+            } else {
+                data_akun.unshift({id: 0, name: 'Silahkan Pilih Kelas'});
+                $scope.objKelas = data_akun;
+                $scope.myModel.kelas = $scope.objKelas[0];
+            }
+
+        })
+        .error(function (data_akun, status) {
+            // unauthorized
+            if (status === 401) {
+                //redirect to login
+                $scope.redirect();
+            }
+            // Stop Loading
+             $scope.toaster = {
+                        type: 'warning',
+                        title: 'Warning',
+                        text: 'Data Belum Tersedia!'
+                    };
+                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+
+            console.log(data_akun);
+
+        });
 
 
 
@@ -40,6 +147,27 @@ app.controller('SchedulesEditCtrl', ['$state', '$scope', 'schedules', 'SweetAler
         .success(function (data) {
             $scope.setLoader(false);
             $scope.myModel = data;
+             schedules.getListsubjects()
+                .success(function (datajk) {
+                    datajk.unshift({id: 0, name: 'Silahkan pilih Mata Pelajaran'});
+                    $scope.objsubjects = datajk;
+                    $scope.myModel.subjects = $scope.objsubjects[0];
+                    $scope.myModel.subjects = $scope.objsubjects[findWithAttr($scope.objsubjects, 'id', parseInt(data.subjects_id))];
+                });
+                schedules.getListdepartment()
+                .success(function (datajk) {
+                    datajk.unshift({id: 0, name: 'Silahkan pilih Jurusan'});
+                    $scope.objDepartments = datajk;
+                    $scope.myModel.departments = $scope.objDepartments[0];
+                    $scope.myModel.departments = $scope.objDepartments[findWithAttr($scope.objDepartments, 'id', parseInt(data.departments_id))];
+                });
+                 schedules.getListkelas()
+                .success(function (datajk) {
+                    datajk.unshift({id: 0, name: 'Silahkan pilih Kelas'});
+                    $scope.objKelas = datajk;
+                    $scope.myModel.kelas = $scope.objKelas[0];
+                    $scope.myModel.kelas = $scope.objKelas[findWithAttr($scope.objKelas, 'id', parseInt(data.kelas_id))];
+                });
         });
 
     $scope.showToast = function (warna, msg) {
@@ -115,5 +243,11 @@ app.controller('SchedulesEditCtrl', ['$state', '$scope', 'schedules', 'SweetAler
                 });
         }
     };
-
+function findWithAttr(array, attr, value) {
+        for (var i = 0; i < array.length; i += 1) {
+            if (array[i][attr] === value) {
+                return i;
+            }
+        }
+    }
 }]);

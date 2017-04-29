@@ -22,7 +22,30 @@
                             <div class="col-md-12">
                                 <fieldset>
 
-                                      <div class="form-group" ng-class="{'has-error':Form.departments.$dirty && Form.departments.$invalid, 'has-success':Form.departments.$valid}">
+                                      <div class="form-group" ng-class="{'has-error':Form.room.$dirty && Form.room.$invalid, 'has-success':Form.room.$valid}">
+                                        <label class="control-label">
+										 Room <span class="symbol required"></span>
+									</label>
+                                        <input type="text" placeholder="Enter your room" class="form-control" name="room" ng-model="myModel.room" required />
+                                        <span class="error text-small block" ng-if="Form.room.$dirty && Form.room.$invalid">room is required</span>
+                                        <span class="success text-small" ng-if="Form.room.$valid">Thank You!</span>
+                                    </div>
+
+
+
+                                    <div class="form-group" ng-class="{'has-error':Form.subjects.$dirty && Form.subjects.$invalid, 'has-success':Form.subjects.$valid}">
+                                        <label class="control-label">
+										 Mata Pelajaran <span class="symbol required"></span>
+									
+                                    </label>
+                                        <select md-select-label class="form-control"  ng-model="myModel.subjects" name="subjects"
+                                        ng-options="o as o.name for o in objsubjects">
+                                </select>
+                                        <span class="error text-small block" ng-if="Form.subjects.$dirty && Form.subjects.$invalid">Mata Pelajaran is required</span>
+                                        <span class="success text-small" ng-if="Form.subjects.$valid">Thank You!</span>
+                                    </div>
+                                   
+                                   <div class="form-group" ng-class="{'has-error':Form.departments.$dirty && Form.departments.$invalid, 'has-success':Form.departments.$valid}">
                                         <label class="control-label">
 										 Jurusan <span class="symbol required"></span>
 									

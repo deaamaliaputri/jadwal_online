@@ -45,7 +45,7 @@
                 <thead>
                 <tr>
                     <th class="col-md-2">Name</th>
-                    <th class="col-md-2">Teachers</th>
+                    <th class="col-md-2">Guru</th>
                     <th class="col-md-2">Descriptions</th>
                     <th class="col-md-2">Aksi</th>
                 </tr>
@@ -55,14 +55,9 @@
                     <td class="col-md-2">{{row.name}}</td>
                     <td class="col-md-2">{{row.teachers.name}}</td>
                     <td class="col-md-2">{{row.descriptions}}</td>
-                    <td class="col-md-2">
-                        <span ng-if="row.is_lock == '0'" class="label bg-info ng-scope">Draft</span>
-                        <span ng-if="row.is_lock == ''" class="label bg-info ng-scope">Draft</span>
-                        <span ng-if="row.is_lock == '1' " class="label bg-success ng-scope">Final</span>
-                    </td>
 
                     <td class="col-md-2">
-                        <button type="button" ng-click="detailsubjects(row.id)" md-ink-ripple tooltip="Detail Urusan"
+                        <button type="button" ng-click="detailsubjects(row.id)" md-ink-ripple tooltip="Detail subjects"
                                 class="btn btn-sm btn-info">
                             <i class="glyphicon glyphicon-zoom-in"></i>
                         </button>
@@ -75,7 +70,7 @@
                             <i class="glyphicon glyphicon-trash"></i>
                         </button>
                         <a ui-sref="app.subjects-edit({id:row.id})"  md-ink-ripple tooltip="Edit Data"
-                           class="btn btn-sm btn-default" ng-if="row.is_lock ==''">
+                           class="btn btn-sm btn-default" >
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
                         <button type="button" ng-click="hapus(row.id)" md-ink-ripple tooltip="Hapus Data"

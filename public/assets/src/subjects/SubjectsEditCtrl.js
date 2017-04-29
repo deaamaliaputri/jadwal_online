@@ -5,7 +5,7 @@ app.controller('SubjectsEditCtrl', ['$state', '$scope', 'subjects', 'SweetAlert'
     if ($scope.id == null || $scope.id == '') {
         $state.go("app.subjects")
     }
-
+$scope.myModel ={}
     $scope.isLoading = true;
     $scope.isLoaded = false;
 
@@ -32,6 +32,41 @@ app.controller('SubjectsEditCtrl', ['$state', '$scope', 'subjects', 'SweetAlert'
         msg: ''
     };
     //get lass subjects
+$scope.objTeachers =[]
+subjects.getListteachers()
+        .success(function (data_akun) {
+            if (data_akun.success == false) {
+                        $scope.toaster = {
+                        type: 'warning',
+                        title: 'Warning',
+                        text: 'Data Belum Tersedia!'
+                    };
+                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+
+            } else {
+                data_akun.unshift({id: 0, name: 'Silahkan Pilih Guru'});
+                $scope.objTeachers = data_akun;
+                $scope.myModel.teachers = $scope.objTeachers[0];
+            }
+
+        })
+        .error(function (data_akun, status) {
+            // unauthorized
+            if (status === 401) {
+                //redirect to login
+                $scope.redirect();
+            }
+            // Stop Loading
+             $scope.toaster = {
+                        type: 'warning',
+                        title: 'Warning',
+                        text: 'Data Belum Tersedia!'
+                    };
+                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+
+            console.log(data_akun);
+
+        });
 
 
 
@@ -40,6 +75,14 @@ app.controller('SubjectsEditCtrl', ['$state', '$scope', 'subjects', 'SweetAlert'
         .success(function (data) {
             $scope.setLoader(false);
             $scope.myModel = data;
+            subjects.getListteachers()
+                .success(function (datajk) {
+                    datajk.unshift({id: 0, name: 'Silahkan pilih Guru'});
+                    $scope.objTeachers = datajk;
+                    $scope.myModel.teachers = $scope.objTeachers[0];
+                    $scope.myModel.teachers = $scope.objTeachers[findWithAttr($scope.objTeachers, 'id', parseInt(data.teachers_id))];
+                });
+           
         });
 
     $scope.showToast = function (warna, msg) {
@@ -115,5 +158,11 @@ app.controller('SubjectsEditCtrl', ['$state', '$scope', 'subjects', 'SweetAlert'
                 });
         }
     };
-
+function findWithAttr(array, attr, value) {
+        for (var i = 0; i < array.length; i += 1) {
+            if (array[i][attr] === value) {
+                return i;
+            }
+        }
+    }
 }]);

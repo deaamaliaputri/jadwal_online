@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Contact;
+namespace App\Http\Requests\Teachers;
 
 use App\Http\Requests\Request;
 
@@ -9,7 +9,7 @@ use App\Http\Requests\Request;
  *
  * @package App\Http\Requests\User
  */
-class ContactEditRequest extends Request
+class TeachersEditRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
