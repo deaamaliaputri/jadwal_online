@@ -29,3 +29,13 @@ Route::get('getList-teachers','TeachersController@getList');
 Route::get('getList-departments','DepartmentsController@getList');
 Route::get('getList-kelas','KelasController@getList');
 Route::get('getList-subjects','SubjectsController@getList');
+////auth
+Route::group(['namespace' => 'Auth'], function () {
+
+    // Authentication routes...
+    Route::get('get-login', 'LoginController@getLogin');
+    Route::get('logout', 'LoginController@getLogout');
+    Route::get('post-login', 'LoginController@getLogin');
+    Route::post('post-login', 'LoginController@postLogin');
+});
+Route::get('get-session', 'DaftarController@getSession');

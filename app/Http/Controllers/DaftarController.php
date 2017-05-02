@@ -104,5 +104,25 @@ class DaftarController extends Controller
     {
         return $this->daftar->delete($id);
     }
+public function getSession()
+    {
+        if (session('name') == null) {
+            return response()->json(
+                [
+                    'success' => false,
+                    'result' => 'redirect'
+                ], 401
+            );
+        }
 
+        return response()->json([
+            'success' => true,
+            'result' => [
+                'name' => session('name'),
+                'email' => session('email'),
+                'user_id' => session('user_id'),
+                'level' => session('level'),
+
+            ]]);
+    }
 }

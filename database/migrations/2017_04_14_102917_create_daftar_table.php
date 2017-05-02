@@ -24,6 +24,8 @@ class CreateDaftarTable extends Migration
             $table->integer('nip', false);
             $table->timestamps();
             $table->softDeletes();
+            $table->rememberToken();
+
 
         });
     }

@@ -2,16 +2,20 @@
 
 namespace App\Domain\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Daftar
  * @package App\Domain\Entities
  */
-class Daftar extends Model
+class Daftar extends Authenticatable
+
 {
-    use SoftDeletes;
+    use Notifiable;
+
+
 
     /**
      * @var array
@@ -20,7 +24,7 @@ class Daftar extends Model
     protected $fillable = [
         'name', 'email', 'password', 'phone', 'status', 'level', 'nip',	
     ];
- protected $hidden = [
-    'deleted_at'
+    protected $hidden = [
+        'password', 'remember_token',
     ];
 }
