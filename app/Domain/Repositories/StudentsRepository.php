@@ -47,7 +47,21 @@ class StudentsRepository extends AbstractRepository implements StudentsInterface
     public function paginate($limit = 10, $page = 1, array $column = ['*'], $field, $search = '')
     {
         // query to aql
-        return parent::paginate($limit, $page, $column, 'name', $search);
+       $akun = $this->model
+            ->join('kelas', 'students.kelas_id', '=', 'kelas.id')
+            ->join('departments', 'students.departments_id', '=', 'departments.id')            
+            ->where(function ($query) use ($search) {
+                $query->where('students.name', 'like', '%' . $search . '%')
+                    ->orWhere('students.nis', 'like', '%' . $search . '%')
+                    ->orWhere('kelas.name', 'like', '%' . $search . '%')
+                    ->orWhere('departments.name', 'like', '%' . $search . '%');
+                    
+                })
+            ->select('students.*')
+            ->paginate($limit)
+            
+            ->toArray();
+        return $akun;
     }
 
     /**

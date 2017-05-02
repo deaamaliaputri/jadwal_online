@@ -47,7 +47,19 @@ class TeachersRepository extends AbstractRepository implements TeachersInterface
     public function paginate($limit = 10, $page = 1, array $column = ['*'], $field, $search = '')
     {
         // query to aql
-        return parent::paginate($limit, $page, $column, 'name', $search);
+        $akun = $this->model
+            ->where(function ($query) use ($search) {
+                $query->where('teachers.name', 'like', '%' . $search . '%')
+                    ->orWhere('teachers.nip', 'like', '%' . $search . '%')
+                    ->orWhere('teachers.kode', 'like', '%' . $search . '%')
+                    ->orWhere('teachers.phone', 'like', '%' . $search . '%');
+                    
+                })
+            ->select('teachers.*')
+            ->paginate($limit)
+            
+            ->toArray();
+        return $akun;
     }
 
     /**

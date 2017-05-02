@@ -33,7 +33,7 @@ class KelasController extends Controller
      */
     public function index(Request $request)
     {
-        return $this->kelas->paginate(10, $request->input('page'), $column = ['*'], '', $request->input('search'));
+        return $this->kelas->paginate(10, $request->input('page'), $column = ['*'], '', $request->input('term'));
     }
 
     /**

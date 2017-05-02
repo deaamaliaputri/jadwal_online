@@ -33,7 +33,7 @@ class TeachersController extends Controller
      */
     public function index(Request $request)
     {
-        return $this->teachers->paginate(10, $request->input('page'), $column = ['*'], '', $request->input('search'));
+        return $this->teachers->paginate(10, $request->input('page'), $column = ['*'], '', $request->input('term'));
     }
 
     /**

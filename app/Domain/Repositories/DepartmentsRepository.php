@@ -47,7 +47,14 @@ class DepartmentsRepository extends AbstractRepository implements DepartmentsInt
     public function paginate($limit = 10, $page = 1, array $column = ['*'], $field, $search = '')
     {
         // query to aql
-        return parent::paginate($limit, $page, $column, 'name', $search);
+        $akun = $this->model
+            ->where(function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+                })
+        
+            ->paginate($limit)
+            ->toArray();
+        return $akun;
     }
 
     /**

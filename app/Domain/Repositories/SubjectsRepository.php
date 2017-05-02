@@ -47,7 +47,18 @@ class SubjectsRepository extends AbstractRepository implements SubjectsInterface
     public function paginate($limit = 10, $page = 1, array $column = ['*'], $field, $search = '')
     {
         // query to aql
-        return parent::paginate($limit, $page, $column, 'name', $search);
+        $akun = $this->model
+            ->join('teachers', 'subjects.teachers_id', '=', 'teachers.id')
+            ->where(function ($query) use ($search) {
+                $query->where('subjects.name', 'like', '%' . $search . '%')
+                    ->orWhere('teachers.name', 'like', '%' . $search . '%');
+                    
+                })
+            ->select('subjects.*')
+            ->paginate($limit)
+            
+            ->toArray();
+        return $akun;
     }
 
     /**

@@ -33,7 +33,7 @@ class SchedulesController extends Controller
      */
     public function index(Request $request)
     {
-        return $this->schedules->paginate(10, $request->input('page'), $column = ['*'], '', $request->input('search'));
+        return $this->schedules->paginate(10, $request->input('page'), $column = ['*'], '', $request->input('term'));
     }
 
     /**

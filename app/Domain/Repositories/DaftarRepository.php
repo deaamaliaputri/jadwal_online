@@ -47,7 +47,16 @@ class DaftarRepository extends AbstractRepository implements DaftarInterface, Cr
     public function paginate($limit = 10, $page = 1, array $column = ['*'], $field, $search = '')
     {
         // query to aql
-        return parent::paginate($limit, $page, $column, 'name', $search);
+        $akun = $this->model
+            ->where(function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('email', 'like', '%' . $search . '%')
+                    ->orWhere('phone', 'like', '%' . $search . '%');
+                })
+        
+            ->paginate($limit)
+            ->toArray();
+        return $akun;
     }
 
     /**

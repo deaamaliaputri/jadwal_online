@@ -47,7 +47,23 @@ class SchedulesRepository extends AbstractRepository implements SchedulesInterfa
     public function paginate($limit = 10, $page = 1, array $column = ['*'], $field, $search = '')
     {
         // query to aql
-        return parent::paginate($limit, $page, $column, 'room', $search);
+         $akun = $this->model
+            ->join('departments', 'schedules.departments_id', '=', 'departments.id')
+            ->join('kelas', 'schedules.kelas_id', '=', 'kelas.id')
+            ->join('subjects', 'schedules.subjects_id', '=', 'subjects.id')
+            ->where(function ($query) use ($search) {
+                $query->where('schedules.time', 'like', '%' . $search . '%')
+                    ->orWhere('schedules.hour', 'like', '%' . $search . '%')
+                    ->orWhere('schedules.room', 'like', '%' . $search . '%')
+                     ->orWhere('departments.name', 'like', '%' . $search . '%')
+                    ->orWhere('kelas.name', 'like', '%' . $search . '%')
+                    ->orWhere('subjects.name', 'like', '%' . $search . '%');
+                })
+            ->select('schedules.*')
+            ->paginate($limit)
+            
+            ->toArray();
+        return $akun;
     }
 
     /**
