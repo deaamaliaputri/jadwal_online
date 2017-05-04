@@ -23,7 +23,7 @@ app.run(['$rootScope', '$state', '$stateParams','mainapp',
 		// GLOBAL APP SCOPE
 		// set below basic information
 		$rootScope.app = {
-			name: 'Clip-Two', // name of your project
+			name: 'Jadwal Online', // name of your project
 			author: 'ClipTheme', // author's name or company name
 			description: 'Angular Bootstrap Admin Template', // brief description
 			version: '2.0', // current version
