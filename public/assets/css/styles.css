@@ -362,7 +362,7 @@ h5.over-title {
 }
 .navbar .navbar-header {
   z-index: 10;
-  background: #ffffff;
+  background: #21294c;
   border-bottom: 1px solid #c8c7cc;
   position: relative;
   height: 65px;
@@ -594,7 +594,7 @@ h5.over-title {
   right: 0;
   border-left: 1px solid #c8c7cc;
   width: 30px;
-  background: #ffffff;
+  background: #21294c;
   line-height: 64px;
   color: #c8c7cc;
 }
@@ -671,7 +671,7 @@ h5.over-title {
   }
 }
 .navbar .navbar-right > li > a:hover {
-  background: #efeff0;
+  background: #c8c7cc;
 }
 .navbar .navbar-right > li > a i {
   display: block;
@@ -1016,13 +1016,13 @@ h5.over-title {
   display: table;
 }
 #sidebar > div nav > ul > li.hover {
-  background: #efeff0;
+  background: #21294c;
 }
 .no-touch #sidebar > div nav > ul > li:hover {
-  background: #efeff0;
+  background: #21294c;
 }
 #sidebar > div nav > ul > li.active {
-  background: #c8c7cc;
+  background: #21294c;
 }
 #sidebar > div nav > ul > li.active > a {
   border-top: none !important;
