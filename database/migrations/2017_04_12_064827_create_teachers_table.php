@@ -18,7 +18,7 @@ class CreateTeachersTable extends Migration
             $table->string('name');
             $table->integer('nip', false);
             $table->string('kode');
-            $table->integer('phone', false);
+            $table->string('phone');
             $table->timestamps();
             $table->softDeletes();
         });
