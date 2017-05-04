@@ -42,7 +42,7 @@ class SubjectsEditRequest extends Request
         return [
             'name'    => 'required|max:225',
             'teachers_id' => 'required|max:60',
-            'descriptions'   => 'required|max:30'
+            'descriptions'   => 'required'
         ];
     }
 
