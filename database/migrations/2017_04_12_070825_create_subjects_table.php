@@ -17,7 +17,7 @@ class CreateSubjectsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('teachers_id', false);
-             $table->string('descriptions');
+             $table->longtext('descriptions');
             $table->timestamps();
             $table->softDeletes();
         });
