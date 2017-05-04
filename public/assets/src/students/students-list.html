@@ -57,11 +57,6 @@
                     <td class="col-md-2">{{row.nis}}</td>
                     <td class="col-md-2">{{row.kelas.name}}</td>
                     <td class="col-md-2">{{row.departments.name}}</td>
-                    <td class="col-md-2">
-                        <span ng-if="row.is_lock == '0'" class="label bg-info ng-scope">Draft</span>
-                        <span ng-if="row.is_lock == ''" class="label bg-info ng-scope">Draft</span>
-                        <span ng-if="row.is_lock == '1' " class="label bg-success ng-scope">Final</span>
-                    </td>
 
                     <td class="col-md-2">
                         <button type="button" ng-click="detailstudents(row.id)" md-ink-ripple tooltip="Detail Urusan"
