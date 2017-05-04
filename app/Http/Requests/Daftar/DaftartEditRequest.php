@@ -29,7 +29,6 @@ class DaftarEditRequest extends Request
     protected $attrs = [
         'name'    => 'Name',
         'email'   => 'Email',
-        'password' => 'Password',
         'phone'   => 'Phone',
         'status'   => 'Status',
         'level'   => 'Level'
@@ -46,7 +45,6 @@ class DaftarEditRequest extends Request
         return [
             'name'    => 'required|max:225',
             'email'   => 'required|email|max:225',
-            'password' => 'required|max:60',
             'phone'   => 'required|max:30',
             'status'   => 'required|max:30',
             'level'   => 'required|max:30',

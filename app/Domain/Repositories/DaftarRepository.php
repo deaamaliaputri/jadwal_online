@@ -87,7 +87,6 @@ class DaftarRepository extends AbstractRepository implements DaftarInterface, Cr
         return parent::update($id, [
             'name'    => e($data['name']),
             'email'   => e($data['email']),
-            'password' => e($data['password']),
             'phone'   => e($data['phone']),
             'status'   => e($data['status']),
             'level'   => e($data['level']),
