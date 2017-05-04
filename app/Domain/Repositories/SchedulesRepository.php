@@ -50,12 +50,14 @@ class SchedulesRepository extends AbstractRepository implements SchedulesInterfa
          $akun = $this->model
             ->join('departments', 'schedules.departments_id', '=', 'departments.id')
             ->join('kelas', 'schedules.kelas_id', '=', 'kelas.id')
+            ->join('teachers', 'schedules.teachers_id', '=', 'teachers.id')
             ->join('subjects', 'schedules.subjects_id', '=', 'subjects.id')
             ->where(function ($query) use ($search) {
                 $query->where('schedules.time', 'like', '%' . $search . '%')
                     ->orWhere('schedules.hour', 'like', '%' . $search . '%')
                     ->orWhere('schedules.room', 'like', '%' . $search . '%')
-                     ->orWhere('departments.name', 'like', '%' . $search . '%')
+                    ->orWhere('departments.name', 'like', '%' . $search . '%')
+                    ->orWhere('teachers.name', 'like', '%' . $search . '%')
                     ->orWhere('kelas.name', 'like', '%' . $search . '%')
                     ->orWhere('subjects.name', 'like', '%' . $search . '%');
                 })
@@ -77,11 +79,10 @@ class SchedulesRepository extends AbstractRepository implements SchedulesInterfa
              'time'    => '2016-08-09',
             'hour'   => '2016-08-09',
             'room' => e($data['room']),
-            'teachers_id'   => 0,
+            'teachers_id'   => e($data['teachers_id']),
             'departments_id'   => e($data['departments_id']),
             'kelas_id'   => e($data['kelas_id']),
             'subjects_id'   => e($data['subjects_id']),
-            'teachers_id'   => 0,
         ]);
 
     }
@@ -101,6 +102,7 @@ class SchedulesRepository extends AbstractRepository implements SchedulesInterfa
             'departments_id'   => e($data['departments_id']),
             'kelas_id'   => e($data['kelas_id']),
         'subjects_id'   => e($data['subjects_id'])
+        
         ]);
     }
 

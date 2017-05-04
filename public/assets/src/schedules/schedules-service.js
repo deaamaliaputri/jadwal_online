@@ -8,7 +8,7 @@ app.factory('schedules', ['$http', function ($http) {
             return $http({
                 method: 'get',
                 url: '/api/schedules?page=' + page + '&term=' + term,
-                headers: {'Content-Type': 'application/x-www-form-urlencoded', 'X-Requested-With': 'XMLHttpRequest'}
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'X-Requested-With': 'XMLHttpRequest' }
             });
         },
 
@@ -19,14 +19,21 @@ app.factory('schedules', ['$http', function ($http) {
             });
         },
 
- getListdepartment: function () {
+        getListteachers: function () {
+            return $http({
+                method: 'get',
+                url: '/api/getList-teachers',
+            });
+        },
+
+        getListdepartment: function () {
             return $http({
                 method: 'get',
                 url: '/api/getList-departments',
             });
         },
 
-getListkelas: function () {
+        getListkelas: function () {
             return $http({
                 method: 'get',
                 url: '/api/getList-kelas',

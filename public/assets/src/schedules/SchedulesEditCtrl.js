@@ -154,6 +154,13 @@ schedules.getListkelas()
                     $scope.myModel.subjects = $scope.objsubjects[0];
                     $scope.myModel.subjects = $scope.objsubjects[findWithAttr($scope.objsubjects, 'id', parseInt(data.subjects_id))];
                 });
+                schedules.getListteachers()
+                .success(function (datajk) {
+                    datajk.unshift({id: 0, name: 'Silahkan pilih Guru'});
+                    $scope.objteachers = datajk;
+                    $scope.myModel.teachers = $scope.objteachers[0];
+                    $scope.myModel.teachers = $scope.objteachers[findWithAttr($scope.objteachers, 'id', parseInt(data.teachers_id))];
+                });
                 schedules.getListdepartment()
                 .success(function (datajk) {
                     datajk.unshift({id: 0, name: 'Silahkan pilih Jurusan'});
