@@ -45,6 +45,8 @@ app.controller('DaftarCreateCtrl', ['$state', '$scope', 'daftar','$timeout', 'Sw
     $scope.clearInput = function () {
         $scope.myModel.name = null;
         $scope.myModel.email= null;
+        $scope.myModel.password= null;
+        $scope.myModel.password2= null;
         $scope.myModel.phone= null;
         $scope.myModel.status= null;
         $scope.myModel.level= null;
