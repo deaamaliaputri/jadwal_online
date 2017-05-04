@@ -18,9 +18,10 @@ class CreateScheduleTable extends Migration
             $table->date('time');
             $table->date('hour');
             $table->string('room');
-            $table->integer('teachers_id', false);
-            $table->integer('departments_id', false);
-            $table->integer('kelas_id', false);
+            $table->string('subjects_id');
+            $table->string('teachers_id');
+            $table->string('departments_id');
+            $table->string('kelas_id');
             $table->timestamps();
             $table->softDeletes();
         });
