@@ -2,6 +2,7 @@
 
 namespace App\Domain\Entities;
 
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
