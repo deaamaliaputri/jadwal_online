@@ -38,4 +38,10 @@ Route::group(['namespace' => 'Auth'], function () {
     Route::get('post-login', 'LoginController@getLogin');
     Route::post('post-login', 'LoginController@postLogin');
 });
+////auth
+Route::group(['namespace' => 'Cetak'], function () {
+    // Cetak...
+    Route::get('cetak-daftar/{id}', 'CetakDaftar@Daftar');
+});
+
 Route::get('get-session', 'DaftarController@getSession');

@@ -109,41 +109,6 @@ class CetakAsalUsul extends Controller
         $kodeadministrasikearsipan = $this->kodeadministrasi->cekkodeadminkearsipanbysession();
         $logogambar = $this->logo->getLogokabupatencetak($desa->id);
 
-        //kabupaten
-        if ($desa->kecamatan->kabupaten->status == 1) {
-            $status = 'KABUPATEN';
-            $kabupaten = $desa->kecamatan->kabupaten->kabupaten;
-        }
-        if ($desa->kecamatan->kabupaten->status == 2) {
-            $status = 'KOTA';
-            $kabupaten = $desa->kecamatan->kabupaten->kabupaten;
-        }
-        //kecamatan
-        if ($desa->kecamatan->status == 1) {
-            $statuskecamatan = 'KECAMATAN';
-            $kecamatan = $desa->kecamatan->kecamatan;
-        }
-        if ($desa->kecamatan->kabupaten->status == 2) {
-            $statuskecamatan = 'DISTRIK';
-            $kecamatan = $desa->kecamatan->kecamatan;
-        }
-        //desa
-        if ($desa->status == 1) {
-            $statusdesa = 'KELURAHAN';
-            $namadesa = $desa->desa;
-        }
-        if ($desa->status == 2) {
-            $statusdesa = 'DESA';
-            $namadesa = $desa->desa;
-        }
-        if ($desa->status == 3) {
-            $statusdesa = 'KAMPUNG';
-            $namadesa = $desa->desa;
-        }
-        if ($desa->status == 4) {
-            $statusdesa = 'NEGERI';
-            $namadesa = $desa->desa;
-        }
         $pdf->SetX(40);
         $pdf->Cell(0, 0, 'PEMERINTAH ' . $status . ' ' . strtoupper($kabupaten), 0, 0, 'C');
         $pdf->Ln(5);
@@ -246,7 +211,7 @@ class CetakAsalUsul extends Controller
     {
 //        array(215, 330)
 
-        $pdf = new PdfClass('P', 'mm', array(215, 330));
+        $pdf = new PdfClass('P', 'mm', 'A4');
         $pdf->is_header = false;
         $pdf->set_widths = 80;
         $pdf->set_footer = 29;
@@ -262,55 +227,6 @@ class CetakAsalUsul extends Controller
         $pdf->SetY(80);
         $desa = $this->desa->find(session('desa'));
         $asalusul = $this->asalusul->find($id);
-        if ($asalusul->penandatangan == 'Atasnama Pimpinan') {
-            $idpejabat = 'Sekretaris Organisasi';
-            $pejabat = $this->pejabat->cekjabatan($idpejabat);
-        } else {
-            $pejabat = $this->pejabat->cekjabatan($asalusul->penandatangan);
-        }
-        //kabupaten
-        if ($desa->kecamatan->kabupaten->status == 1) {
-            $status = 'KABUPATEN';
-            $status1 = 'Kabupaten';
-            $kabupaten = $desa->kecamatan->kabupaten->kabupaten;
-        }
-        if ($desa->kecamatan->kabupaten->status == 2) {
-            $status = 'KOTA';
-            $status1 = 'Kota';
-            $kabupaten = $desa->kecamatan->kabupaten->kabupaten;
-        }
-        //kecamatan
-        if ($desa->kecamatan->status == 1) {
-            $statuskecamatan = 'KECAMATAN';
-            $statuskecamatan1 = 'Kecamatan';
-            $kecamatan = $desa->kecamatan->kecamatan;
-        }
-        if ($desa->kecamatan->kabupaten->status == 2) {
-            $statuskecamatan = 'DISTRIK';
-            $statuskecamatan1 = 'Distrik';
-            $kecamatan = $desa->kecamatan->kecamatan;
-        }
-        //desa
-        if ($desa->status == 1) {
-            $statusdesa = 'KELURAHAN';
-            $statusdesa1 = 'Kelurahan';
-            $namadesa = $desa->desa;
-        }
-        if ($desa->status == 2) {
-            $statusdesa = 'DESA';
-            $statusdesa1 = 'Desa';
-            $namadesa = $desa->desa;
-        }
-        if ($desa->status == 3) {
-            $statusdesa = 'KAMPUNG';
-            $statusdesa1 = 'Kampung';
-            $namadesa = $desa->desa;
-        }
-        if ($desa->status == 4) {
-            $statusdesa = 'NEGERI';
-            $statusdesa1 = 'Negeri';
-            $namadesa = $desa->desa;
-        }
         $pdf->SetFont('Arial', '', 10);
 
         $pdf->SetX(19);

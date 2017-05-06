@@ -68,6 +68,7 @@ class SchedulesCreateRequest extends Request
                 'time' => $message->first('time'),
                 'hour' => $message->first('hour'),
                 'room' => $message->first('room'),
+                'hari' => $message->first('hari'),
                 'subjects_id' => $message->first('subjects_id'),
                 'departments_id' => $message->first('departments_id'),
                 'kelas_id' => $message->first('kelas_id'),

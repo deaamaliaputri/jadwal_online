@@ -31,6 +31,14 @@
                                         <span class="success text-small" ng-if="Form.room.$valid">Thank You!</span>
                                     </div>
 
+                                    <div class="form-group" ng-class="{'has-error':Form.hari.$dirty && Form.hari.$invalid, 'has-success':Form.hari.$valid}">
+                                        <label class="control-label">
+										 Hari <span class="symbol required"></span>
+									</label>
+                                        <input type="text" placeholder="Enter your hari" class="form-control" name="hari" ng-model="myModel.hari" required />
+                                        <span class="error text-small block" ng-if="Form.hari.$dirty && Form.hari.$invalid">hari is required</span>
+                                        <span class="success text-small" ng-if="Form.hari.$valid">Thank You!</span>
+                                    </div>
 
 
                                     <div class="form-group" ng-class="{'has-error':Form.subjects.$dirty && Form.subjects.$invalid, 'has-success':Form.subjects.$valid}">

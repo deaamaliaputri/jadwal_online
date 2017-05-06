@@ -44,8 +44,9 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th class="col-md-2">Time</th>
-                    <th class="col-md-2">Hour</th>
+                    <th class="col-md-1">Time</th>
+                    <th class="col-md-1">Hour</th>
+                    <th class="col-md-1">Hari</th>
                     <th class="col-md-1">Room</th>
                     <th class="col-md-2">Mata Pelajaran</th>
                     <th class="col-md-1">Guru</th>
@@ -56,8 +57,9 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="row in dataschedules">
-                    <td class="col-md-2">{{row.time}}</td>
-                    <td class="col-md-2">{{row.hour}}</td>
+                    <td class="col-md-1">{{row.time}}</td>
+                    <td class="col-md-1">{{row.hour}}</td>
+                    <td class="col-md-1">{{row.hari}}</td>
                     <td class="col-md-1">{{row.room}}</td>
                     <td class="col-md-2">{{row.subjects.name}}</td>
                     <td class="col-md-1">{{row.teachers.name}}</td>

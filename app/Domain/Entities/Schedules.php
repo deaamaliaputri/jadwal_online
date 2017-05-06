@@ -17,7 +17,7 @@ class Schedules extends Model
      * @var array
      */
     protected $fillable = [
-        'time', 'hour', 'room', 'subjects_id', 'teachers_id', 'departments_id', 'kelas_id',
+        'time', 'hour', 'room', 'subjects_id', 'teachers_id', 'departments_id', 'kelas_id', 'hari'
     ];
 
  protected $with = ['subjects', 'departments', 'teachers', 'kelas'];

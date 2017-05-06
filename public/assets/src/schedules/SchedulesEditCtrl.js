@@ -199,6 +199,11 @@ schedules.getListkelas()
         //Check validation status
         if ($scope.Form.$valid) {
             //run Ajax
+             $scope.myModel.kelas_id = $scope.myModel.kelas.id
+            $scope.myModel.teachers_id = $scope.myModel.teachers.id
+            $scope.myModel.subjects_id = $scope.myModel.subjects.id
+            $scope.myModel.departments_id = $scope.myModel.departments.id
+
             schedules.update($scope.myModel)
                 .success(function (data) {
                     if (data.updated == true) {
