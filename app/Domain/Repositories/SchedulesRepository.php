@@ -145,6 +145,7 @@ class SchedulesRepository extends AbstractRepository implements SchedulesInterfa
             ->orderBy('schedules.time', 'asc')
             ->select(
                 'schedules.time',
+                'schedules.room',
                 'schedules.hour',
                 'schedules.hari',
                 'teachers.kode',
@@ -169,6 +170,7 @@ class SchedulesRepository extends AbstractRepository implements SchedulesInterfa
             ->select(
                 'schedules.id',
                 'schedules.time',
+                'schedules.room',
                 'schedules.hour',
                 'schedules.hari',
                 'teachers.kode',
@@ -193,6 +195,7 @@ class SchedulesRepository extends AbstractRepository implements SchedulesInterfa
             ->select(
                 'schedules.id',
                 'schedules.time',
+                'schedules.room',
                 'schedules.hour',
                 'schedules.hari',
                 'teachers.kode',
@@ -217,6 +220,7 @@ class SchedulesRepository extends AbstractRepository implements SchedulesInterfa
             ->select(
                 'schedules.id',
                 'schedules.time',
+                'schedules.room',
                 'schedules.hour',
                 'schedules.hari',
                 'teachers.kode',
@@ -241,6 +245,7 @@ class SchedulesRepository extends AbstractRepository implements SchedulesInterfa
             ->select(
                 'schedules.id',
                 'schedules.time',
+                'schedules.room',
                 'schedules.hour',
                 'schedules.hari',
                 'teachers.kode',
@@ -265,6 +270,7 @@ class SchedulesRepository extends AbstractRepository implements SchedulesInterfa
             ->select(
                 'schedules.id',
                 'schedules.time',
+                'schedules.room',
                 'schedules.hour',
                 'schedules.hari',
                 'teachers.kode',

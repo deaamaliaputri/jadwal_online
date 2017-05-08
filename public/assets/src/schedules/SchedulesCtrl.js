@@ -220,7 +220,7 @@ app.controller('SchedulesCtrl', ['$scope', 'schedules', 'SweetAlert', '$uibModal
     };
 
 }]);
-app.controller('SchedulesdetailCtrl', ['$scope', 'schedules', 'SweetAlert', '$uibModal','$log','toaster','$http','$timeout', function ($scope, schedules,SweetAlert,$uibModal,$log,toaster) {
+app.controller('SchedulesdetailCtrl', ['$scope', 'schedules', 'SweetAlert', '$uibModal','$log','$uibModalInstance','toaster','$http','$timeout', function ($scope, schedules,SweetAlert,$uibModal,$log,$uibModalInstance,toaster) {
 //urussan tampilan
     $scope.myModel ={}
 

@@ -68,7 +68,7 @@ class CetakDaftar extends Controller
 //        echo $space_bottom . ' + ';
     }
 
-    function Column($pdf, $id)
+    function Column($pdf, $id,$id2)
     {
         $pdf->AddFont('Tahoma', '', 'tahoma.php');
         $pdf->AddFont('Tahoma', 'B', 'tahomabd.php');
@@ -78,8 +78,8 @@ class CetakDaftar extends Controller
         }
         $pdf->SetFont($this->font, 'B', 16);
         $pdf->Ln(10);
-        $pdf->Cell(30, 10, 'Jam', 1, 0, 'C');
-        $pdf->Cell(30, 10, 'Jam-ke', 'TLR', 0, 'C');
+        $pdf->Cell(30, 15, 'Jam', 1, 0, 'C');
+        $pdf->Cell(30, 15, 'Jam-ke', 1, 0, 'C');
         $pdf->Cell(37, 10, 'Senin', 'TLR', 0, 'C');
         $pdf->Cell(37, 10, 'Selasa', 'TLR', 0, 'C');
         $pdf->Cell(37, 10, 'Rabu', 'TLR', 0, 'C');
@@ -89,14 +89,20 @@ class CetakDaftar extends Controller
         $pdf->Ln(0);
         $pdf->Ln(10);
         $pdf->SetFont($this->font, '', 10);
-        $pdf->Cell(30, 5, '(1)', 1, 0, 'C');
-        $pdf->Cell(30, 5, '(2)', 1, 0, 'C');
-        $pdf->Cell(37, 5, '(3)', 1, 0, 'C');
-        $pdf->Cell(37, 5, '(4)', 1, 0, 'C');
-        $pdf->Cell(37, 5, '(5)', 1, 0, 'C');
-        $pdf->Cell(37, 5, '(6)', 1, 0, 'C');
-        $pdf->Cell(37, 5, '(7)', 1, 0, 'C');
-        $pdf->Cell(37, 5, '(8)', 1, 0, 'C');
+        $jumlah = $this->schedules->getByPagecetak($id,$id2);
+        $jumlah2 = $this->schedules->getByPagecetak2($id);
+        $jumlah3 = $this->schedules->getByPagecetak3($id);
+        $jumlah4 = $this->schedules->getByPagecetak4($id);
+        $jumlah5 = $this->schedules->getByPagecetak5($id);
+        $jumlah6 = $this->schedules->getByPagecetak6($id);
+ 
+        $pdf->Cell(60);
+        $pdf->Cell(37, 5, $jumlah[0]->room, 1, 0, 'C');
+        $pdf->Cell(37, 5, $jumlah2[0]->room, 1, 0, 'C');
+        $pdf->Cell(37, 5, $jumlah3[0]->room, 1, 0, 'C');
+        $pdf->Cell(37, 5, $jumlah4[0]->room, 1, 0, 'C');
+        $pdf->Cell(37, 5, $jumlah5[0]->room, 1, 0, 'C');
+        $pdf->Cell(37, 5, $jumlah6[0]->room, 1, 0, 'C');
         $pdf->Ln(5);
 
     }
@@ -138,7 +144,7 @@ class CetakDaftar extends Controller
         $jurusan = $this->jurusan->find($id2);
         $pdf->Cell(0, 0, 'Kelas ' . $kelas->name.' '.$jurusan->name, 0, 0, 'C');
 
-        $this->Column($pdf, $id);
+        $this->Column($pdf, $id, $id2);
         $pdf->SetFont('Tahoma', '', 13);
 
 
