@@ -375,5 +375,9 @@ app.controller('SchedulesdetailCtrl', ['$scope', 'schedules', 'SweetAlert', '$ui
                 }
             })
     };
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
+
 
 }]);
