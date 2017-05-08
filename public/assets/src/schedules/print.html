@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="modal-header">
+    <h3 class="modal-title">I'm a modal!</h3>
+</div>
+<div class="modal-body">
+    <div class="form-group"
+         ng-class="{'has-error':Form.departments.$dirty && Form.departments.$invalid, 'has-success':Form.departments.$valid}">
+        <label class="control-label">
+            Jurusan <span class="symbol required"></span>
+
+        </label>
+        <select md-select-label class="form-control" ng-model="myModel.departments"
+                name="departments" ng-options="o as o.name for o in objDepartments">
+        </select>
+                                        <span class="error text-small block"
+                                              ng-if="Form.departments.$dirty && Form.departments.$invalid">Departments is required</span>
+                                        <span class="success text-small"
+                                              ng-if="Form.departments.$valid">Thank You!</span>
+    </div>
+    <div class="form-group"
+         ng-class="{'has-error':Form.kelas.$dirty && Form.kelas.$invalid, 'has-success':Form.kelas.$valid}">
+        <label class="control-label">
+            Kelas <span class="symbol required"></span>
+
+        </label>
+        <select md-select-label class="form-control" ng-model="myModel.kelas"
+                name="kelas" ng-options="o as o.name for o in objKelas">
+        </select>
+                                        <span class="error text-small block"
+                                              ng-if="Form.kelas.$dirty && Form.kelas.$invalid">Kelas is required</span>
+        <span class="success text-small" ng-if="Form.kelas.$valid">Thank You!</span>
+    </div>
+
+    </fieldset>
+</div>
+</div>
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()" ng-disabled="myModel.departments.id == 0 ||myModel.kelas.id == 0  ">OK</button>
+    <button class="btn btn-primary btn-o" ng-click="cancel()">Cancel</button>
+</div>
+</body>
+</html>

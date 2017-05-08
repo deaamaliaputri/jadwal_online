@@ -72,10 +72,10 @@ app.factory('schedules', ['$http', function ($http) {
                 data: $.param(inputData)
             });
         },
-        kunci: function (_id) {
+        cekcetak: function (_id,_id2) {
             return $http({
-                method: 'put',
-                url: '/api/kunci-schedules/' + _id
+                method: 'get',
+                url: '/api/cek-cetak-schedules/' + _id +'/'+ _id2,
             });
         },
 

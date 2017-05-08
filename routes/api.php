@@ -23,6 +23,7 @@ Route::resource('daftar','DaftarController');
 Route::resource('departments','DepartmentsController');
 Route::resource('kelas','KelasController');
 Route::resource('schedules','SchedulesController');
+Route::get('cek-cetak-schedules/{id}/{id2}','SchedulesController@getcekcetak');
 Route::resource('students','StudentsController');
 Route::resource('subjects','SubjectsController');
 Route::get('getList-teachers','TeachersController@getList');
@@ -41,7 +42,7 @@ Route::group(['namespace' => 'Auth'], function () {
 ////auth
 Route::group(['namespace' => 'Cetak'], function () {
     // Cetak...
-    Route::get('cetak-daftar/{id}', 'CetakDaftar@Daftar');
+    Route::get('cetak-daftar/{id}/{id2}', 'CetakDaftar@Daftar');
 });
 
 Route::get('get-session', 'DaftarController@getSession');

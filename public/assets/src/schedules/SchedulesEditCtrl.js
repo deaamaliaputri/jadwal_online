@@ -32,16 +32,16 @@ app.controller('SchedulesEditCtrl', ['$state', '$scope', 'schedules', 'SweetAler
         msg: ''
     };
     //get lass schedules
-$scope.objsubjects =[]
-schedules.getListsubjects()
+    $scope.objsubjects = []
+    schedules.getListsubjects()
         .success(function (data_akun) {
             if (data_akun.success == false) {
-                        $scope.toaster = {
-                        type: 'warning',
-                        title: 'Warning',
-                        text: 'Data Belum Tersedia!'
-                    };
-                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+                $scope.toaster = {
+                    type: 'warning',
+                    title: 'Warning',
+                    text: 'Data Belum Tersedia!'
+                };
+                toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
 
             } else {
                 data_akun.unshift({id: 0, name: 'Silahkan Pilih Mata Pelajaran'});
@@ -57,27 +57,27 @@ schedules.getListsubjects()
                 $scope.redirect();
             }
             // Stop Loading
-             $scope.toaster = {
-                        type: 'warning',
-                        title: 'Warning',
-                        text: 'Data Belum Tersedia!'
-                    };
-                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+            $scope.toaster = {
+                type: 'warning',
+                title: 'Warning',
+                text: 'Data Belum Tersedia!'
+            };
+            toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
 
             console.log(data_akun);
 
         });
 
-         $scope.objDepartments =[]
-schedules.getListdepartment()
+    $scope.objDepartments = []
+    schedules.getListdepartment()
         .success(function (data_akun) {
             if (data_akun.success == false) {
-                        $scope.toaster = {
-                        type: 'warning',
-                        title: 'Warning',
-                        text: 'Data Belum Tersedia!'
-                    };
-                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+                $scope.toaster = {
+                    type: 'warning',
+                    title: 'Warning',
+                    text: 'Data Belum Tersedia!'
+                };
+                toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
 
             } else {
                 data_akun.unshift({id: 0, name: 'Silahkan Pilih Jurusan'});
@@ -93,27 +93,27 @@ schedules.getListdepartment()
                 $scope.redirect();
             }
             // Stop Loading
-             $scope.toaster = {
-                        type: 'warning',
-                        title: 'Warning',
-                        text: 'Data Belum Tersedia!'
-                    };
-                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+            $scope.toaster = {
+                type: 'warning',
+                title: 'Warning',
+                text: 'Data Belum Tersedia!'
+            };
+            toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
 
             console.log(data_akun);
 
         });
 
-        $scope.objKelas =[]
-schedules.getListkelas()
+    $scope.objKelas = []
+    schedules.getListkelas()
         .success(function (data_akun) {
             if (data_akun.success == false) {
-                        $scope.toaster = {
-                        type: 'warning',
-                        title: 'Warning',
-                        text: 'Data Belum Tersedia!'
-                    };
-                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+                $scope.toaster = {
+                    type: 'warning',
+                    title: 'Warning',
+                    text: 'Data Belum Tersedia!'
+                };
+                toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
 
             } else {
                 data_akun.unshift({id: 0, name: 'Silahkan Pilih Kelas'});
@@ -129,17 +129,16 @@ schedules.getListkelas()
                 $scope.redirect();
             }
             // Stop Loading
-             $scope.toaster = {
-                        type: 'warning',
-                        title: 'Warning',
-                        text: 'Data Belum Tersedia!'
-                    };
-                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+            $scope.toaster = {
+                type: 'warning',
+                title: 'Warning',
+                text: 'Data Belum Tersedia!'
+            };
+            toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
 
             console.log(data_akun);
 
         });
-
 
 
     //Run Ajax
@@ -147,28 +146,28 @@ schedules.getListkelas()
         .success(function (data) {
             $scope.setLoader(false);
             $scope.myModel = data;
-             schedules.getListsubjects()
+            schedules.getListsubjects()
                 .success(function (datajk) {
                     datajk.unshift({id: 0, name: 'Silahkan pilih Mata Pelajaran'});
                     $scope.objsubjects = datajk;
                     $scope.myModel.subjects = $scope.objsubjects[0];
                     $scope.myModel.subjects = $scope.objsubjects[findWithAttr($scope.objsubjects, 'id', parseInt(data.subjects_id))];
                 });
-                schedules.getListteachers()
+            schedules.getListteachers()
                 .success(function (datajk) {
                     datajk.unshift({id: 0, name: 'Silahkan pilih Guru'});
                     $scope.objteachers = datajk;
                     $scope.myModel.teachers = $scope.objteachers[0];
                     $scope.myModel.teachers = $scope.objteachers[findWithAttr($scope.objteachers, 'id', parseInt(data.teachers_id))];
                 });
-                schedules.getListdepartment()
+            schedules.getListdepartment()
                 .success(function (datajk) {
                     datajk.unshift({id: 0, name: 'Silahkan pilih Jurusan'});
                     $scope.objDepartments = datajk;
                     $scope.myModel.departments = $scope.objDepartments[0];
                     $scope.myModel.departments = $scope.objDepartments[findWithAttr($scope.objDepartments, 'id', parseInt(data.departments_id))];
                 });
-                 schedules.getListkelas()
+            schedules.getListkelas()
                 .success(function (datajk) {
                     datajk.unshift({id: 0, name: 'Silahkan pilih Kelas'});
                     $scope.objKelas = datajk;
@@ -177,19 +176,9 @@ schedules.getListkelas()
                 });
         });
 
-    $scope.showToast = function (warna, msg) {
-        $mdToast.show({
-            //controller: 'AkunToastCtrl',
-            template: "<md-toast class='" + warna + "-500'><span flex> " + msg + "</span></md-toast> ",
-            //templateUrl: 'views/ui/material/toast.tmpl.html',
-            hideDelay: 6000,
-            parent: '#toast',
-            position: 'top right'
-        });
-    };
     //Submit Data
     $scope.updateData = function () {
-          $scope.alerts = [];
+        $scope.alerts = [];
         //Set process status
         $scope.process = true;
 
@@ -199,7 +188,7 @@ schedules.getListkelas()
         //Check validation status
         if ($scope.Form.$valid) {
             //run Ajax
-             $scope.myModel.kelas_id = $scope.myModel.kelas.id
+            $scope.myModel.kelas_id = $scope.myModel.kelas.id
             $scope.myModel.teachers_id = $scope.myModel.teachers.id
             $scope.myModel.subjects_id = $scope.myModel.subjects.id
             $scope.myModel.departments_id = $scope.myModel.departments.id
@@ -218,17 +207,17 @@ schedules.getListkelas()
                         toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
 
                     }
-                    else{
-                             $scope.alerts.push({
-                        type: 'danger',
-                        msg: data.validation
-                    });
-                    $scope.toaster = {
-                        type: 'error',
-                        title: 'Gagal',
-                        text: 'Update Data Gagal!'
-                    };
-                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+                    else {
+                        $scope.alerts.push({
+                            type: 'danger',
+                            msg: data.validation
+                        });
+                        $scope.toaster = {
+                            type: 'error',
+                            title: 'Gagal',
+                            text: 'Update Data Gagal!'
+                        };
+                        toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
                     }
 
 
@@ -255,7 +244,7 @@ schedules.getListkelas()
                 });
         }
     };
-function findWithAttr(array, attr, value) {
+    function findWithAttr(array, attr, value) {
         for (var i = 0; i < array.length; i += 1) {
             if (array[i][attr] === value) {
                 return i;

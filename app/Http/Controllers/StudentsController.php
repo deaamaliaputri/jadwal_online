@@ -22,6 +22,8 @@ class StudentsController extends Controller
     public function __construct(StudentsRepository $students)
     {
         $this->students = $students;
+        $this->middleware('auth');
+
     }
 
     /**

@@ -23,6 +23,8 @@ class SubjectsController extends Controller
     public function __construct(SubjectsRepository $subjects)
     {
         $this->subjects = $subjects;
+        $this->middleware('auth');
+
     }
 
     /**

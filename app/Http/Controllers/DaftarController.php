@@ -22,6 +22,8 @@ class DaftarController extends Controller
     public function __construct(DaftarRepository $daftar)
     {
         $this->daftar = $daftar;
+        $this->middleware('auth');
+
     }
 
     /**

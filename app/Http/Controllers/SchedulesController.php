@@ -104,5 +104,9 @@ class SchedulesController extends Controller
     {
         return $this->schedules->delete($id);
     }
+    public function getcekcetak($id,$id2)
+    {
+        return $this->schedules->getcekcetak($id,$id2);
+    }
 
 }

@@ -40,6 +40,7 @@ app.controller('SchedulesCreateCtrl', ['$state', '$scope', 'schedules', '$timeou
         }
 
     };
+$scope.getlist = function () {
     $scope.objsubjects = []
     schedules.getListsubjects()
         .success(function (data_akun) {
@@ -71,7 +72,7 @@ app.controller('SchedulesCreateCtrl', ['$state', '$scope', 'schedules', '$timeou
                 text: 'Data Belum Tersedia!'
             };
             toaster.pop($scope.toaster.type, $scope.toaster.
-            title, $scope.toaster.text);
+                title, $scope.toaster.text);
 
             console.log(data_akun);
 
@@ -185,9 +186,12 @@ app.controller('SchedulesCreateCtrl', ['$state', '$scope', 'schedules', '$timeou
 
         });
 
+}
+
     $scope.closeAlert = function (index) {
         $scope.alerts.splice(index, 1);
     };
+    $scope.getlist()
     $scope.clearInput = function () {
         $scope.myModel.time = null;
         $scope.myModel.hour = null;
@@ -196,6 +200,8 @@ app.controller('SchedulesCreateCtrl', ['$state', '$scope', 'schedules', '$timeou
         $scope.myModel.teachers = null;
         $scope.myModel.departments = null;
         $scope.myModel.kelas = null;
+        $scope.myModel.hari = null;
+        $scope.getlist()
     };
 
     $scope.submitData = function (isBack) {

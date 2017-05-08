@@ -22,6 +22,8 @@ class DepartmentsController extends Controller
     public function __construct(DepartmentsRepository $departments)
     {
         $this->departments = $departments;
+        $this->middleware('auth');
+
     }
 
     /**

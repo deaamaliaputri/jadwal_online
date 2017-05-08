@@ -47,7 +47,7 @@ class SchedulesRepository extends AbstractRepository implements SchedulesInterfa
     public function paginate($limit = 10, $page = 1, array $column = ['*'], $field, $search = '')
     {
         // query to aql
-         $akun = $this->model
+        $akun = $this->model
             ->join('departments', 'schedules.departments_id', '=', 'departments.id')
             ->join('kelas', 'schedules.kelas_id', '=', 'kelas.id')
             ->join('teachers', 'schedules.teachers_id', '=', 'teachers.id')
@@ -61,10 +61,9 @@ class SchedulesRepository extends AbstractRepository implements SchedulesInterfa
                     ->orWhere('teachers.name', 'like', '%' . $search . '%')
                     ->orWhere('kelas.name', 'like', '%' . $search . '%')
                     ->orWhere('subjects.name', 'like', '%' . $search . '%');
-                })
+            })
             ->select('schedules.*')
             ->paginate($limit)
-            
             ->toArray();
         return $akun;
     }
@@ -77,16 +76,16 @@ class SchedulesRepository extends AbstractRepository implements SchedulesInterfa
     {
         // execute sql insert
         return parent::create([
-             'time'    => '2016-08-09',
-            'hour'   => '2016-08-09',
+            'time' => e($data['time']),
+            'hour' => e($data['hour']),
             'room' => e($data['room']),
             'hari' => e($data['hari']),
-            'teachers_id'   => e($data['teachers_id']),
-            'departments_id'   => e($data['departments_id']),
-            'kelas_id'   => e($data['kelas_id']),
-            'subjects_id'   => e($data['subjects_id']),
+            'teachers_id' => e($data['teachers_id']),
+            'departments_id' => e($data['departments_id']),
+            'kelas_id' => e($data['kelas_id']),
+            'subjects_id' => e($data['subjects_id']),
         ]);
- 
+
     }
 
     /**
@@ -97,15 +96,15 @@ class SchedulesRepository extends AbstractRepository implements SchedulesInterfa
     public function update($id, array $data)
     {
         return parent::update($id, [
-            'time'    => e($data['time']),
-            'hour'   => e($data['hour']),
+            'time' => e($data['time']),
+            'hour' => e($data['hour']),
             'room' => e($data['room']),
             'hari' => e($data['hari']),
-            'teachers_id'   => e($data['teachers_id']),
-            'departments_id'   => e($data['departments_id']),
-            'kelas_id'   => e($data['kelas_id']),
-        'subjects_id'   => e($data['subjects_id'])
-        
+            'teachers_id' => e($data['teachers_id']),
+            'departments_id' => e($data['departments_id']),
+            'kelas_id' => e($data['kelas_id']),
+            'subjects_id' => e($data['subjects_id'])
+
         ]);
     }
 
@@ -128,7 +127,8 @@ class SchedulesRepository extends AbstractRepository implements SchedulesInterfa
     {
         return parent::find($id, $columns);
     }
-    public function getByPagecetak($id)
+
+    public function getByPagecetak($id,$id2)
     {
 
         // query to aql
@@ -137,8 +137,10 @@ class SchedulesRepository extends AbstractRepository implements SchedulesInterfa
             ->join('kelas', 'schedules.kelas_id', '=', 'kelas.id')
             ->join('teachers', 'schedules.teachers_id', '=', 'teachers.id')
             ->join('subjects', 'schedules.subjects_id', '=', 'subjects.id')
-            ->where('kelas.id',$id)
-            ->orderBy('schedules.id', 'asc')
+            ->where('kelas.id', $id)
+            ->where('departments.id', $id2)
+            ->where('schedules.hari', 'Senin')
+            ->orderBy('schedules.time', 'asc')
             ->select(
                 'schedules.time',
                 'schedules.hour',
@@ -150,4 +152,230 @@ class SchedulesRepository extends AbstractRepository implements SchedulesInterfa
         return $AsalUsul;
     }
 
+    public function getByPagecetak2($id)
+    {
+
+        // query to aql
+        $AsalUsul = $this->model
+            ->join('departments', 'schedules.departments_id', '=', 'departments.id')
+            ->join('kelas', 'schedules.kelas_id', '=', 'kelas.id')
+            ->join('teachers', 'schedules.teachers_id', '=', 'teachers.id')
+            ->join('subjects', 'schedules.subjects_id', '=', 'subjects.id')
+            ->where('kelas.id', $id)
+            ->where('schedules.hari', 'Selasa')
+            ->orderBy('schedules.time', 'asc')
+            ->select(
+                'schedules.id',
+                'schedules.time',
+                'schedules.hour',
+                'schedules.hari',
+                'teachers.kode',
+                'subjects.name')
+            ->get();
+
+        return $AsalUsul;
+    }
+
+    public function getByPagecetak3($id)
+    {
+
+        // query to aql
+        $AsalUsul = $this->model
+            ->join('departments', 'schedules.departments_id', '=', 'departments.id')
+            ->join('kelas', 'schedules.kelas_id', '=', 'kelas.id')
+            ->join('teachers', 'schedules.teachers_id', '=', 'teachers.id')
+            ->join('subjects', 'schedules.subjects_id', '=', 'subjects.id')
+            ->where('kelas.id', $id)
+            ->where('schedules.hari', 'Rabu')
+            ->orderBy('schedules.time', 'asc')
+            ->select(
+                'schedules.id',
+                'schedules.time',
+                'schedules.hour',
+                'schedules.hari',
+                'teachers.kode',
+                'subjects.name')
+            ->get();
+
+        return $AsalUsul;
+    }
+
+    public function getByPagecetak4($id)
+    {
+
+        // query to aql
+        $AsalUsul = $this->model
+            ->join('departments', 'schedules.departments_id', '=', 'departments.id')
+            ->join('kelas', 'schedules.kelas_id', '=', 'kelas.id')
+            ->join('teachers', 'schedules.teachers_id', '=', 'teachers.id')
+            ->join('subjects', 'schedules.subjects_id', '=', 'subjects.id')
+            ->where('kelas.id', $id)
+            ->where('schedules.hari', 'Kamis')
+            ->orderBy('schedules.time', 'asc')
+            ->select(
+                'schedules.id',
+                'schedules.time',
+                'schedules.hour',
+                'schedules.hari',
+                'teachers.kode',
+                'subjects.name')
+            ->get();
+
+        return $AsalUsul;
+    }
+
+    public function getByPagecetak5($id)
+    {
+
+        // query to aql
+        $AsalUsul = $this->model
+            ->join('departments', 'schedules.departments_id', '=', 'departments.id')
+            ->join('kelas', 'schedules.kelas_id', '=', 'kelas.id')
+            ->join('teachers', 'schedules.teachers_id', '=', 'teachers.id')
+            ->join('subjects', 'schedules.subjects_id', '=', 'subjects.id')
+            ->where('kelas.id', $id)
+            ->where('schedules.hari', 'Jumat')
+            ->orderBy('schedules.time', 'asc')
+            ->select(
+                'schedules.id',
+                'schedules.time',
+                'schedules.hour',
+                'schedules.hari',
+                'teachers.kode',
+                'subjects.name')
+            ->get();
+
+        return $AsalUsul;
+    }
+
+    public function getByPagecetak6($id)
+    {
+
+        // query to aql
+        $AsalUsul = $this->model
+            ->join('departments', 'schedules.departments_id', '=', 'departments.id')
+            ->join('kelas', 'schedules.kelas_id', '=', 'kelas.id')
+            ->join('teachers', 'schedules.teachers_id', '=', 'teachers.id')
+            ->join('subjects', 'schedules.subjects_id', '=', 'subjects.id')
+            ->where('kelas.id', $id)
+            ->where('schedules.hari', 'Sabtu')
+            ->orderBy('schedules.time', 'asc')
+            ->select(
+                'schedules.id',
+                'schedules.time',
+                'schedules.hour',
+                'schedules.hari',
+                'teachers.kode',
+                'subjects.name')
+            ->get();
+
+        return $AsalUsul;
+    }
+
+    public function getcekcetak($id, $id2)
+    {
+
+        $ceksenin = $this->model
+            ->where('kelas_id', $id)
+            ->where('departments_id', $id2)
+            ->where('hari', 'Senin')
+            ->count();
+        if ($ceksenin == 3) {
+            $cekselasa = $this->model
+                ->where('kelas_id', $id)
+                ->where('departments_id', $id2)
+                ->where('hari', 'Selasa')
+                ->count();
+            if ($cekselasa == 3) {
+                $cekrabu = $this->model
+                    ->where('kelas_id', $id)
+                    ->where('departments_id', $id2)
+                    ->where('hari', 'Rabu')
+                    ->count();
+                if ($cekrabu == 3) {
+                    $cekkamis = $this->model
+                        ->where('kelas_id', $id)
+                        ->where('departments_id', $id2)
+                        ->where('hari', 'Kamis')
+                        ->count();
+                    if ($cekkamis == 3) {
+                        $cekjumat = $this->model
+                            ->where('kelas_id', $id)
+                            ->where('departments_id', $id2)
+                            ->where('hari', 'Jumat')
+                            ->count();
+
+                        if ($cekjumat == 3) {
+                            $ceksabtu = $this->model
+                                ->where('kelas_id', $id)
+                                ->where('departments_id', $id2)
+                                ->where('hari', 'Sabtu')
+                                ->count();
+                            if ($ceksabtu == 3) {
+                                return response()->json(
+                                    [
+                                        'success' => true,
+                                        'result' => 'Data Dapat di Cetak',
+                                    ]
+                                );
+
+                            } else {
+                                return response()->json(
+                                    [
+                                        'success' => false,
+                                        'result' => 'Cek Kembali Schedules Pada Hari Sabtu',
+                                    ]
+                                );
+
+                            }
+                        } else {
+                            return response()->json(
+                                [
+                                    'success' => false,
+                                    'result' => 'Cek Kembali Schedules Pada Hari Jumat',
+                                ]
+                            );
+
+                        }
+
+                    } else {
+                        return response()->json(
+                            [
+                                'success' => false,
+                                'result' => 'Cek Kembali Schedules Pada Hari Kamis',
+                            ]
+                        );
+
+                    }
+                } else {
+                    return response()->json(
+                        [
+                            'success' => false,
+                            'result' => 'Cek Kembali Schedules Pada Hari Rabu',
+                        ]
+                    );
+
+                }
+
+            } else {
+                return response()->json(
+                    [
+                        'success' => false,
+                        'result' => 'Cek Kembali Schedules Pada Hari Selasa',
+                    ]
+                );
+
+            }
+        } else {
+            return response()->json(
+                [
+                    'success' => false,
+                    'result' => 'Cek Kembali Schedules Pada Hari Senin',
+                ]
+            );
+
+        }
+
+
+    }
 }

@@ -142,7 +142,7 @@ class PdfClass extends Fpdf
 
     }
 
-    function Row($data, $height = 5, $color = 0)
+    function Row($data, $height = 10, $color = 0)
     {
         //Calculate the height of the row
         $nb = 0;
