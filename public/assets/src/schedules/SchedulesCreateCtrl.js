@@ -255,7 +255,7 @@ $scope.objWalikelas = []
             $scope.myModel.teachers_id = $scope.myModel.teachers.id
             $scope.myModel.subjects_id = $scope.myModel.subjects.id
             $scope.myModel.departments_id = $scope.myModel.departments.id
-            $scope.myModel.wali_kelas_id = $scope.myModel.wali_kelas.id
+            $scope.myModel.wali_kelas= $scope.myModel.wali_kelas.id
 
             schedules.store($scope.myModel)
                 .success(function (data) {
