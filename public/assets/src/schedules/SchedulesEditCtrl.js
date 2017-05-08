@@ -5,6 +5,7 @@ app.controller('SchedulesEditCtrl', ['$state', '$scope', 'schedules', 'SweetAler
     if ($scope.id == null || $scope.id == '') {
         $state.go("app.schedules")
     }
+$scope.myModel ={}
 
     $scope.isLoading = true;
     $scope.isLoaded = false;
@@ -167,6 +168,13 @@ app.controller('SchedulesEditCtrl', ['$state', '$scope', 'schedules', 'SweetAler
                     $scope.myModel.departments = $scope.objDepartments[0];
                     $scope.myModel.departments = $scope.objDepartments[findWithAttr($scope.objDepartments, 'id', parseInt(data.departments_id))];
                 });
+                schedules.getListteachers()
+                .success(function (datajk) {
+                    datajk.unshift({id: 0, name: 'Silahkan pilih Wali Kelas'});
+                    $scope.objWalikelas = datajk;
+                    $scope.myModel.wali_kelas = $scope.objWalikelas[0];
+                    $scope.myModel.walli_kelas = $scope.objWalikelas[findWithAttr($scope.objWalikelas, 'id', parseInt(data.wali_kelas))];
+                });
             schedules.getListkelas()
                 .success(function (datajk) {
                     datajk.unshift({id: 0, name: 'Silahkan pilih Kelas'});
@@ -174,6 +182,8 @@ app.controller('SchedulesEditCtrl', ['$state', '$scope', 'schedules', 'SweetAler
                     $scope.myModel.kelas = $scope.objKelas[0];
                     $scope.myModel.kelas = $scope.objKelas[findWithAttr($scope.objKelas, 'id', parseInt(data.kelas_id))];
                 });
+            $scope.myModel.id = data.id;
+
         });
 
     //Submit Data
@@ -192,6 +202,7 @@ app.controller('SchedulesEditCtrl', ['$state', '$scope', 'schedules', 'SweetAler
             $scope.myModel.teachers_id = $scope.myModel.teachers.id
             $scope.myModel.subjects_id = $scope.myModel.subjects.id
             $scope.myModel.departments_id = $scope.myModel.departments.id
+            $scope.myModel.wali_kelas = $scope.myModel.wali_kelas.id
 
             schedules.update($scope.myModel)
                 .success(function (data) {

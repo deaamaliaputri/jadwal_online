@@ -19,6 +19,7 @@ class CreateScheduleTable extends Migration
             $table->string('hour');
             $table->string('room');
             $table->string('hari');
+            $table->string('wali_kelas');
             $table->string('subjects_id');
             $table->string('teachers_id');
             $table->string('departments_id');

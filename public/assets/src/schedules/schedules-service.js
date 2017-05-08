@@ -26,6 +26,8 @@ app.factory('schedules', ['$http', function ($http) {
             });
         },
 
+        
+
         getListdepartment: function () {
             return $http({
                 method: 'get',

@@ -275,6 +275,42 @@ app.controller('SchedulesdetailCtrl', ['$scope', 'schedules', 'SweetAlert', '$ui
 
         });
 
+        $scope.objWalikelas = []
+    schedules.getListteachers()
+        .success(function (data_akun) {
+            if (data_akun.success == false) {
+                $scope.toaster = {
+                    type: 'warning',
+                    title: 'Warning',
+                    text: 'Data Belum Tersedia!'
+                };
+                toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+
+            } else {
+                data_akun.unshift({ id: 0, name: 'Silahkan Pilih Jurusan' });
+                $scope.objWalikelas = data_akun;
+                $scope.myModel.wali_kelas = $scope.objWalikelas[0];
+            }
+
+        })
+        .error(function (data_akun, status) {
+            // unauthorized
+            if (status === 401) {
+                //redirect to login
+                $scope.redirect();
+            }
+            // Stop Loading
+            $scope.toaster = {
+                type: 'warning',
+                title: 'Warning',
+                text: 'Data Belum Tersedia!'
+            };
+            toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+
+            console.log(data_akun);
+
+        });
+
     $scope.objKelas = []
     schedules.getListkelas()
         .success(function (data_akun) {
