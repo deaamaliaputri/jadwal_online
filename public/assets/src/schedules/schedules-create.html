@@ -164,10 +164,10 @@
                             <div class="col-md-12">
                                 <div class="pull-left">
                                     <button md-ink-ripple class="btn btn-primary" ng-click="submitData(false)"
-                                            ng-disabled="Form.$invalid || process">Simpan
+                                            ng-disabled="Form.$invalid || process || myModel.departments.id == 0 || myModel.teachers.id == 0 || myModel.kelas.id == 0 || myModel.wali_kelas.id == 0 || myModel.subjects.id == 0">Simpan
                                     </button>
                                     <button md-ink-ripple class="btn btn-primary" ng-click="submitData(true)"
-                                            ng-disabled="Form.$invalid || process">Simpan & Kembali
+                                            ng-disabled="Form.$invalid || process || myModel.departments.id == 0 || myModel.teachers.id == 0 || myModel.kelas.id == 0 || myModel.wali_kelas.id == 0  || myModel.subjects.id == 0">Simpan & Kembali
                                     </button>
                                     <button type="reset" class="btn btn-primary btn-o" ng-disabled="process"
                                             ng-click="form.reset(Form)">
