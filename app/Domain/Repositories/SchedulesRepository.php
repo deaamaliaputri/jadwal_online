@@ -148,6 +148,7 @@ class SchedulesRepository extends AbstractRepository implements SchedulesInterfa
                 'schedules.room',
                 'schedules.hour',
                 'schedules.hari',
+                'schedules.wali_kelas',
                 'teachers.kode',
                 'subjects.name')
             ->get();
@@ -287,30 +288,35 @@ class SchedulesRepository extends AbstractRepository implements SchedulesInterfa
             ->where('kelas_id', $id)
             ->where('departments_id', $id2)
             ->where('hari', 'Senin')
+            ->whereNull('deleted_at')
             ->count();
         if ($ceksenin == 3) {
             $cekselasa = $this->model
                 ->where('kelas_id', $id)
                 ->where('departments_id', $id2)
                 ->where('hari', 'Selasa')
+                ->whereNull('deleted_at')
                 ->count();
             if ($cekselasa == 3) {
                 $cekrabu = $this->model
                     ->where('kelas_id', $id)
                     ->where('departments_id', $id2)
                     ->where('hari', 'Rabu')
+                    ->whereNull('deleted_at')
                     ->count();
                 if ($cekrabu == 3) {
                     $cekkamis = $this->model
                         ->where('kelas_id', $id)
                         ->where('departments_id', $id2)
                         ->where('hari', 'Kamis')
+                        ->whereNull('deleted_at')
                         ->count();
                     if ($cekkamis == 3) {
                         $cekjumat = $this->model
                             ->where('kelas_id', $id)
                             ->where('departments_id', $id2)
                             ->where('hari', 'Jumat')
+                            ->whereNull('deleted_at')
                             ->count();
 
                         if ($cekjumat == 3) {
@@ -318,6 +324,7 @@ class SchedulesRepository extends AbstractRepository implements SchedulesInterfa
                                 ->where('kelas_id', $id)
                                 ->where('departments_id', $id2)
                                 ->where('hari', 'Sabtu')
+                                ->whereNull('deleted_at')
                                 ->count();
                             if ($ceksabtu == 3) {
                                 return response()->json(

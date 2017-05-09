@@ -12,6 +12,7 @@ namespace App\Http\Controllers\Cetak;
 use App\Domain\Repositories\DepartmentsRepository;
 use App\Domain\Repositories\KelasRepository;
 use App\Domain\Repositories\SchedulesRepository;
+use App\Domain\Repositories\TeachersRepository;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DepartmentsController;
 
@@ -37,12 +38,16 @@ class CetakDaftar extends Controller
     public function __construct(
         SchedulesRepository $schedulesRepository,
         DepartmentsRepository $departmentsRepository,
+        TeachersRepository $teachersRepository,
+        
+        
         KelasRepository $kelasRepository
     )
     {
         $this->kelas = $kelasRepository;
         $this->jurusan = $departmentsRepository;
         $this->schedules = $schedulesRepository;
+        $this->guru = $teachersRepository;
         $this->middleware('auth');
 
     }
@@ -238,9 +243,10 @@ class CetakDaftar extends Controller
 //        $pdf->SetX(30);
         $pdf->SetFont('Arial', 'BU', 10);
         $pdf->Ln(30);
-        $pdf->Cell(490, -34, 'Drs . R. DIDIK INDRATNO MW,MN', 0, '', 'C');
+        $guru = $this->guru->find($jumlah[0]->wali_kelas);
+        $pdf->Cell(490, -34, $guru->name, 0, '', 'C');
         $pdf->Ln(5);
-        $pdf->Cell(490, -34, 'NIP. 19600717 198703 1 012', 0, '', 'C');
+        $pdf->Cell(490, -34, $guru->nip, 0, '', 'C');
 
 
 
