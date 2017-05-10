@@ -150,7 +150,7 @@ class CetakDaftar extends Controller
         $pdf->Cell(0, 0, 'Kelas ' . $kelas->name.' '.$jurusan->name, 0, 0, 'C');
 
         $this->Column($pdf, $id, $id2);
-        $pdf->SetFont('Tahoma', '', 13);
+        $pdf->SetFont('Tahoma', '', 11);
 
 
         $jumlah = $this->schedules->getByPagecetak($id,$id2);

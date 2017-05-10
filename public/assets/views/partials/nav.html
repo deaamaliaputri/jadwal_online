@@ -20,6 +20,7 @@
 <!--<div class="navbar-title">
 	<span translate="sidebar.heading.NAVIGATION">Main Navigation</span>
 </div>-->
+
 <ul class="main-navigation-menu">
 	<li ui-sref-active="active">
 		<a ui-sref="app.dashboard">
@@ -33,7 +34,7 @@
 			</div>
 		</a>
 	</li>
-	<li ui-sref-active="active">
+	<li ui-sref-active="active" ng-if="dataUser.level !='1'">
 		<a ui-sref="app.daftar">
 			<div class="item-content">
 				<div class="item-media">
@@ -57,7 +58,7 @@
 			</div>
 		</a>
 	</li>
-	<li ui-sref-active="active">
+	<li ui-sref-active="active" ng-if="dataUser.level !='1'">
 		<a ui-sref="app.students">
 			<div class="item-content">
 				<div class="item-media">
@@ -69,7 +70,7 @@
 			</div>
 		</a>
 	</li>
-	<li ui-sref-active="active">
+	<li ui-sref-active="active" ng-if="dataUser.level !='1'">
 		<a ui-sref="app.departments">
 			<div class="item-content">
 				<div class="item-media">
@@ -81,7 +82,7 @@
 			</div>
 		</a>
 	</li>
-	<li ui-sref-active="active">
+	<li ui-sref-active="active" ng-if="dataUser.level !='1'">
 		<a ui-sref="app.kelas">
 			<div class="item-content">
 				<div class="item-media">
@@ -94,7 +95,7 @@
 		</a>
 	</li>
 	</li>
-	<li ui-sref-active="active">
+	<li ui-sref-active="active" ng-if="dataUser.level !='1'">
 		<a ui-sref="app.subjects">
 			<div class="item-content">
 				<div class="item-media">
@@ -117,7 +118,8 @@
 				</div>
 			</div>
 		</a>
-	
+	</li>
+	</ul>
 <!--	
 	<li ng-class="{'active open':$state.includes('app.ui')}">
 		<a href="javascript:void(0)">
