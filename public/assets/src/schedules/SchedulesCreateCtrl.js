@@ -40,6 +40,41 @@ app.controller('SchedulesCreateCtrl', ['$state', '$scope', 'schedules', '$timeou
         }
 
     };
+    $scope.objWalikelas = []
+    schedules.getListteacherss()
+        .success(function (data_akun) {
+            if (data_akun.success == false) {
+                $scope.toaster = {
+                    type: 'warning',
+                    title: 'Warning',
+                    text: 'Data Belum Tersedia!'
+                };
+                toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+
+            } else {
+                data_akun.unshift({ id: 0, name: 'Silahkan Pilih Wali Kelas' });
+                $scope.objWalikelas = data_akun;
+                $scope.myModel.wali_kelas = $scope.objWalikelas[0];
+            }
+
+        })
+        .error(function (data_akun, status) {
+            // unauthorized
+            if (status === 401) {
+                //redirect to login
+                $scope.redirect();
+            }
+            // Stop Loading
+            $scope.toaster = {
+                type: 'warning',
+                title: 'Warning',
+                text: 'Data Belum Tersedia!'
+            };
+            toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+
+            console.log(data_akun);
+
+        });
 $scope.getlist = function () {
     $scope.objsubjects = []
     schedules.getListsubjects()
@@ -114,41 +149,7 @@ $scope.getlist = function () {
 
         });
 
-$scope.objWalikelas = []
-    schedules.getListteachers()
-        .success(function (data_akun) {
-            if (data_akun.success == false) {
-                $scope.toaster = {
-                    type: 'warning',
-                    title: 'Warning',
-                    text: 'Data Belum Tersedia!'
-                };
-                toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
 
-            } else {
-                data_akun.unshift({ id: 0, name: 'Silahkan Pilih Wali Kelas' });
-                $scope.objWalikelas = data_akun;
-                $scope.myModel.wali_kelas = $scope.objWalikelas[0];
-            }
-
-        })
-        .error(function (data_akun, status) {
-            // unauthorized
-            if (status === 401) {
-                //redirect to login
-                $scope.redirect();
-            }
-            // Stop Loading
-            $scope.toaster = {
-                type: 'warning',
-                title: 'Warning',
-                text: 'Data Belum Tersedia!'
-            };
-            toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
-
-            console.log(data_akun);
-
-        });
 
 
     $scope.objDepartments = []
@@ -235,11 +236,7 @@ $scope.objWalikelas = []
         $scope.myModel.room = null;
         $scope.myModel.subjects = null;
         $scope.myModel.teachers = null;
-        $scope.myModel.departments = null;
-        $scope.myModel.kelas = null;
         $scope.myModel.hari = null;
-        $scope.myModel.wali_kelas = null;
-        $scope.getlist()
     };
 
     $scope.submitData = function (isBack) {

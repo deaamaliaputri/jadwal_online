@@ -26,6 +26,13 @@ app.factory('schedules', ['$http', function ($http) {
             });
         },
 
+        getListteacherss: function () {
+            return $http({
+                method: 'get',
+                url: '/api/getList-teachers',
+            });
+        },
+
         
 
         getListdepartment: function () {

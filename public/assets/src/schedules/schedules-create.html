@@ -21,51 +21,41 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <fieldset>
-                                    <div class="form-group"
-                                         ng-class="{'has-error':Form.time.$dirty && Form.time.$invalid, 'has-success':Form.time.$valid}">
+
+                                    <div class="form-group" ng-class="{'has-error':Form.departments.$dirty && Form.departments.$invalid, 'has-success':Form.departments.$valid}">
                                         <label class="control-label">
-                                            Pukul Pelajaran <span class="symbol required"></span>
+                                            Jurusan <span class="symbol required"></span>
+
                                         </label>
-                                        <select class="form-control" name="time" ng-model="myModel.time" required>
-                                            <option value="" disabled selected>Silahkan pilih Pukul Pelajaran</option>
-                                            <option value="07.00 - 09.00">07.00 - 09.00</option>
-                                            <option value="10.00 - 12.00">10.00 - 12.00</option>
-                                            <option value="13.00 - 15.00">13.00 - 15.00</option>
+                                        <select md-select-label class="form-control" ng-model="myModel.departments" name="departments" ng-options="o as o.name for o in objDepartments">
                                         </select>
-                                        <span class="error text-small block"
-                                              ng-if="Form.hari.$dirty && Form.time.$invalid">Pukul Pelajaran is required</span>
-                                        <span class="success text-small" ng-if="Form.time.$valid">Thank You!</span>
-                                    </div>
-                                    <div class="form-group"
-                                         ng-class="{'has-error':Form.hour.$dirty && Form.hour.$invalid, 'has-success':Form.hour.$valid}">
-                                        <label class="control-label">
-                                            Jam Pelajaran <span class="symbol required"></span>
-                                        </label>
-                                        <select class="form-control" name="hour" ng-model="myModel.hour" required>
-                                            <option value="" disabled selected>Silahkan pilih Jam Pelajaran</option>
-                                            <option value="1 dan 2">1 dan 2</option>
-                                            <option value="3 dan 4">3 dan 4</option>
-                                            <option value="5 dan 6">5 dan 6</option>
-                                        </select>
-                                        <span class="error text-small block"
-                                              ng-if="Form.hour.$dirty && Form.hour.$invalid">Pukul Pelajaran is required</span>
-                                        <span class="success text-small" ng-if="Form.hour.$valid">Thank You!</span>
+                                        <span class="error text-small block" ng-if="Form.departments.$dirty && Form.departments.$invalid">Departments is required</span>
+                                        <span class="success text-small" ng-if="Form.departments.$valid">Thank You!</span>
                                     </div>
 
-                                    <div class="form-group"
-                                         ng-class="{'has-error':Form.room.$dirty && Form.room.$invalid, 'has-success':Form.room.$valid}">
+                                    <div class="form-group" ng-class="{'has-error':Form.kelas.$dirty && Form.kelas.$invalid, 'has-success':Form.kelas.$valid}">
                                         <label class="control-label">
-                                            Room <span class="symbol required"></span>
+                                            Kelas <span class="symbol required"></span>
+
                                         </label>
-                                        <input type="text" placeholder="Enter your room" class="form-control"
-                                               name="room" ng-model="myModel.room" required/>
-                                        <span class="error text-small block"
-                                              ng-if="Form.room.$dirty && Form.room.$invalid">room is required</span>
-                                        <span class="success text-small" ng-if="Form.room.$valid">Thank You!</span>
+                                        <select md-select-label class="form-control" ng-model="myModel.kelas" name="kelas" ng-options="o as o.name for o in objKelas">
+                                        </select>
+                                        <span class="error text-small block" ng-if="Form.kelas.$dirty && Form.kelas.$invalid">Kelas is required</span>
+                                        <span class="success text-small" ng-if="Form.kelas.$valid">Thank You!</span>
                                     </div>
 
-                                    <div class="form-group"
-                                         ng-class="{'has-error':Form.hari.$dirty && Form.hari.$invalid, 'has-success':Form.hari.$valid}">
+                                     <div class="form-group" ng-class="{'has-error':Form.wali_kelas.$dirty && Form.wali_kelas.$invalid, 'has-success':Form.wali_kelas.$valid}">
+                                        <label class="control-label">
+                                            Wali Kelas <span class="symbol required"></span>
+
+                                        </label>
+                                        <select md-select-label class="form-control" ng-model="myModel.wali_kelas" name="wali_kelas" ng-options="o as o.name for o in objWalikelas">
+                                        </select>
+                                        <span class="error text-small block" ng-if="Form.wali_kelas.$dirty && Form.wali_kelas.$invalid">Guru is required</span>
+                                        <span class="success text-small" ng-if="Form.wali_kelas.$valid">Thank You!</span>
+                                    </div>
+
+                                     <div class="form-group" ng-class="{'has-error':Form.hari.$dirty && Form.hari.$invalid, 'has-success':Form.hari.$valid}">
                                         <label class="control-label">
                                             Hari <span class="symbol required"></span>
                                         </label>
@@ -78,82 +68,66 @@
                                             <option value="Jumat">Jumat</option>
                                             <option value="Sabtu">Sabtu</option>
                                         </select>
-                                        <span class="error text-small block"
-                                              ng-if="Form.hari.$dirty && Form.hari.$invalid">Hari is required</span>
+                                        <span class="error text-small block" ng-if="Form.hari.$dirty && Form.hari.$invalid">Hari is required</span>
                                         <span class="success text-small" ng-if="Form.hari.$valid">Thank You!</span>
                                     </div>
 
+                                    <div class="form-group" ng-class="{'has-error':Form.time.$dirty && Form.time.$invalid, 'has-success':Form.time.$valid}">
+                                        <label class="control-label">
+                                            Pukul Pelajaran <span class="symbol required"></span>
+                                        </label>
+                                        <select class="form-control" name="time" ng-model="myModel.time" required>
+                                            <option value="" disabled selected>Silahkan pilih Pukul Pelajaran</option>
+                                            <option value="07.00 - 09.00">07.00 - 09.00</option>
+                                            <option value="10.00 - 12.00">10.00 - 12.00</option>
+                                            <option value="13.00 - 15.00">13.00 - 15.00</option>
+                                        </select>
+                                        <span class="error text-small block" ng-if="Form.hari.$dirty && Form.time.$invalid">Pukul Pelajaran is required</span>
+                                        <span class="success text-small" ng-if="Form.time.$valid">Thank You!</span>
+                                    </div>
+                                    <div class="form-group" ng-class="{'has-error':Form.hour.$dirty && Form.hour.$invalid, 'has-success':Form.hour.$valid}">
+                                        <label class="control-label">
+                                            Jam Pelajaran <span class="symbol required"></span>
+                                        </label>
+                                        <select class="form-control" name="hour" ng-model="myModel.hour" required>
+                                            <option value="" disabled selected>Silahkan pilih Jam Pelajaran</option>
+                                            <option value="1 dan 2">1 dan 2</option>
+                                            <option value="3 dan 4">3 dan 4</option>
+                                            <option value="5 dan 6">5 dan 6</option>
+                                        </select>
+                                        <span class="error text-small block" ng-if="Form.hour.$dirty && Form.hour.$invalid">Pukul Pelajaran is required</span>
+                                        <span class="success text-small" ng-if="Form.hour.$valid">Thank You!</span>
+                                    </div>
 
-                                    <div class="form-group"
-                                         ng-class="{'has-error':Form.subjects.$dirty && Form.subjects.$invalid, 'has-success':Form.subjects.$valid}">
+                                    <div class="form-group" ng-class="{'has-error':Form.room.$dirty && Form.room.$invalid, 'has-success':Form.room.$valid}">
+                                        <label class="control-label">
+                                            Room <span class="symbol required"></span>
+                                        </label>
+                                        <input type="text" placeholder="Enter your room" class="form-control" name="room" ng-model="myModel.room" required/>
+                                        <span class="error text-small block" ng-if="Form.room.$dirty && Form.room.$invalid">room is required</span>
+                                        <span class="success text-small" ng-if="Form.room.$valid">Thank You!</span>
+                                    </div>
+
+                                    <div class="form-group" ng-class="{'has-error':Form.subjects.$dirty && Form.subjects.$invalid, 'has-success':Form.subjects.$valid}">
                                         <label class="control-label">
                                             Mata Pelajaran <span class="symbol required"></span>
 
                                         </label>
-                                        <select md-select-label class="form-control" ng-model="myModel.subjects"
-                                                name="subjects" ng-options="o as o.name for o in objsubjects">
+                                        <select md-select-label class="form-control" ng-model="myModel.subjects" name="subjects" ng-options="o as o.name for o in objsubjects">
                                         </select>
-                                        <span class="error text-small block"
-                                              ng-if="Form.subjects.$dirty && Form.subjects.$invalid">Mata Pelajaran is required</span>
+                                        <span class="error text-small block" ng-if="Form.subjects.$dirty && Form.subjects.$invalid">Mata Pelajaran is required</span>
                                         <span class="success text-small" ng-if="Form.subjects.$valid">Thank You!</span>
                                     </div>
 
-
-                                    <div class="form-group"
-                                         ng-class="{'has-error':Form.teachers.$dirty && Form.teachers.$invalid, 'has-success':Form.teachers.$valid}">
+                                    <div class="form-group" ng-class="{'has-error':Form.teachers.$dirty && Form.teachers.$invalid, 'has-success':Form.teachers.$valid}">
                                         <label class="control-label">
                                             Guru <span class="symbol required"></span>
 
                                         </label>
-                                        <select md-select-label class="form-control" ng-model="myModel.teachers"
-                                                name="teachers" ng-options="o as o.name for o in objTeachers">
+                                        <select md-select-label class="form-control" ng-model="myModel.teachers" name="teachers" ng-options="o as o.name for o in objTeachers">
                                         </select>
-                                        <span class="error text-small block"
-                                              ng-if="Form.teachers.$dirty && Form.teachers.$invalid">Guru is required</span>
+                                        <span class="error text-small block" ng-if="Form.teachers.$dirty && Form.teachers.$invalid">Guru is required</span>
                                         <span class="success text-small" ng-if="Form.teachers.$valid">Thank You!</span>
-                                    </div>
-
-                                    <div class="form-group"
-                                         ng-class="{'has-error':Form.wali_kelas.$dirty && Form.wali_kelas.$invalid, 'has-success':Form.wali_kelas.$valid}">
-                                        <label class="control-label">
-                                            Wali Kelas <span class="symbol required"></span>
-
-                                        </label>
-                                        <select md-select-label class="form-control" ng-model="myModel.wali_kelas"
-                                                name="wali_kelas" ng-options="o as o.name for o in objWalikelas">
-                                        </select>
-                                        <span class="error text-small block"
-                                              ng-if="Form.wali_kelas.$dirty && Form.wali_kelas.$invalid">Guru is required</span>
-                                        <span class="success text-small" ng-if="Form.wali_kelas.$valid">Thank You!</span>
-                                    </div>
-
-
-                                    <div class="form-group"
-                                         ng-class="{'has-error':Form.departments.$dirty && Form.departments.$invalid, 'has-success':Form.departments.$valid}">
-                                        <label class="control-label">
-                                            Jurusan <span class="symbol required"></span>
-
-                                        </label>
-                                        <select md-select-label class="form-control" ng-model="myModel.departments"
-                                                name="departments" ng-options="o as o.name for o in objDepartments">
-                                        </select>
-                                        <span class="error text-small block"
-                                              ng-if="Form.departments.$dirty && Form.departments.$invalid">Departments is required</span>
-                                        <span class="success text-small"
-                                              ng-if="Form.departments.$valid">Thank You!</span>
-                                    </div>
-                                    <div class="form-group"
-                                         ng-class="{'has-error':Form.kelas.$dirty && Form.kelas.$invalid, 'has-success':Form.kelas.$valid}">
-                                        <label class="control-label">
-                                            Kelas <span class="symbol required"></span>
-
-                                        </label>
-                                        <select md-select-label class="form-control" ng-model="myModel.kelas"
-                                                name="kelas" ng-options="o as o.name for o in objKelas">
-                                        </select>
-                                        <span class="error text-small block"
-                                              ng-if="Form.kelas.$dirty && Form.kelas.$invalid">Kelas is required</span>
-                                        <span class="success text-small" ng-if="Form.kelas.$valid">Thank You!</span>
                                     </div>
 
                                 </fieldset>
@@ -163,18 +137,12 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="pull-left">
-                                    <button md-ink-ripple class="btn btn-primary" ng-click="submitData(false)"
-                                            ng-disabled="Form.$invalid || process || myModel.departments.id == 0 || myModel.teachers.id == 0 || myModel.kelas.id == 0 || myModel.wali_kelas.id == 0 || myModel.subjects.id == 0">Simpan
+                                    <button md-ink-ripple class="btn btn-primary" ng-click="submitData(false)" ng-disabled="Form.$invalid || process || myModel.departments.id == 0 || myModel.teachers.id == 0 || myModel.kelas.id == 0 || myModel.wali_kelas.id == 0 || myModel.subjects.id == 0">Simpan
                                     </button>
-                                    <button md-ink-ripple class="btn btn-primary" ng-click="submitData(true)"
-                                            ng-disabled="Form.$invalid || process || myModel.departments.id == 0 || myModel.teachers.id == 0 || myModel.kelas.id == 0 || myModel.wali_kelas.id == 0  || myModel.subjects.id == 0">Simpan & Kembali
-                                    </button>
-                                    <button type="reset" class="btn btn-primary btn-o" ng-disabled="process"
-                                            ng-click="form.reset(Form)">
+                                    <button type="reset" class="btn btn-primary btn-o" ng-disabled="process" ng-click="form.reset(Form)">
                                         Reset
                                     </button>
-                                    <button md-ink-ripple class="btn btn-primary btn-o" ui-sref="app.schedules"
-                                            ng-disabled="process">Kembali
+                                    <button md-ink-ripple class="btn btn-primary btn-o" ui-sref="app.schedules" ng-disabled="process">Kembali
                                     </button>
                                 </div>
                             </div>
