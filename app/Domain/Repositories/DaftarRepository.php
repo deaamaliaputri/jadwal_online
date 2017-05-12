@@ -77,6 +77,8 @@ class DaftarRepository extends AbstractRepository implements DaftarInterface, Cr
         ]);
     }
 
+    
+
     /**
      * @param $id
      * @param array $data
@@ -114,4 +116,41 @@ class DaftarRepository extends AbstractRepository implements DaftarInterface, Cr
         return parent::find($id, $columns);
     }
 
+public function updatePassword(array $data)  
+   {  
+       try {  
+           $user = $this->model->find(session('user_id'));  
+           if ($user) {  
+               $old_password = $user->password;  
+ 
+               if (\Hash::check($data['old_password'], $old_password)) {  
+                   // flush cache with tags  
+      
+                   $user->password = bcrypt($data['new_password']);  
+                   $user->save();  
+ 
+                   return $this->updateSuccess($data);  
+               }  
+ 
+               return [  
+                   'success' => false,  
+                   'result' => [  
+                       'message' => 'Password lama tidak cocok.',  
+                   ],  
+               ];  
+           }  
+ 
+           return [  
+               'success' => false,  
+               'result' => [  
+                   'message' => 'Data tidak ditemukan',  
+               ],  
+           ];  
+       } catch (\Exception $e) {  
+           // store errors to log  
+           \Log::error('class : ' . UserRepository::class . ' method : put | ' . $e);  
+ 
+           return $this->createError();  
+       }  
+   }  
 }

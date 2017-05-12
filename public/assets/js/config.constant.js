@@ -55,6 +55,7 @@ app.constant('JS_REQUIRES', {
         'dynamicTableCtrl': 'assets/js/controllers/dynamicTableCtrl.js',
         'NotificationIconsCtrl': 'assets/js/controllers/notificationIconsCtrl.js',
         'daftarCtrl'    : 'assets/src/daftar/DaftarCtrl.js',
+        'DaftarPasswordCtrl'    : 'assets/src/daftar/DaftarPassword.js', 
         'daftar_service': 'assets/src/daftar/daftar-service.js',
         'daftarcreateCtrl'    : 'assets/src/daftar/DaftarCreateCtrl.js',
         'daftar-edit'    : 'assets/src/daftar/DaftarEditCtrl.js',

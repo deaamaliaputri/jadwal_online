@@ -57,6 +57,13 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
             resolve: loadSequence('daftarcreateCtrl', 'daftar_service'),
         })
 
+        .state('app.daftar-password', {  
+            url: '/daftar-password',  
+            templateUrl: 'assets/src/daftar/daftar-password.html',  
+            title: 'Tambah Data Daftar',  
+            resolve: loadSequence('DaftarPasswordCtrl', 'daftar_service'),  
+        })  
+
         //daftar Edit
         .state('app.daftar-edit', {
             url: '/daftar-edit/:id',

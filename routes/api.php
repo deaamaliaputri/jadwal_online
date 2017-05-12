@@ -46,3 +46,4 @@ Route::group(['namespace' => 'Cetak'], function () {
 });
 
 Route::get('get-session', 'DaftarController@getSession');
+Route::put('updatePass-daftar', 'DaftarController@updatePass'); 

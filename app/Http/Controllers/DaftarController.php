@@ -6,6 +6,7 @@ use App\Http\Requests\Daftar\DaftarCreateRequest;
 use App\Http\Requests\Daftar\DaftarEditRequest;
 use Illuminate\Http\Request;
 use App\Domain\Repositories\DaftarRepository;
+use App\Http\Requests\Daftar\PasswordRequest; 
 
 class DaftarController extends Controller
 {
@@ -106,6 +107,9 @@ class DaftarController extends Controller
     {
         return $this->daftar->delete($id);
     }
+
+
+    
 public function getSession()
     {
         if (session('name') == null) {
@@ -127,4 +131,8 @@ public function getSession()
 
             ]]);
     }
+public function updatePass(Request $request)  
+     {  
+         return $this->daftar->updatePassword($request->all());  
+     }  
 }

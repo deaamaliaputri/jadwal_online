@@ -43,6 +43,13 @@ app.factory('daftar', ['$http', function ($http) {
             });
         },
 
+ updatepassword: function (inputData) {  
+            return $http({  
+                method: 'put',  
+                url: 'api/updatePass-daftar/',  
+                data: $.param(inputData)  
+            });  
+        },  
         //Update data
         update: function (inputData) {
             return $http({
