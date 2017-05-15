@@ -1,0 +1,95 @@
+<md-dialog style="width: 1200px;">
+    <div class="panel-heading bg-white" style="background: #5F8295;">
+        <span class="font-bold"><center><font color="white">DATA DAFTAR</font></center></span>
+    </div>
+
+
+<div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Name</label>
+                            <div  class="col-sm-9">
+                                <p class="form-control-static">
+                                    <span style="padding-left: 8px;"></span>{{myModel.name}}
+                                </p>
+                            </div>
+                        <label class="col-sm-3 control-label">Email</label>
+                        <div ng-if="input.prov_id != ''" class="col-sm-9">
+                            <p class="form-control-static">
+                                <span style="padding-left: 8px;"></span>{{myModel.email}}
+                            </p>
+                        </div>
+                        <label class="col-sm-3 control-label">Phone</label>
+                        <div ng-if="input.prov_id != ''" class="col-sm-9">
+                            <p class="form-control-static">
+                                <span style="padding-left: 8px;"></span>{{myModel.phone}}
+                            </p>
+                        </div>
+                        <label class="col-sm-3 control-label">Status</label>
+                        <div ng-if="input.prov_id != ''" class="col-sm-9">
+                            <p class="form-control-static">
+                                <span ng-if="myModel.status==0" class="label label-sm label-primary">Guru</span>
+                                <span ng-if="myModel.status==1" class="label label-sm label-success">Siswa</span>
+                            </p>
+                        </div>
+                        <label class="col-sm-3 control-label">Level</label>
+                        <div ng-if="input.prov_id != ''" class="col-sm-9">
+                            <p class="form-control-static">
+                                
+                        <span ng-if="myModel.level==0" class="label label-sm label-primary">Admind</span>
+                        <span ng-if="myModel.level==1" class="label label-sm label-success">Users</span>
+                            </p>
+                        </div>
+                        <label class="col-sm-3 control-label">NIP</label>
+                        <div ng-if="input.prov_id != ''" class="col-sm-9">
+                            <p class="form-control-static">
+                                <span style="padding-left: 8px;"></span>{{myModel.nip}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+    <!--<table class="table table-striped table-hover">
+        <tr>
+                    <th class="col-md-2">Name Customer</th>
+                    <th class="col-md-2">Cars</th>
+                    <th class="col-md-2">Tujuan</th>
+                    <th class="col-md-2">Transaksi</th>
+                    <th class="col-md-2">Pemakaian</th>
+                    <th class="col-md-2">Pengembalian</th>
+                    <th class="col-md-2">Denda</th>
+                    <th class="col-md-2">Total Bayar</th>
+        </tr>
+    </table>-->
+    <!--<md-content>
+        <div class="panel panel-default">
+            <div ng-show="isLoaded">
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <tbody>
+                    <tr>
+                    <td class="col-md-2">{{myModel.customers.name}}</td>
+                    <td class="col-md-2">{{myModel.cars.merk}}</td>
+                    <td class="col-md-2">{{myModel.destinations}}</td>
+                    <td class="col-md-2">{{myModel.date_transactions}}</td>
+                    <td class="col-md-2">{{myModel.date_loans}}</td>
+                    <td class="col-md-2">{{myModel.returs}}</td>
+                    <td class="col-md-2"></td>
+                    <td class="col-md-2">{{myModel.tot_payments}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+    </md-content>-->
+    <footer class="panel-footer text-center" style="background: #ffffff">
+        <md-button class="btn btn-fw btn-default" ng-click='cancel()' tooltip="Kembali">
+            Kembali
+        </md-button>
+    </footer>
+</md-dialog>

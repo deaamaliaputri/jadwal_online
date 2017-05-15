@@ -1,10 +1,63 @@
 'use strict';
 
-app.controller('DaftarCtrl', ['$scope', 'daftar', 'SweetAlert', '$http','$timeout', function ($scope, daftar,SweetAlert) {
+app.controller('DaftarCtrl', ['$scope', 'daftar', 'SweetAlert','$uibModal','$log', '$http','$timeout', function ($scope, daftar,SweetAlert,$uibModal,$log) {
 //urussan tampilan
     $scope.main = {
         page: 1,
         term: ''
+    };
+
+    $scope.isLoading = true;
+    $scope.isLoaded = false;
+
+    $scope.setLoader = function (status) {
+        if (status == true) {
+            $scope.isLoading = true;
+            $scope.isLoaded = false;
+        } else {
+            $scope.isLoading = false;
+            $scope.isLoaded = true;
+        }
+    };
+
+$scope.daftar = function (id) {
+
+        var modalInstance = $uibModal.open({
+            templateUrl: 'assets/src/daftar/detail.dialog.html',
+            controller: 'Daftardetail2Ctrl',
+            size: 'lg',
+            resolve: {
+                item: function () {
+                    return id;
+                }
+            }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+            $scope.selected = selectedItem;
+        }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
+
+$scope.daftar = function (id) {
+
+        var modalInstance = $uibModal.open({
+            templateUrl: 'assets/src/daftar/detail.dialog.html',
+            controller: 'Daftardetail2Ctrl',
+            size: 'lg',
+            resolve: {
+                item: function () {
+                    return id;
+                }
+            }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+            $scope.selected = selectedItem;
+        }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+        });
     };
 
     $scope.isLoading = true;
@@ -197,5 +250,34 @@ app.controller('DaftarCtrl', ['$scope', 'daftar', 'SweetAlert', '$http','$timeou
             }
         });
     };
+
+}]);
+app.controller('Daftardetail2Ctrl', ['$scope', 'daftar', 'SweetAlert', '$uibModal','$log','$uibModalInstance','toaster','item','$http','$timeout', function ($scope, daftar,SweetAlert,$uibModal,$log,$uibModalInstance,toaster,item) {
+//urussan tampilan
+    $scope.myModel ={}
+    
+    $scope.isLoading = true;
+    $scope.isLoaded = false;
+
+    $scope.setLoader = function (status) {
+        if (status == true) {
+            $scope.isLoading = true;
+            $scope.isLoaded = false;
+        } else {
+            $scope.isLoading = false;
+            $scope.isLoaded = true;
+        }
+    };
+    $scope.id =item
+    daftar.show($scope.id)
+        .success(function (data) {
+            $scope.setLoader(false);
+            $scope.myModel = data;
+        });
+
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
+
 
 }]);
