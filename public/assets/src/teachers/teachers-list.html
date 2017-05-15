@@ -59,10 +59,11 @@
                     <td class="col-md-2">{{row.phone}}</td>
 
                     <td class="col-md-2">
-                        <!--<button type="button" ng-click="detailteachers(row.id)" md-ink-ripple tooltip="Detail teachers"-->
-                                <!--class="btn btn-sm btn-info">-->
-                            <!--<i class="glyphicon glyphicon-zoom-in"></i>-->
-                        <!--</button>-->
+                            <!--detail-->
+                            <button type="button" ng-click="teachers(row.id)" md-ink-ripple tooltip="Detail Guru" class="btn btn-sm btn-info">
+                            <i class="glyphicon glyphicon-zoom-in"></i>
+                        </button>
+                    
                         <a ui-sref="app.teachers-edit({id:row.id})"  md-ink-ripple tooltip="Edit Data"
                            class="btn btn-sm btn-default" ng-if="dataUser.level !='1'">
                             <i class="glyphicon glyphicon-edit"></i>
