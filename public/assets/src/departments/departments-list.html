@@ -57,11 +57,11 @@
                     </td>
 
                    <td class="col-md-2">
-                        <button type="button" ng-click="detaildepartments(row.id)" md-ink-ripple tooltip="Detail departments"
-                                class="btn btn-sm btn-info">
+                            <!--detail-->
+                            <button type="button" ng-click="departments(row.id)" md-ink-ripple tooltip="Detail Jurusan" class="btn btn-sm btn-info">
                             <i class="glyphicon glyphicon-zoom-in"></i>
                         </button>
-                        <a ui-sref="app.departments-edit({id:row.id})"  md-ink-ripple tooltip="Edit Data"
+                              <a ui-sref="app.departments-edit({id:row.id})"  md-ink-ripple tooltip="Edit Data"
                            class="btn btn-sm btn-default" ng-if="row.is_lock =='0'">
                             <i class="glyphicon glyphicon-edit"></i>
                         </a>
