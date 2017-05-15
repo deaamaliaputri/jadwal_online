@@ -59,8 +59,8 @@
                     <td class="col-md-2">{{row.departments.name}}</td>
 
                     <td class="col-md-2">
-                        <button type="button" ng-click="detailstudents(row.id)" md-ink-ripple tooltip="Detail Urusan"
-                                class="btn btn-sm btn-info">
+                            <!--detail-->
+                            <button type="button" ng-click="students(row.id)" md-ink-ripple tooltip="Detail Siswa" class="btn btn-sm btn-info">
                             <i class="glyphicon glyphicon-zoom-in"></i>
                         </button>
                         <a ui-sref="app.students-edit({id:row.id})"  md-ink-ripple tooltip="Edit Data"
