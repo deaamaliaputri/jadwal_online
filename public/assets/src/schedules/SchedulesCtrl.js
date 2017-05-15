@@ -27,6 +27,25 @@ app.controller('SchedulesCtrl', ['$scope', 'schedules', 'SweetAlert', '$uibModal
         });
     };
 
+$scope.schedules = function (id) {
+
+        var modalInstance = $uibModal.open({
+            templateUrl: 'assets/src/schedules/detail.dialog.html',
+            controller: 'Schedulesdetail2Ctrl',
+            size: 'lg',
+            resolve: {
+                item: function () {
+                    return id;
+                }
+            }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+            $scope.selected = selectedItem;
+        }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
 
     $scope.isLoading = true;
     $scope.isLoaded = false;
@@ -223,8 +242,7 @@ app.controller('SchedulesCtrl', ['$scope', 'schedules', 'SweetAlert', '$uibModal
 app.controller('SchedulesdetailCtrl', ['$scope', 'schedules', 'SweetAlert', '$uibModal','$log','$uibModalInstance','toaster','$http','$timeout', function ($scope, schedules,SweetAlert,$uibModal,$log,$uibModalInstance,toaster) {
 //urussan tampilan
     $scope.myModel ={}
-
-
+ 
     $scope.isLoading = true;
     $scope.isLoaded = false;
 
@@ -375,6 +393,33 @@ app.controller('SchedulesdetailCtrl', ['$scope', 'schedules', 'SweetAlert', '$ui
                 }
             })
     };
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
+}]);
+app.controller('Schedulesdetail2Ctrl', ['$scope', 'schedules', 'SweetAlert', '$uibModal','$log','$uibModalInstance','toaster','item','$http','$timeout', function ($scope, schedules,SweetAlert,$uibModal,$log,$uibModalInstance,toaster,item) {
+//urussan tampilan
+    $scope.myModel ={}
+    
+    $scope.isLoading = true;
+    $scope.isLoaded = false;
+
+    $scope.setLoader = function (status) {
+        if (status == true) {
+            $scope.isLoading = true;
+            $scope.isLoaded = false;
+        } else {
+            $scope.isLoading = false;
+            $scope.isLoaded = true;
+        }
+    };
+    $scope.id =item
+    schedules.show($scope.id)
+        .success(function (data) {
+            $scope.setLoader(false);
+            $scope.myModel = data;
+        });
+
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
