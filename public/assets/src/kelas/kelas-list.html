@@ -54,9 +54,9 @@
                     <td class="col-md-1">{{row.name}}</td>
                      <td class="col-md-1">{{row.descriptions}}</td>
         
-                    <td class="col-md-2">
-                        <button type="button" ng-click="detailkelas(row.id)" md-ink-ripple tooltip="Detail kelas"
-                                class="btn btn-sm btn-info">
+                     <td class="col-md-2">
+                            <!--detail-->
+                            <button type="button" ng-click="kelas(row.id)" md-ink-ripple tooltip="Detail Kelas" class="btn btn-sm btn-info">
                             <i class="glyphicon glyphicon-zoom-in"></i>
                         </button>
                         <a ui-sref="app.kelas-edit({id:row.id})"  md-ink-ripple tooltip="Edit Data"
