@@ -40,10 +40,32 @@ app.controller('SchedulesCreateCtrl', ['$state', '$scope', 'schedules', '$timeou
         }
 
     };
-    $scope.objWalikelas = []
-    schedules.getListteacherss()
-        .success(function (dataa_akun) {
-            if (dataa_akun.success == false) {
+    $scope.getlist = function () {
+        $scope.objsubjects = []
+        schedules.getListsubjects()
+            .success(function (data_akun) {
+                if (data_akun.success == false) {
+                    $scope.toaster = {
+                        type: 'warning',
+                        title: 'Warning',
+                        text: 'Data Belum Tersedia!'
+                    };
+                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+
+                } else {
+                    data_akun.unshift({id: 0, name: 'Silahkan Pilih Mata Pelajaran'});
+                    $scope.objsubjects = data_akun;
+                    $scope.myModel.subjects = $scope.objsubjects[0];
+                }
+
+            })
+            .error(function (data_akun, status) {
+                // unauthorized
+                if (status === 401) {
+                    //redirect to login
+                    $scope.redirect();
+                }
+                // Stop Loading
                 $scope.toaster = {
                     type: 'warning',
                     title: 'Warning',
@@ -51,35 +73,35 @@ app.controller('SchedulesCreateCtrl', ['$state', '$scope', 'schedules', '$timeou
                 };
                 toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
 
-            } else {
-                data_akun.unshift({ id: 0, name: 'Silahkan Pilih Wali Kelas' });
-                $scope.objWalikelas = dataa_akun;
-                $scope.myModel.wali_kelas = $scope.objWalikelas[0];
-            }
+                console.log(data_akun);
 
-        })
-        .error(function (dataa_akun, status) {
-            // unauthorized
-            if (status === 401) {
-                //redirect to login
-                $scope.redirect();
-            }
-            // Stop Loading
-            $scope.toaster = {
-                type: 'warning',
-                title: 'Warning',
-                text: 'Data Belum Tersedia!'
-            };
-            toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+            });
 
-            console.log(data_akun);
+        $scope.objTeachers = []
+        schedules.getListteachers()
+            .success(function (data_akun) {
+                if (data_akun.success == false) {
+                    $scope.toaster = {
+                        type: 'warning',
+                        title: 'Warning',
+                        text: 'Data Belum Tersedia!'
+                    };
+                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
 
-        });
-$scope.getlist = function () {
-    $scope.objsubjects = []
-    schedules.getListsubjects()
-        .success(function (data_akun) {
-            if (data_akun.success == false) {
+                } else {
+                    data_akun.unshift({id: 0, name: 'Silahkan Pilih Guru'});
+                    $scope.objTeachers = data_akun;
+                    $scope.myModel.teachers = $scope.objTeachers[0];
+                }
+
+            })
+            .error(function (data_akun, status) {
+                // unauthorized
+                if (status === 401) {
+                    //redirect to login
+                    $scope.redirect();
+                }
+                // Stop Loading
                 $scope.toaster = {
                     type: 'warning',
                     title: 'Warning',
@@ -87,36 +109,34 @@ $scope.getlist = function () {
                 };
                 toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
 
-            } else {
-                data_akun.unshift({ id: 0, name: 'Silahkan Pilih Mata Pelajaran' });
-                $scope.objsubjects = data_akun;
-                $scope.myModel.subjects = $scope.objsubjects[0];
-            }
+                console.log(data_akun);
 
-        })
-        .error(function (data_akun, status) {
-            // unauthorized
-            if (status === 401) {
-                //redirect to login
-                $scope.redirect();
-            }
-            // Stop Loading
-            $scope.toaster = {
-                type: 'warning',
-                title: 'Warning',
-                text: 'Data Belum Tersedia!'
-            };
-            toaster.pop($scope.toaster.type, $scope.toaster.
-                title, $scope.toaster.text);
+            });
+        $scope.objDepartments = []
+        schedules.getListdepartment()
+            .success(function (data_akun) {
+                if (data_akun.success == false) {
+                    $scope.toaster = {
+                        type: 'warning',
+                        title: 'Warning',
+                        text: 'Data Belum Tersedia!'
+                    };
+                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
 
-            console.log(data_akun);
+                } else {
+                    data_akun.unshift({id: 0, name: 'Silahkan Pilih Jurusan'});
+                    $scope.objDepartments = data_akun;
+                    $scope.myModel.departments = $scope.objDepartments[0];
+                }
 
-        });
-
-    $scope.objTeachers = []
-    schedules.getListteachers()
-        .success(function (data_akun) {
-            if (data_akun.success == false) {
+            })
+            .error(function (data_akun, status) {
+                // unauthorized
+                if (status === 401) {
+                    //redirect to login
+                    $scope.redirect();
+                }
+                // Stop Loading
                 $scope.toaster = {
                     type: 'warning',
                     title: 'Warning',
@@ -124,38 +144,34 @@ $scope.getlist = function () {
                 };
                 toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
 
-            } else {
-                data_akun.unshift({ id: 0, name: 'Silahkan Pilih Guru' });
-                $scope.objTeachers = data_akun;
-                $scope.myModel.teachers = $scope.objTeachers[0];
-            }
+                console.log(data_akun);
 
-        })
-        .error(function (data_akun, status) {
-            // unauthorized
-            if (status === 401) {
-                //redirect to login
-                $scope.redirect();
-            }
-            // Stop Loading
-            $scope.toaster = {
-                type: 'warning',
-                title: 'Warning',
-                text: 'Data Belum Tersedia!'
-            };
-            toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+            });
+        $scope.objWalikelas = []
+        schedules.getListteacherss()
+            .success(function (dataa_akun) {
+                if (dataa_akun.success == false) {
+                    $scope.toaster = {
+                        type: 'warning',
+                        title: 'Warning',
+                        text: 'Data Belum Tersedia!'
+                    };
+                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
 
-            console.log(data_akun);
+                } else {
+                    dataa_akun.unshift({id: 0, name: 'Silahkan Pilih Wali Kelas'});
+                    $scope.objWalikelas = dataa_akun;
+                    $scope.myModel.wali_kelas_id = $scope.objWalikelas[0];
+                }
 
-        });
-
-
-
-
-    $scope.objDepartments = []
-    schedules.getListdepartment()
-        .success(function (data_akun) {
-            if (data_akun.success == false) {
+            })
+            .error(function (dataa_akun, status) {
+                // unauthorized
+                if (status === 401) {
+                    //redirect to login
+                    $scope.redirect();
+                }
+                // Stop Loading
                 $scope.toaster = {
                     type: 'warning',
                     title: 'Warning',
@@ -163,35 +179,36 @@ $scope.getlist = function () {
                 };
                 toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
 
-            } else {
-                data_akun.unshift({ id: 0, name: 'Silahkan Pilih Jurusan' });
-                $scope.objDepartments = data_akun;
-                $scope.myModel.departments = $scope.objDepartments[0];
-            }
+                console.log(data_akun);
 
-        })
-        .error(function (data_akun, status) {
-            // unauthorized
-            if (status === 401) {
-                //redirect to login
-                $scope.redirect();
-            }
-            // Stop Loading
-            $scope.toaster = {
-                type: 'warning',
-                title: 'Warning',
-                text: 'Data Belum Tersedia!'
-            };
-            toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+            });
 
-            console.log(data_akun);
 
-        });
+        $scope.objKelas = []
+        schedules.getListkelas()
+            .success(function (data_akun) {
+                if (data_akun.success == false) {
+                    $scope.toaster = {
+                        type: 'warning',
+                        title: 'Warning',
+                        text: 'Data Belum Tersedia!'
+                    };
+                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
 
-    $scope.objKelas = []
-    schedules.getListkelas()
-        .success(function (data_akun) {
-            if (data_akun.success == false) {
+                } else {
+                    data_akun.unshift({id: 0, name: 'Silahkan Pilih Kelas'});
+                    $scope.objKelas = data_akun;
+                    $scope.myModel.kelas = $scope.objKelas[0];
+                }
+
+            })
+            .error(function (data_akun, status) {
+                // unauthorized
+                if (status === 401) {
+                    //redirect to login
+                    $scope.redirect();
+                }
+                // Stop Loading
                 $scope.toaster = {
                     type: 'warning',
                     title: 'Warning',
@@ -199,32 +216,11 @@ $scope.getlist = function () {
                 };
                 toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
 
-            } else {
-                data_akun.unshift({ id: 0, name: 'Silahkan Pilih Kelas' });
-                $scope.objKelas = data_akun;
-                $scope.myModel.kelas = $scope.objKelas[0];
-            }
+                console.log(data_akun);
 
-        })
-        .error(function (data_akun, status) {
-            // unauthorized
-            if (status === 401) {
-                //redirect to login
-                $scope.redirect();
-            }
-            // Stop Loading
-            $scope.toaster = {
-                type: 'warning',
-                title: 'Warning',
-                text: 'Data Belum Tersedia!'
-            };
-            toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+            });
 
-            console.log(data_akun);
-
-        });
-
-}
+    }
 
     $scope.closeAlert = function (index) {
         $scope.alerts.splice(index, 1);
@@ -237,6 +233,8 @@ $scope.getlist = function () {
         $scope.myModel.subjects = null;
         $scope.myModel.teachers = null;
         $scope.myModel.hari = null;
+        // $scope.getlist()
+
     };
 
     $scope.submitData = function (isBack) {
@@ -252,7 +250,7 @@ $scope.getlist = function () {
             $scope.myModel.teachers_id = $scope.myModel.teachers.id
             $scope.myModel.subjects_id = $scope.myModel.subjects.id
             $scope.myModel.departments_id = $scope.myModel.departments.id
-            $scope.myModel.wali_kelas= $scope.myModel.wali_kelas.id
+            $scope.myModel.wali_kelas = $scope.myModel.wali_kelas_id.id
 
             schedules.store($scope.myModel)
                 .success(function (data) {
@@ -268,7 +266,7 @@ $scope.getlist = function () {
                             };
                             toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
                         } else {
-                     $scope.clearInput();
+                            $scope.clearInput();
                             $scope.sup();
                             $scope.alerts.push({
                                 type: 'success',

@@ -44,15 +44,15 @@
                                         <span class="success text-small" ng-if="Form.kelas.$valid">Thank You!</span>
                                     </div>
 
-                                     <div class="form-group" ng-class="{'has-error':Form.wali_kelas.$dirty && Form.wali_kelas.$invalid, 'has-success':Form.wali_kelas.$valid}">
+                                     <div class="form-group" ng-class="{'has-error':Form.wali_kelas_id.$dirty && Form.wali_kelas.$invalid, 'has-success':Form.wali_kelas_id.$valid}">
                                         <label class="control-label">
                                             Wali Kelas <span class="symbol required"></span>
 
                                         </label>
-                                        <select md-select-label class="form-control" ng-model="myModel.wali_kelas" name="wali_kelas" ng-options="o as o.name for o in objWalikelas">
+                                        <select md-select-label class="form-control" ng-model="myModel.wali_kelas_id" name="wali_kelas_id" ng-options="o as o.name for o in objWalikelas">
                                         </select>
-                                        <span class="error text-small block" ng-if="Form.wali_kelas.$dirty && Form.wali_kelas.$invalid">Guru is required</span>
-                                        <span class="success text-small" ng-if="Form.wali_kelas.$valid">Thank You!</span>
+                                        <span class="error text-small block" ng-if="Form.wali_kelas_id.$dirty && Form.wali_kelas_id.$invalid">Guru is required</span>
+                                        <span class="success text-small" ng-if="Form.wali_kelas_id.$valid">Thank You!</span>
                                     </div>
 
                                      <div class="form-group" ng-class="{'has-error':Form.hari.$dirty && Form.hari.$invalid, 'has-success':Form.hari.$valid}">
