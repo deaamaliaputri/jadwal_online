@@ -134,9 +134,9 @@ class CetakDaftar extends Controller
         $pdf->set_widths = 80;
         $pdf->set_footer = 25;
 //        $this->Column2($pdf);
-        $gambar = 'assets/img/logoo.jpg';
+        $gambar = 'assets/images/logoo.jpg';
         $pdf->Image($gambar, 240, 10, 40, 40);
-        $gambar = 'assets/img/malangkab.png';
+        $gambar = 'assets/images/malangkab.png';
         $pdf->Image($gambar, 10, 10, 40, 40);
         $pdf->Ln(15);
         $pdf->AddFont('Tahoma', 'B', 'tahomabd.php');

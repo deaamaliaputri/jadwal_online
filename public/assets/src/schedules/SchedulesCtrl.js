@@ -190,7 +190,9 @@ $scope.schedules = function (id) {
 
         $scope.getData()
     };
-
+    $scope.cetak = function (id,id2) {
+window.open('../api/cetak-daftar/'+id+'/'+id2, '_blank');    
+}
   $scope.hapus = function (id) {
         SweetAlert.swal({
             title: "Peringatan?",

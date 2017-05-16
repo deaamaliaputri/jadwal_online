@@ -54,7 +54,7 @@
                 <tr ng-repeat="row in dataschedules">
                     <td class="col-md-1">{{row.departments.name}}</td>
                     <td class="col-md-1">{{row.kelas.name}}</td>
-                    <td class="col-md-1">{{row.teachers.name}}</td>
+                    <td class="col-md-1">{{row.wali_kelass.name}}</td>
                        <td class="col-md-2">
                             <!--detail-->
                             <button type="button" ng-click="schedules(row.id)" md-ink-ripple tooltip="Detail Schedules" class="btn btn-sm btn-info">
@@ -69,7 +69,7 @@
                             <i class="glyphicon glyphicon-trash"></i>
                         </button>
                         <span tooltip="Cetak data">
-                        <button md-ink-ripple class="btn btn-sm btn-default" ng-click="open('lg')">
+                        <button md-ink-ripple class="btn btn-sm btn-default" ng-click="cetak(row.departments.id,row.kelas.id)">
                     <i class="glyphicon glyphicon-print"></i>
                 </button>
             </span>

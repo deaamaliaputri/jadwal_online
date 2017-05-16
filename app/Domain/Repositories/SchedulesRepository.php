@@ -47,6 +47,7 @@ class SchedulesRepository extends AbstractRepository implements SchedulesInterfa
     public function paginate($limit = 10, $page = 1, array $column = ['*'], $field, $search = '')
     {
         // query to aql
+     
         $akun = $this->model
             ->join('departments', 'schedules.departments_id', '=', 'departments.id')
             ->join('kelas', 'schedules.kelas_id', '=', 'kelas.id')
