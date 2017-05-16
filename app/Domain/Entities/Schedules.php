@@ -20,7 +20,7 @@ class Schedules extends Model
         'time', 'hour', 'room', 'subjects_id', 'teachers_id', 'departments_id', 'kelas_id', 'hari', 'wali_kelas'
     ];
 
- protected $with = ['subjects', 'departments', 'teachers', 'kelas'];
+ protected $with = ['subjects', 'departments', 'teachers', 'kelas','wali_kelass'];
 
     public function subjects()
     {
@@ -30,6 +30,10 @@ class Schedules extends Model
     public function teachers()
     {
         return $this->belongsTo('App\Domain\Entities\Teachers', 'teachers_id');
+    }
+    public function wali_kelass()
+    {
+        return $this->belongsTo('App\Domain\Entities\Teachers', 'wali_kelas');
     }
 
 
