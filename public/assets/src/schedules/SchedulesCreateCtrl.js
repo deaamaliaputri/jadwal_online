@@ -42,8 +42,8 @@ app.controller('SchedulesCreateCtrl', ['$state', '$scope', 'schedules', '$timeou
     };
     $scope.objWalikelas = []
     schedules.getListteacherss()
-        .success(function (data_akun) {
-            if (data_akun.success == false) {
+        .success(function (dataa_akun) {
+            if (dataa_akun.success == false) {
                 $scope.toaster = {
                     type: 'warning',
                     title: 'Warning',
@@ -53,12 +53,12 @@ app.controller('SchedulesCreateCtrl', ['$state', '$scope', 'schedules', '$timeou
 
             } else {
                 data_akun.unshift({ id: 0, name: 'Silahkan Pilih Wali Kelas' });
-                $scope.objWalikelas = data_akun;
+                $scope.objWalikelas = dataa_akun;
                 $scope.myModel.wali_kelas = $scope.objWalikelas[0];
             }
 
         })
-        .error(function (data_akun, status) {
+        .error(function (dataa_akun, status) {
             // unauthorized
             if (status === 401) {
                 //redirect to login
