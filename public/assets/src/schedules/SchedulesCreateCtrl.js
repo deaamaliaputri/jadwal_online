@@ -56,6 +56,8 @@ app.controller('SchedulesCreateCtrl', ['$state', '$scope', 'schedules', '$timeou
                     data_akun.unshift({id: 0, name: 'Silahkan Pilih Mata Pelajaran'});
                     $scope.objsubjects = data_akun;
                     $scope.myModel.subjects = $scope.objsubjects[0];
+                    $scope.myModel.subjects_2 = $scope.objsubjects[0];
+                    $scope.myModel.subjects_3 = $scope.objsubjects[0];
                 }
 
             })
@@ -92,7 +94,9 @@ app.controller('SchedulesCreateCtrl', ['$state', '$scope', 'schedules', '$timeou
                     data_akun.unshift({id: 0, name: 'Silahkan Pilih Guru'});
                     $scope.objTeachers = data_akun;
                     $scope.myModel.teachers = $scope.objTeachers[0];
-                }
+                    $scope.myModel.teachers_2 = $scope.objTeachers[0];
+                    $scope.myModel.teachers_3 = $scope.objTeachers[0];    
+            }
 
             })
             .error(function (data_akun, status) {
