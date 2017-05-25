@@ -40,35 +40,36 @@
             </div>
         </div>
     </div>
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th class="col-md-1">Jurusan</th>
-                <th class="col-md-1">Kelas</th>
-                <th class="col-md-1">Wali Kelas</th>
-                <th class="col-md-2" ng-if="dataUser.level !='1'">Aksi</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="row in dataschedules">
-                <td class="col-md-1">{{row.departments.name}}</td>
-                <td class="col-md-1">{{row.kelas.name}}</td>
-                <td class="col-md-1">{{row.wali_kelass.name}}</td>
-                <td class="col-md-2">
-                    <!--detail-->
-                    <button type="button" ng-click="schedules(row.id)" md-ink-ripple tooltip="Detail Schedules"
-                            class="btn btn-sm btn-info">
-                        <i class="glyphicon glyphicon-zoom-in"></i>
-                    </button>
-                    <a ui-sref="app.schedules-edit({id:row.id})" md-ink-ripple tooltip="Edit Data"
-                       class="btn btn-sm btn-default" ng-if="dataUser.level !='1'">
-                        <i class="glyphicon glyphicon-edit"></i>
-                    </a>
-                    <button type="button" ng-click="hapus(row.id)" md-ink-ripple tooltip="Hapus Data"
-                            class="btn btn-sm btn-danger" ng-if="dataUser.level !='1'">
-                        <i class="glyphicon glyphicon-trash"></i>
-                    </button>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th class="col-md-1">Kelas</th>
+                    <th class="col-md-1">Jurusan</th>
+                    <th class="col-md-1">Wali Kelas</th>
+                    <th class="col-md-1">Hari</th>
+                    <th class="col-md-2" ng-if="dataUser.level !='1'">Aksi</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in dataschedules">
+                    <td class="col-md-1">{{row.kelas.name}}</td>
+                    <td class="col-md-1">{{row.departments.name}}</td>
+                    <td class="col-md-1">{{row.wali_kelass.name}}</td>
+                     <td class="col-md-1">{{row.hari}}</td>
+                       <td class="col-md-2">
+                            <!--detail-->
+                            <button type="button" ng-click="schedules(row.id)" md-ink-ripple tooltip="Detail Schedules" class="btn btn-sm btn-info">
+                            <i class="glyphicon glyphicon-zoom-in"></i>
+                        </button>
+                        <a ui-sref="app.schedules-edit({id:row.id})"  md-ink-ripple tooltip="Edit Data"
+                           class="btn btn-sm btn-default" ng-if="dataUser.level !='1'">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                        <button type="button" ng-click="hapus(row.id)" md-ink-ripple tooltip="Hapus Data"
+                                class="btn btn-sm btn-danger" ng-if="dataUser.level !='1'">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </button>
                         <span tooltip="Cetak data">
                         <button md-ink-ripple class="btn btn-sm btn-default"
                                 ng-click="cetak(row.departments.id,row.kelas.id)">
@@ -115,5 +116,4 @@
         </div>
         <!-- /Base -->
     </div>
-</div>
 </div>
