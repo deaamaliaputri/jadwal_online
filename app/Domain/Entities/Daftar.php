@@ -22,7 +22,7 @@ class Daftar extends Authenticatable
      */
     //  protected $table = 'daftar';
     protected $fillable = [
-        'name', 'email', 'password', 'phone', 'status', 'level', 'nip',	
+        'name', 'email', 'password', 'phone', 'status', 'level', 'nip', 'foto',
     ];
     protected $hidden = [
         'password', 'remember_token',

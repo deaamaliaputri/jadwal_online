@@ -22,6 +22,8 @@ class CreateDaftarTable extends Migration
             $table->string('status');
             $table->string('level');
             $table->integer('nip', false);
+            //kalo gak di isi nilainya 0 alias gak ada gambar
+            $table->string('foto')->default(0);
             $table->timestamps();
             $table->softDeletes();
             $table->rememberToken();
