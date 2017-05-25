@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('SchedulesCtrl', ['$scope', 'schedules', 'SweetAlert', '$uibModal','$log','$http','$timeout', function ($scope, schedules,SweetAlert,$uibModal,$log) {
+app.controller('SchedulesCtrl', ['$scope', 'schedules', 'SweetAlert', '$uibModal', '$log', '$http', '$timeout', function ($scope, schedules, SweetAlert, $uibModal, $log) {
 //urussan tampilan
     $scope.main = {
         page: 1,
@@ -27,7 +27,7 @@ app.controller('SchedulesCtrl', ['$scope', 'schedules', 'SweetAlert', '$uibModal
         });
     };
 
-$scope.schedules = function (id) {
+    $scope.schedules = function (id) {
 
         var modalInstance = $uibModal.open({
             templateUrl: 'assets/src/schedules/detail.dialog.html',
@@ -74,7 +74,7 @@ $scope.schedules = function (id) {
     };
     // go to print preview page
     $scope.print = function () {
-        window.open ('../api/v1/cetak-schedules','_blank');
+        window.open('../api/v1/cetak-schedules', '_blank');
     };
     //Init dataAkun
     $scope.dataschedules = '';
@@ -190,10 +190,10 @@ $scope.schedules = function (id) {
 
         $scope.getData()
     };
-    $scope.cetak = function (id,id2) {
-window.open('../api/cetak-daftar/'+id+'/'+id2, '_blank');    
-}
-  $scope.hapus = function (id) {
+    $scope.cetak = function (id, id2) {
+        window.open('../api/cetak-daftar/' + id + '/' + id2, '_blank');
+    }
+    $scope.hapus = function (id) {
         SweetAlert.swal({
             title: "Peringatan?",
             text: "Apakah anda yakin ingin hapus",
@@ -241,10 +241,10 @@ window.open('../api/cetak-daftar/'+id+'/'+id2, '_blank');
     };
 
 }]);
-app.controller('SchedulesdetailCtrl', ['$scope', 'schedules', 'SweetAlert', '$uibModal','$log','$uibModalInstance','toaster','$http','$timeout', function ($scope, schedules,SweetAlert,$uibModal,$log,$uibModalInstance,toaster) {
+app.controller('SchedulesdetailCtrl', ['$scope', 'schedules', 'SweetAlert', '$uibModal', '$log', '$uibModalInstance', 'toaster', '$http', '$timeout', function ($scope, schedules, SweetAlert, $uibModal, $log, $uibModalInstance, toaster) {
 //urussan tampilan
-    $scope.myModel ={}
- 
+    $scope.myModel = {}
+
     $scope.isLoading = true;
     $scope.isLoaded = false;
 
@@ -271,7 +271,7 @@ app.controller('SchedulesdetailCtrl', ['$scope', 'schedules', 'SweetAlert', '$ui
                 toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
 
             } else {
-                data_akun.unshift({ id: 0, name: 'Silahkan Pilih Jurusan' });
+                data_akun.unshift({id: 0, name: 'Silahkan Pilih Jurusan'});
                 $scope.objDepartments = data_akun;
                 $scope.myModel.departments = $scope.objDepartments[0];
             }
@@ -295,7 +295,7 @@ app.controller('SchedulesdetailCtrl', ['$scope', 'schedules', 'SweetAlert', '$ui
 
         });
 
-        $scope.objWalikelas = []
+    $scope.objWalikelas = []
     schedules.getListteachers()
         .success(function (data_akun) {
             if (data_akun.success == false) {
@@ -307,7 +307,7 @@ app.controller('SchedulesdetailCtrl', ['$scope', 'schedules', 'SweetAlert', '$ui
                 toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
 
             } else {
-                data_akun.unshift({ id: 0, name: 'Silahkan Pilih Jurusan' });
+                data_akun.unshift({id: 0, name: 'Silahkan Pilih Jurusan'});
                 $scope.objWalikelas = data_akun;
                 $scope.myModel.wali_kelas = $scope.objWalikelas[0];
             }
@@ -343,7 +343,7 @@ app.controller('SchedulesdetailCtrl', ['$scope', 'schedules', 'SweetAlert', '$ui
                 toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
 
             } else {
-                data_akun.unshift({ id: 0, name: 'Silahkan Pilih Kelas' });
+                data_akun.unshift({id: 0, name: 'Silahkan Pilih Kelas'});
                 $scope.objKelas = data_akun;
                 $scope.myModel.kelas = $scope.objKelas[0];
             }
@@ -368,7 +368,6 @@ app.controller('SchedulesdetailCtrl', ['$scope', 'schedules', 'SweetAlert', '$ui
         });
 
 
-
     //Init Alert status
     $scope.alertset = {
         show: 'hide',
@@ -378,17 +377,17 @@ app.controller('SchedulesdetailCtrl', ['$scope', 'schedules', 'SweetAlert', '$ui
     //refreshData
     // go to print preview page
     $scope.ok = function () {
-        schedules.cekcetak($scope.myModel.kelas.id,$scope.myModel.departments.id)
+        schedules.cekcetak($scope.myModel.kelas.id, $scope.myModel.departments.id)
             .success(function (data) {
                 if (data.success == true) {
 
-                    window.open('../api/cetak-daftar/'+$scope.myModel.kelas.id+'/'+$scope.myModel.departments.id, '_blank');
+                    window.open('../api/cetak-daftar/' + $scope.myModel.kelas.id + '/' + $scope.myModel.departments.id, '_blank');
                 }
-                else{
+                else {
                     $scope.toaster = {
                         type: 'error',
                         title: 'Cek Data Anda',
-                        text:  data.result
+                        text: data.result
                     };
                     toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
 
@@ -399,10 +398,10 @@ app.controller('SchedulesdetailCtrl', ['$scope', 'schedules', 'SweetAlert', '$ui
         $uibModalInstance.dismiss('cancel');
     };
 }]);
-app.controller('Schedulesdetail2Ctrl', ['$scope', 'schedules', 'SweetAlert', '$uibModal','$log','$uibModalInstance','toaster','item','$http','$timeout', function ($scope, schedules,SweetAlert,$uibModal,$log,$uibModalInstance,toaster,item) {
+app.controller('Schedulesdetail2Ctrl', ['$scope', 'schedules', 'SweetAlert', '$uibModal', '$log', '$uibModalInstance', 'toaster', 'item', '$http', '$timeout', function ($scope, schedules, SweetAlert, $uibModal, $log, $uibModalInstance, toaster, item) {
 //urussan tampilan
-    $scope.myModel ={}
-    
+    $scope.myModel = {}
+
     $scope.isLoading = true;
     $scope.isLoaded = false;
 
@@ -415,7 +414,7 @@ app.controller('Schedulesdetail2Ctrl', ['$scope', 'schedules', 'SweetAlert', '$u
             $scope.isLoaded = true;
         }
     };
-    $scope.id =item
+    $scope.id = item
     schedules.show($scope.id)
         .success(function (data) {
             $scope.setLoader(false);
