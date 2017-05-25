@@ -252,7 +252,11 @@ app.controller('SchedulesCreateCtrl', ['$state', '$scope', 'schedules', '$timeou
             //run Ajax
             $scope.myModel.kelas_id = $scope.myModel.kelas.id
             $scope.myModel.teachers_id = $scope.myModel.teachers.id
+            $scope.myModel.teachers_id_2 = $scope.myModel.teachers_2.id
+            $scope.myModel.teachers_id_3 = $scope.myModel.teachers_3.id
             $scope.myModel.subjects_id = $scope.myModel.subjects.id
+            $scope.myModel.subjects_id_2 = $scope.myModel.subjects_2.id
+            $scope.myModel.subjects_id_3 = $scope.myModel.subjects_3.id
             $scope.myModel.departments_id = $scope.myModel.departments.id
             $scope.myModel.wali_kelas = $scope.myModel.wali_kelas_id.id
 

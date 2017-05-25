@@ -197,9 +197,9 @@
                                         </label>
                                         <select class="form-control" name="time_3" ng-model="myModel.time_3" required>
                                             <option value="" disabled selected>Silahkan pilih Pukul Pelajaran 3</option>
-                                            <option value="07.00 - 09.00" ng-if="myModel.time != '07.00 - 09.00'">07.00 - 09.00</option>
-                                            <option value="10.00 - 12.00" ng-if="myModel.time != '10.00 - 12.00'">10.00 - 12.00</option>
-                                            <option value="13.00 - 15.00" ng-if="myModel.time != '13.00 - 15.00'">13.00 - 15.00</option>
+                                            <option value="07.00 - 09.00" ng-if="myModel.time != '07.00 - 09.00' && myModel.time_2 != '07.00 - 09.00'">07.00 - 09.00</option>
+                                            <option value="10.00 - 12.00" ng-if="myModel.time != '10.00 - 12.00' && myModel.time_2 != '10.00 - 12.00'">10.00 - 12.00</option>
+                                            <option value="13.00 - 15.00" ng-if="myModel.time != '13.00 - 15.00' && myModel.time_2 != '13.00 - 15.00'">13.00 - 15.00</option>
                                         </select>
                                         <span class="error text-small block" ng-if="Form.time_3.$dirty && Form.time_3.$invalid">Pukul Pelajaran 3 is required</span>
                                         <span class="success text-small" ng-if="Form.time.$valid">Thank You!</span>

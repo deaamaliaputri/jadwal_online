@@ -47,7 +47,7 @@ class SchedulesRepository extends AbstractRepository implements SchedulesInterfa
     public function paginate($limit = 10, $page = 1, array $column = ['*'], $field, $search = '')
     {
         // query to aql
-     
+
         $akun = $this->model
             ->join('departments', 'schedules.departments_id', '=', 'departments.id')
             ->join('kelas', 'schedules.kelas_id', '=', 'kelas.id')
@@ -76,7 +76,7 @@ class SchedulesRepository extends AbstractRepository implements SchedulesInterfa
     public function create(array $data)
     {
         // execute sql insert
-        return parent::create([
+        Schedules::create([
             'time' => e($data['time']),
             'hour' => e($data['hour']),
             'room' => e($data['room']),
@@ -87,6 +87,30 @@ class SchedulesRepository extends AbstractRepository implements SchedulesInterfa
             'kelas_id' => e($data['kelas_id']),
             'subjects_id' => e($data['subjects_id']),
         ]);
+        Schedules::create([
+            'hari' => e($data['hari']),
+            'wali_kelas' => e($data['wali_kelas']),
+            'departments_id' => e($data['departments_id']),
+            'kelas_id' => e($data['kelas_id']),
+            'time' => e($data['time_2']),
+            'hour' => e($data['hour_2']),
+            'room' => e($data['room_2']),
+            'subjects_id' => e($data['subjects_id_2']),
+            'teachers_id' => e($data['teachers_id_2']),
+        ]);
+        Schedules::create([
+            'hari' => e($data['hari']),
+            'wali_kelas' => e($data['wali_kelas']),
+            'departments_id' => e($data['departments_id']),
+            'kelas_id' => e($data['kelas_id']),
+            'time' => e($data['time_3']),
+            'hour' => e($data['hour_3']),
+            'room' => e($data['room_3']),
+            'subjects_id' => e($data['subjects_id_3']),
+            'teachers_id' => e($data['teachers_id_3']),
+        ]);
+
+        return response()->json(['created' => true], 200);
 
     }
 
@@ -131,7 +155,7 @@ class SchedulesRepository extends AbstractRepository implements SchedulesInterfa
         return parent::find($id, $columns);
     }
 
-    public function getByPagecetak($id,$id2)
+    public function getByPagecetak($id, $id2)
     {
 
         // query to aql
