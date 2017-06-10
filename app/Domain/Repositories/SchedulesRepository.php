@@ -48,25 +48,26 @@ class SchedulesRepository extends AbstractRepository implements SchedulesInterfa
     {
         // query to aql
 
-        $akun = $this->model
-            ->join('departments', 'schedules.departments_id', '=', 'departments.id')
-            ->join('kelas', 'schedules.kelas_id', '=', 'kelas.id')
-            ->join('teachers', 'schedules.teachers_id', '=', 'teachers.id')
-            ->join('subjects', 'schedules.subjects_id', '=', 'subjects.id')
-            ->where(function ($query) use ($search) {
-                $query->where('schedules.time', 'like', '%' . $search . '%')
-                    ->orWhere('schedules.hour', 'like', '%' . $search . '%')
-                    ->orWhere('schedules.room', 'like', '%' . $search . '%')
-                    ->orWhere('schedules.hari', 'like', '%' . $search . '%')
-                    ->orWhere('departments.name', 'like', '%' . $search . '%')
-                    ->orWhere('teachers.name', 'like', '%' . $search . '%')
-                    ->orWhere('kelas.name', 'like', '%' . $search . '%')
-                    ->orWhere('subjects.name', 'like', '%' . $search . '%');
-            })
-            ->select('schedules.*')
+        // $akun = Schedules::selectRaw('ANY_VALUE(id) as id_schedules,ANY_VALUE(kelas_id),ANY_VALUE(departments_id) ')->groupBy('kelas_id','departments_id')->orderBy('kelas_id', 'DESC')->get();
+$akun = $this->model->select('*')->groupBy('kelas_id','departments_id')->orderBy('kelas_id', 'DESC')->get();
+    //  dump($akun);
+        $result = [];
+        foreach ($akun as $key => $value) {
+            $result[] = $value->id;
+        }
+
+        // --> Flatten  array
+        $array_id = [];
+        $array_length = count($result);
+        for ($i = 0; $i <= $array_length - 1; $i++) {
+            array_push($array_id, $result[$i]);
+        };
+
+        $spp = $this->model
+            ->whereIn('id', $array_id)
             ->paginate($limit)
             ->toArray();
-        return $akun;
+        return $spp;
     }
 
     /**

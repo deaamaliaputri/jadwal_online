@@ -34,29 +34,9 @@ class SchedulesController extends Controller
     public function index(Request $request)
     {
 
-        $schedules = $this->schedules->paginate(10, $request->input('page'), $column = ['*'], '', $request->input('term'));
+        return $this->schedules->paginate(10, $request->input('page'), $column = ['*'], '', $request->input('term'));
         // return $schedules['data'];
         // grouping data filter by kelompok
-        $group_schedules = [];
-        foreach ($schedules['data'] as $row) {
-            $group_schedules[$row['kelas_id']][] = $row;
-        }
-
-        return $group_schedules;
-
-         $group_schedules = [];
-        foreach ($schedules['data'] as $row) {
-            $group_schedules[$row['departments_id']][] = $row;
-        }
-
-        return $group_schedules;
-    
-         $group_schedules = [];
-        foreach ($schedules['data'] as $row) {
-            $group_schedules[$row['teahers_id']][] = $row;
-        }
-
-        return $group_schedules;
     
     }
 

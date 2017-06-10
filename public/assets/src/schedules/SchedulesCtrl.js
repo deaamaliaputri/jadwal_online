@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('SchedulesCtrl', ['$scope', 'schedules', 'SweetAlert', '$uibModal', '$log', '$http', '$timeout', function ($scope, schedules, SweetAlert, $uibModal, $log) {
+app.controller('SchedulesCtrl', ['$scope', 'schedules', 'toaster','SweetAlert', '$uibModal', '$log', '$http', '$timeout', function ($scope, schedules, toaster,SweetAlert, $uibModal, $log) {
 //urussan tampilan
     $scope.main = {
         page: 1,
@@ -26,6 +26,27 @@ app.controller('SchedulesCtrl', ['$scope', 'schedules', 'SweetAlert', '$uibModal
             $log.info('Modal dismissed at: ' + new Date());
         });
     };
+        $scope.cetak = function (id, id2) {
+      schedules.cekcetak(id, id2)
+            .success(function (data) {
+                if (data.success == true) {
+
+        window.open('../api/cetak-daftar/' + id + '/' + id2, '_blank');
+                }
+                else {
+                    $scope.toaster = {
+                        type: 'error',
+                        title: 'Cek Data Anda',
+                        text: data.result
+                    };
+                    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+
+                }
+            })
+
+  
+  }
+
 
     $scope.schedules = function (id) {
 
@@ -190,9 +211,6 @@ app.controller('SchedulesCtrl', ['$scope', 'schedules', 'SweetAlert', '$uibModal
 
         $scope.getData()
     };
-    $scope.cetak = function (id, id2) {
-        window.open('../api/cetak-daftar/' + id + '/' + id2, '_blank');
-    }
     $scope.hapus = function (id) {
         SweetAlert.swal({
             title: "Peringatan?",
