@@ -47,6 +47,7 @@
                     <th class="col-md-1">Kelas</th>
                     <th class="col-md-1">Jurusan</th>
                     <th class="col-md-1">Wali Kelas</th>
+                    <th class="col-md-1">Hari</th>
                     <th class="col-md-2" ng-if="dataUser.level !='1'">Aksi</th>
                 </tr>
                 </thead>
@@ -55,6 +56,7 @@
                     <td class="col-md-1">{{row.kelas.name}}</td>
                     <td class="col-md-1">{{row.departments.name}}</td>
                     <td class="col-md-1">{{row.wali_kelass.name}}</td>
+                    <td class="col-md-1">{{row.hari}}</td>
                        <td class="col-md-2">
                             <!--detail-->
                             <button type="button" ng-click="schedules(row.id)" md-ink-ripple tooltip="Detail Schedules" class="btn btn-sm btn-info">
@@ -70,7 +72,7 @@
                         </button>
                         <span tooltip="Cetak data">
                         <button md-ink-ripple class="btn btn-sm btn-default"
-                                ng-click="cetak(row.departments.id,row.kelas.id)">
+                                ng-click="cetak(row.kelas.id,row.departments.id)">
                     <i class="glyphicon glyphicon-print"></i>
                 </button>
             </span>

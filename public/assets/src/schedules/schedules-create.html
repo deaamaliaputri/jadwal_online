@@ -210,9 +210,9 @@
                                         </label>
                                         <select class="form-control" name="hour_3" ng-model="myModel.hour_3" required>
                                             <option value="" disabled selected>Silahkan pilih Jam Pelajaran 3</option>
-                                            <option value="1 dan 2" ng-if="myModel.hour != '1 dan 2'">1 dan 2</option>
-                                            <option value="3 dan 4" ng-if="myModel.hour != '3 dan 4'">3 dan 4</option>
-                                            <option value="5 dan 6" ng-if="myModel.hour != '5 dan 6'">5 dan 6</option>
+                                            <option value="1 dan 2" ng-if="myModel.hour != '1 dan 2' && myModel.hour_2 != '1 dan 2'">1 dan 2</option>
+                                            <option value="3 dan 4" ng-if="myModel.hour != '3 dan 4' && myModel.hour_2 != '3 dan 4'">3 dan 4</option>
+                                            <option value="5 dan 6" ng-if="myModel.hour != '5 dan 6' && myModel.hour_2 != '6 dan 5'">5 dan 6</option>
                                         </select>
                                         <span class="error text-small block" ng-if="Form.hour_3.$dirty && Form.hour_3.$invalid">Pukul Pelajaran 3 is required</span>
                                         <span class="success text-small" ng-if="Form.hour_3.$valid">Thank You!</span>

@@ -47,27 +47,61 @@ class SchedulesRepository extends AbstractRepository implements SchedulesInterfa
     public function paginate($limit = 10, $page = 1, array $column = ['*'], $field, $search = '')
     {
         // query to aql
+        if (session('level') == 0) {
 
-        // $akun = Schedules::selectRaw('ANY_VALUE(id) as id_schedules,ANY_VALUE(kelas_id),ANY_VALUE(departments_id) ')->groupBy('kelas_id','departments_id')->orderBy('kelas_id', 'DESC')->get();
-$akun = $this->model->select('*')->groupBy('kelas_id','departments_id')->orderBy('kelas_id', 'DESC')->get();
-    //  dump($akun);
-        $result = [];
-        foreach ($akun as $key => $value) {
-            $result[] = $value->id;
+            $akun = $this->model
+                ->join('departments', 'schedules.departments_id', '=', 'departments.id')
+                ->join('kelas', 'schedules.kelas_id', '=', 'kelas.id')
+                ->join('teachers', 'schedules.wali_kelas', '=', 'teachers.id')
+                ->join('subjects', 'schedules.subjects_id', '=', 'subjects.id')
+                ->where(function ($query) use ($search) {
+                    $query->where('schedules.hari', 'like', '%' . $search . '%')
+                        ->orWhere('departments.name', 'like', '%' . $search . '%')
+                        ->orWhere('teachers.name', 'like', '%' . $search . '%')
+                        ->orWhere('kelas.name', 'like', '%' . $search . '%')
+                        ->orWhere('subjects.name', 'like', '%' . $search . '%');
+                })
+                ->select('schedules.*')
+                ->paginate($limit)
+                ->toArray();
+
+            return $akun;
         }
+        if (session('level') == 1) {
 
-        // --> Flatten  array
-        $array_id = [];
-        $array_length = count($result);
-        for ($i = 0; $i <= $array_length - 1; $i++) {
-            array_push($array_id, $result[$i]);
-        };
+            // $akun = Schedules::selectRaw('ANY_VALUE(id) as id_schedules,ANY_VALUE(kelas_id),ANY_VALUE(departments_id) ')->groupBy('kelas_id','departments_id')->orderBy('kelas_id', 'DESC')->get();
+            $akun = $this->model->select('*')->groupBy('kelas_id', 'departments_id')->orderBy('kelas_id', 'DESC')->get();
+            //  dump($akun);
+            $result = [];
+            foreach ($akun as $key => $value) {
+                $result[] = $value->id;
+            }
 
-        $spp = $this->model
-            ->whereIn('id', $array_id)
-            ->paginate($limit)
-            ->toArray();
-        return $spp;
+            // --> Flatten  array
+            $array_id = [];
+            $array_length = count($result);
+            for ($i = 0; $i <= $array_length - 1; $i++) {
+                array_push($array_id, $result[$i]);
+            };
+
+            $spp = $this->model
+                ->join('departments', 'schedules.departments_id', '=', 'departments.id')
+                ->join('kelas', 'schedules.kelas_id', '=', 'kelas.id')
+                ->join('teachers', 'schedules.wali_kelas', '=', 'teachers.id')
+                ->join('subjects', 'schedules.subjects_id', '=', 'subjects.id')
+                ->whereIn('schedules.id', $array_id)
+                ->where(function ($query) use ($search) {
+                    $query->where('schedules.hari', 'like', '%' . $search . '%')
+                        ->orWhere('departments.name', 'like', '%' . $search . '%')
+                        ->orWhere('teachers.name', 'like', '%' . $search . '%')
+                        ->orWhere('kelas.name', 'like', '%' . $search . '%')
+                        ->orWhere('subjects.name', 'like', '%' . $search . '%');
+                })
+                ->select('schedules.*')
+                ->paginate($limit)
+                ->toArray();
+            return $spp;
+        }
     }
 
     /**
@@ -361,60 +395,127 @@ $akun = $this->model->select('*')->groupBy('kelas_id','departments_id')->orderBy
                                 );
 
                             } else {
-                                return response()->json(
-                                    [
-                                        'success' => false,
-                                        'result' => 'Cek Kembali Schedules Pada Hari Sabtu',
-                                    ]
-                                );
+                                if ($ceksabtu < 3) {
+                                    $cek =  3 - $ceksabtu;
+                                    return response()->json(
+                                        [
+                                            'success' => false,
+                                            'result' => 'Cek Kembali Schedules Pada Hari Sabtu kurang dari '.$cek .' pelajaran',
+                                        ]
+                                    );
+                                }
+                                else{
+                                    $cek =   $ceksabtu  - 3;
+                                    return response()->json(
+                                        [
+                                            'success' => false,
+                                            'result' => 'Cek Kembali Schedules Pada Hari Sabtu Lebih dari '.$cek .' pelajaran',
+                                        ]
+                                    );
+                                }
 
                             }
                         } else {
-                            return response()->json(
-                                [
-                                    'success' => false,
-                                    'result' => 'Cek Kembali Schedules Pada Hari Jumat',
-                                ]
-                            );
-
+                            if ($cekjumat < 3) {
+                                $cek =  3 - $cekjumat;
+                                return response()->json(
+                                    [
+                                        'success' => false,
+                                        'result' => 'Cek Kembali Schedules Pada Hari Jumat kurang dari '.$cek .' pelajaran',
+                                    ]
+                                );
+                            }
+                            else{
+                                $cek =   $cekjumat  - 3;
+                                return response()->json(
+                                    [
+                                        'success' => false,
+                                        'result' => 'Cek Kembali Schedules Pada Hari Jumat Lebih dari '.$cek .' pelajaran',
+                                    ]
+                                );
+                            }
                         }
 
                     } else {
+                        if ($cekkamis < 3) {
+                            $cek =  3 - $cekkamis ;
+                            return response()->json(
+                                [
+                                    'success' => false,
+                                    'result' => 'Cek Kembali Schedules Pada Hari Kamis kurang dari '.$cek .' pelajaran',
+                                ]
+                            );
+                        }
+                        else{
+                            $cek =   $cekkamis  - 3;
+                            return response()->json(
+                                [
+                                    'success' => false,
+                                    'result' => 'Cek Kembali Schedules Pada Hari Kamis Lebih dari '.$cek .' pelajaran',
+                                ]
+                            );
+                        }
+                    }
+                } else {
+                    if ($cekrabu < 3) {
+                        $cek =  3 - $cekrabu ;
                         return response()->json(
                             [
                                 'success' => false,
-                                'result' => 'Cek Kembali Schedules Pada Hari Kamis',
+                                'result' => 'Cek Kembali Schedules Pada Hari Rabu kurang dari '.$cek .' pelajaran',
                             ]
                         );
-
                     }
-                } else {
-                    return response()->json(
-                        [
-                            'success' => false,
-                            'result' => 'Cek Kembali Schedules Pada Hari Rabu',
-                        ]
-                    );
-
+                    else{
+                        $cek =   $cekrabu  - 3;
+                        return response()->json(
+                            [
+                                'success' => false,
+                                'result' => 'Cek Kembali Schedules Pada Hari Rabu Lebih dari '.$cek .' pelajaran',
+                            ]
+                        );
+                    }
                 }
 
             } else {
+                if ($cekselasa < 3) {
+                    $cek =  3 - $cekselasa ;
+                    return response()->json(
+                        [
+                            'success' => false,
+                            'result' => 'Cek Kembali Schedules Pada Hari Selasa kurang dari '.$cek .' pelajaran',
+                        ]
+                    );
+                }
+                else{
+                    $cek =   $cekselasa  - 3;
+                    return response()->json(
+                        [
+                            'success' => false,
+                            'result' => 'Cek Kembali Schedules Pada Hari Selasa Lebih dari '.$cek .' pelajaran',
+                        ]
+                    );
+                }
+            }
+        } else {
+            if ($ceksenin < 3) {
+                $cek =  3 - $ceksenin ;
                 return response()->json(
                     [
                         'success' => false,
-                        'result' => 'Cek Kembali Schedules Pada Hari Selasa',
+                        'result' => 'Cek Kembali Schedules Pada Hari Senin kurang dari '.$cek .' pelajaran',
                     ]
                 );
-
             }
-        } else {
-            return response()->json(
-                [
-                    'success' => false,
-                    'result' => 'Cek Kembali Schedules Pada Hari Senin',
-                ]
-            );
-
+            else{
+                $cek =   $ceksenin  - 3;
+                return response()->json(
+                    [
+                        'success' => false,
+                        'result' => 'Cek Kembali Schedules Pada Hari Senin Lebih dari '.$cek .' pelajaran',
+                    ]
+                );
+            }
         }
 
 

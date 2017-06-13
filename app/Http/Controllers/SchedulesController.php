@@ -35,8 +35,6 @@ class SchedulesController extends Controller
     {
 
         return $this->schedules->paginate(10, $request->input('page'), $column = ['*'], '', $request->input('term'));
-        // return $schedules['data'];
-        // grouping data filter by kelompok
     
     }
 
